@@ -346,7 +346,7 @@ html,body{scroll-behavior:auto}
 <span style="font-size: 20px; font-weight: 500; line-height: 1.25">{{pl.name}}</span>
 <sc-if value="{{pl.hasAddr}}" hint-placeholder-val="{{ true }}"><span style="font-size: 16px">{{pl.addr}}</span></sc-if>
 <sc-if value="{{pl.noAddr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 16px">Адрес: <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 12px; font-weight: 600">[УТОЧНИТЬ у Анатолия]</span></span></sc-if>
-<span style="font-size: 16px">м. <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 12px; font-weight: 600">[УТОЧНИТЬ]</span></span>
+<span style="font-size: 16px; color: #565B73">{{pl.metro}}</span>
 <sc-if value="{{pl.persAsk}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; align-self: flex-start; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 12px; font-weight: 600">[УТОЧНИТЬ у Анатолия: есть ли персональные]</span></sc-if>
 <span style="flex-grow: 1"></span>
 <sc-if value="{{pl.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="btn-route" href="{{pl.route}}" target="_blank" rel="noopener" style="align-self: flex-start; margin-top: 8px">Маршрут →</a></sc-if>
@@ -491,9 +491,9 @@ var STORIES = [
   { id: 's07', label: 'Очки', cover: 'assets/story-goggles.jpg', src: 'assets/story-goggles.mp4' }
 ];
 var POOLS = [
-  { id: 'zil', name: 'ЗИЛ «Акватория»', short: 'ЗИЛ', addr: 'Автозаводская ул.,' + NB + '23А' + NB + 'к4', img: 'assets/pool-zil.jpg', left: '49.8%', top: '73.3%', ask: false, route: 'https://yandex.ru/maps/?text=Москва+Автозаводская+улица+23А+к4' },
-  { id: 'luzh', name: 'Лужники', short: 'Лужники', addr: '', img: 'assets/pool-luzhniki.jpg', left: '40.7%', top: '66.5%', ask: false, route: '' },
-  { id: 'mgtu', name: 'СК МГТУ им.' + NB + 'Баумана', short: 'МГТУ', addr: 'Госпитальная наб.,' + NB + '4с1', img: 'assets/pool-mgtu.jpg', left: '55.4%', top: '36.5%', ask: true, route: 'https://yandex.ru/maps/?text=Москва+Госпитальная+набережная+4с1' }
+  { id: 'zil', name: 'ЗИЛ «Акватория»', short: 'ЗИЛ', addr: 'Автозаводская ул.,' + NB + '23А' + NB + 'к4', img: 'assets/pool-zil.jpg', left: '49.8%', top: '73.3%', ask: false, metro: 'МЦК ЗИЛ' + NB + '·' + NB + 'м.' + NB + 'Автозаводская', route: 'https://yandex.ru/maps/org/akvatoriya_zil/220499522989/' },
+  { id: 'luzh', name: 'Лужники', short: 'Лужники', addr: 'ул.' + NB + 'Лужники,' + NB + '24' + NB + 'с4', img: 'assets/pool-luzhniki.jpg', left: '40.7%', top: '66.5%', ask: false, metro: 'м.' + NB + 'Воробьёвы горы' + NB + '·' + NB + 'МЦК Лужники', route: 'https://yandex.ru/maps/org/akvakompleks_luzhniki/184720394032/' },
+  { id: 'mgtu', name: 'СК МГТУ им.' + NB + 'Баумана', short: 'МГТУ', addr: 'Госпитальная наб.,' + NB + '4с1', img: 'assets/pool-mgtu.jpg', left: '55.4%', top: '36.5%', ask: true, metro: 'м.' + NB + 'Электрозаводская', route: 'https://yandex.ru/maps/org/sportivny_kompleks_mgtu_imeni_n_e_baumana/1077634910/' }
 ];
 
 class Component extends DCLogic {
@@ -796,7 +796,7 @@ class Component extends DCLogic {
     var cur = s.story >= 0 ? STORIES[s.story] : STORIES[0];
     var bars = STORIES.map((st, n) => ({ w: n < s.story ? '100%' : '0%', ref: this.fillRefs[n] }));
     var pools = POOLS.map((pl) => ({
-      name: pl.name, short: pl.short, addr: pl.addr, img: pl.img, left: pl.left, top: pl.top, route: pl.route,
+      name: pl.name, short: pl.short, addr: pl.addr, metro: pl.metro, img: pl.img, left: pl.left, top: pl.top, route: pl.route,
       hasAddr: !!pl.addr, noAddr: !pl.addr, persAsk: pl.ask,
       ring: s.pool === pl.id ? '#34466F' : 'transparent',
       pinBg: s.pool === pl.id ? '#34466F' : '#FFFFFF',
