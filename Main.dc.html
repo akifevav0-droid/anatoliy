@@ -676,8 +676,11 @@ class Component extends DCLogic {
     if (!r || r.children.length < 2) return;
     this.revLoop();
     var step = r.children[1].offsetLeft - r.children[0].offsetLeft;
-    var idx = Math.round(r.scrollLeft / step) + d;
+    var from = r.scrollLeft;
+    var idx = Math.round(from / step) + d;
     r.scrollTo({ left: idx * step, behavior: this.motionOk() ? 'smooth' : 'auto' });
+    // если плавная прокрутка не началась (например, вкладка в фоне) — сдвигаем сразу
+    setTimeout(() => { if (Math.abs(r.scrollLeft - from) < 2) { r.scrollLeft = idx * step; this.revLoop(); } }, 600);
   }
   progress() {
     var v = this.video, f = this.fills[this.state.story];
