@@ -143,7 +143,7 @@ html,body{scroll-behavior:auto}
 <span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-one.jpg" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%"></span>
 <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
 <span style="font-size: 24px; font-weight: 500; line-height: 1.2">Одна тренировка</span>
-<span style="font-size: 16px">Углублённая: тренер рядом в воде, разбор и видеообзор.</span>
+<span style="font-size: 16px">Углублённая: тренер рядом в воде, видеосъёмка, разбор ошибок и план до следующей тренировки.</span>
 <span style="margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
 <span style="font-size: 24px; font-weight: 500">6 000 ₽</span>
 <span class="btn-ic" style="background: #34466F; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
@@ -167,7 +167,7 @@ html,body{scroll-behavior:auto}
 <span style="font-size: 24px; font-weight: 500; line-height: 1.2">Открытая вода</span>
 <span style="font-size: 16px">Подготовка к X‑Waters, SwimCup, Swimstar, Grand Swim Series, Hydra Swim. Дистанции от 500 м до 25 км.</span>
 <span style="margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-<span style="display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 500"><span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 2px 8px; font-size: 14px; font-weight: 600">[УТОЧНИТЬ у Анатолия]</span> ₽</span>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 500">По договорённости</span>
 <span class="btn-ic" style="background: #34466F; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
 </span>
 </span>
@@ -226,7 +226,7 @@ html,body{scroll-behavior:auto}
 <li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
 <span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">3</span>
 <span style="font-size: 20px; font-weight: 500">Разбор</span>
-<span style="color: #565B73; max-width: 60ch">Видео ваших ошибок и план до следующей тренировки. <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 12px; font-weight: 600">[согласовать формулировку с Анатолием]</span></span>
+<span style="color: #565B73; max-width: 60ch">Видео ваших ошибок и план до следующей тренировки.</span>
 </li>
 </ol>
 <div style="margin-top: 40px; display: flex; justify-content: center"><a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener">Записаться<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div>
@@ -242,7 +242,7 @@ html,body{scroll-behavior:auto}
 </details>
 <details style="border-bottom: 1px solid #D8DEEC">
 <summary style="cursor: pointer; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 18px; font-weight: 500">Что взять с собой?<span class="acc-ic" style="flex: 0 0 auto; font-size: 24px; font-weight: 400; color: #34466F">+</span></summary>
-<p style="margin: 0 0 24px"><span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 2px 8px; font-size: 14px; font-weight: 600">[УТОЧНИТЬ у Анатолия]</span></p>
+<p style="margin: 0 0 24px; max-width: 60ch; color: #565B73">Купальник или плавки, шапочку, очки, сланцы и полотенце.</p>
 </details>
 </div>
 </div>
@@ -492,8 +492,7 @@ var STORIES = [
 ];
 var POOLS = [
   { id: 'zil', name: 'ЗИЛ «Акватория»', short: 'ЗИЛ', addr: 'Автозаводская ул.,' + NB + '23А' + NB + 'к4', img: 'assets/pool-zil.jpg', left: '49.8%', top: '73.3%', ask: false, metro: 'МЦК ЗИЛ' + NB + '·' + NB + 'м.' + NB + 'Автозаводская', route: 'https://yandex.ru/maps/org/akvatoriya_zil/220499522989/' },
-  { id: 'luzh', name: 'Лужники', short: 'Лужники', addr: 'ул.' + NB + 'Лужники,' + NB + '24' + NB + 'с4', img: 'assets/pool-luzhniki.jpg', left: '40.7%', top: '66.5%', ask: false, metro: 'м.' + NB + 'Воробьёвы горы' + NB + '·' + NB + 'МЦК Лужники', route: 'https://yandex.ru/maps/org/akvakompleks_luzhniki/184720394032/' },
-  { id: 'mgtu', name: 'СК МГТУ им.' + NB + 'Баумана', short: 'МГТУ', addr: 'Госпитальная наб.,' + NB + '4с1', img: 'assets/pool-mgtu.jpg', left: '55.4%', top: '36.5%', ask: true, metro: 'м.' + NB + 'Электрозаводская', route: 'https://yandex.ru/maps/org/sportivny_kompleks_mgtu_imeni_n_e_baumana/1077634910/' }
+  { id: 'luzh', name: 'Лужники', short: 'Лужники', addr: 'ул.' + NB + 'Лужники,' + NB + '24' + NB + 'с4', img: 'assets/pool-luzhniki.jpg', left: '40.7%', top: '66.5%', ask: false, metro: 'м.' + NB + 'Воробьёвы горы' + NB + '·' + NB + 'МЦК Лужники', route: 'https://yandex.ru/maps/org/akvakompleks_luzhniki/184720394032/' }
 ];
 
 class Component extends DCLogic {
