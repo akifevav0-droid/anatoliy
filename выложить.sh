@@ -1,6 +1,7 @@
 #!/bin/bash
 # Выкладка сайта на GitHub Pages так, чтобы браузеры сразу видели новую версию.
 # Правим Main.dc.html (исходник), затем: bash выложить.sh "что изменилось"
+# Проверить у себя без выкладки: NOPUSH=1 bash выложить.sh
 set -e
 cd "$(dirname "$0")"
 MSG="${1:-Обновление сайта}"
@@ -23,6 +24,7 @@ i = re.sub(r'(href="(?:favicon\.svg|apple-touch-icon\.png))(\?v=\w+)?"', r'\1?v=
 open('index.html', 'w', encoding='utf-8').write(i)
 EOF
 
+if [ -n "$NOPUSH" ]; then echo "собрано локально, версия $V"; exit 0; fi
 git add -A
 git commit -qm "$MSG
 

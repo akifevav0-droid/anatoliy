@@ -262,7 +262,7 @@ html,body{scroll-behavior:auto}
 </div>
 </sc-if>
 </div>
-<div class="noscroll" ref="{{setReviews}}" onPointerDown="{{revDown}}" onPointerMove="{{revMove}}" onPointerUp="{{revUp}}" onPointerLeave="{{revUp}}" style="margin-right: calc((100% - 100vw) / 2); padding-right: {{pad}}; scroll-padding-right: {{pad}}; display: flex; gap: {{gridGap}}; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding-bottom: 8px; user-select: none">
+<div class="noscroll" ref="{{setReviews}}" onPointerDown="{{revDown}}" onPointerMove="{{revMove}}" onPointerUp="{{revUp}}" onPointerLeave="{{revUp}}" style="margin-left: calc((100% - 100vw) / 2); margin-right: calc((100% - 100vw) / 2); padding-left: calc((100vw - 100%) / 2); padding-right: calc((100vw - 100%) / 2); display: flex; gap: {{gridGap}}; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding-bottom: 8px; user-select: none">
 <figure data-card="1" aria-hidden="true" style="margin: 0; flex: 0 0 {{revCard}}; scroll-snap-align: start; background: #FFFFFF; border-radius: 28px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
 <span aria-label="5 из 5" style="color: #9377DF; font-size: 18px; letter-spacing: 3px">★★★★★</span>
 <blockquote style="margin: 0; flex-grow: 1; font-size: 20px; line-height: 1.45">«Большой плюс в том, что тренер плавает с тобой рядом в воде, а не кричит с бортиков на весь бассейн».</blockquote>
@@ -582,12 +582,17 @@ class Component extends DCLogic {
     if (this.reviews) {
       this.onRevScroll = () => { clearTimeout(this.revT); this.revT = setTimeout(() => this.revLoop(), 140); };
       this.reviews.addEventListener('scroll', this.onRevScroll, { passive: true });
+      // карточки «прилипают» по линии заголовка: поле ленты = поле страницы
+      this.revPad = () => { var r = this.reviews; if (r) r.style.scrollPaddingLeft = getComputedStyle(r).paddingLeft; };
+      this.revPad();
+      window.addEventListener('resize', this.revPad);
       var w0 = this.revSetW(); if (w0) this.reviews.scrollLeft = w0;
     }
   }
   componentWillUnmount() {
     window.removeEventListener('pointermove', this.onPM);
     window.removeEventListener('scroll', this.onScroll);
+    if (this.revPad) window.removeEventListener('resize', this.revPad);
     if (this.reviews) this.reviews.removeEventListener('wheel', this.onRevWheel);
     if (this.traf) cancelAnimationFrame(this.traf);
     if (this.praf) cancelAnimationFrame(this.praf);
