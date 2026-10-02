@@ -22,8 +22,8 @@ img,video,canvas,svg{max-width:100%}
 .btn-sm:hover{background:#3D5283}
 .btn-line{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:22px;border:1.5px solid #34466F;background:transparent;color:#34466F;font-family:inherit;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;transition:background-color .35s ease,color .35s ease}
 .btn-line:hover,.btn-line[aria-pressed="true"]{background:#34466F;color:#FFFFFF}
-.btn-route{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:22px;border:1.5px solid #23253A;color:#23253A;font-weight:600;font-size:15px;text-decoration:none;transition:background-color .35s ease,color .35s ease}
-.btn-route:hover{background:#23253A;color:#FFFFFF}
+.btn-route{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:22px;border:1.5px solid #34466F;color:#34466F;font-weight:600;font-size:15px;text-decoration:none;transition:background-color .35s ease,color .35s ease}
+.btn-route:hover{background:#34466F;color:#FFFFFF}
 .navlink{color:#23253A;text-decoration:none;font-size:15px;font-weight:500}
 .navlink:hover{color:#34466F}
 .flink{color:#34466F;font-weight:600;text-decoration:none;text-underline-offset:3px}
@@ -338,7 +338,7 @@ html,body{scroll-behavior:auto}
 <sc-if value="{{poolList}}" hint-placeholder-val="{{ true }}">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: {{gridGap}}; align-items: stretch">
 <sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
-<div data-card="1" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #8FA4D1; color: #23253A; outline: 2px solid {{pl.ring}}; outline-offset: 2px">
+<div data-card="1" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; outline: 2px solid {{pl.ring}}; outline-offset: 2px">
 <img src="{{pl.img}}" alt="{{pl.name}}" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
 <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
 <span style="font-size: 20px; font-weight: 500; line-height: 1.25">{{pl.name}}</span>
@@ -400,11 +400,12 @@ html,body{scroll-behavior:auto}
 <div aria-hidden="{{certBack}}" role="button" tabindex="-1" onClick="{{flipCert}}" style="position: absolute; inset: 0; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; background: #FFFFFF; border-radius: 3.125% / 5%; box-shadow: 0px 16px 24px rgba(35, 37, 58, 0.16); overflow: hidden; cursor: pointer">
 <div data-lenis-prevent="1" style="height: 100%; box-sizing: border-box; overflow-y: auto; padding: {{certBackPad}}; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 8px; font-size: {{certBackSize}}; line-height: 1.4; color: #23253A">
 <span style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #565B73">Подарочный сертификат</span>
-<div><b style="font-weight: 600">Что входит:</b> персональная тренировка с Анатолием Шабаршовым <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 11px; font-weight: 600">[УТОЧНИТЬ: длительность]</span></div>
+<div><b style="font-weight: 600">Что входит:</b> одна индивидуальная тренировка с Анатолием Шабаршовым + разбор техники <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 11px; font-weight: 600">[УТОЧНИТЬ: длительность]</span></div>
 <div><b style="font-weight: 600">Бассейн:</b> ЗИЛ «Акватория» или Лужники — на выбор</div>
 <div><b style="font-weight: 600">Проход в бассейн:</b> <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 11px; font-weight: 600">[УТОЧНИТЬ у Анатолия — входит ли]</span></div>
 <div><b style="font-weight: 600">Срок действия:</b> <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 11px; font-weight: 600">[УТОЧНИТЬ у Анатолия]</span></div>
-<div style="color: #565B73"><b style="font-weight: 600; color: #23253A">Как подарить:</b> заявка в боте → Анатолий связывается по оплате → после оплаты приходит именная карта и видео → дарите</div>
+<div><b style="font-weight: 600">Стоимость:</b> 5 000 ₽</div>
+<div style="color: #565B73"><b style="font-weight: 600; color: #23253A">Как подарить:</b> выберите бассейн в боте → оплатите 5 000 ₽ → именная карта и видео придут в Telegram → дарите</div>
 </div>
 </div>
 </div>
@@ -414,8 +415,8 @@ html,body{scroll-behavior:auto}
 </div>
 <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
 <h2 data-reveal="1" style="margin: 0; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Подарите тренировку с Анатолием</h2>
-<p style="margin: 0; max-width: 60ch; color: #565B73">Персональная тренировка в ЗИЛ или в Лужниках. После оплаты именная карта придёт в Telegram — её можно распечатать или переслать.</p>
-<div style="display: flex; align-items: center; gap: 8px; font-size: 26px; font-weight: 500"><span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 2px 8px; font-size: 13px; font-weight: 600">[УТОЧНИТЬ у Анатолия]</span> ₽</div>
+<p style="margin: 0; max-width: 60ch; color: #565B73">Одна индивидуальная тренировка с разбором техники — в ЗИЛ или в Лужниках. Оплата в Telegram-боте, после оплаты именная карта придёт туда же — её можно распечатать или переслать.</p>
+<div style="font-size: 32px; font-weight: 500; line-height: 1.1">5 000 ₽</div>
 <div class="{{giftClass}}">
 <img class="gift-card" src="assets/certificate-mini.png" alt="">
 <a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=gift_site" target="_blank" rel="noopener">Подарить тренировку<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
@@ -537,7 +538,15 @@ class Component extends DCLogic {
       this.drag = null;
       this.reviews.style.scrollSnapType = 'x mandatory';
     };
-    this.onRevWheel = (e) => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault(); };
+    this.onRevWheel = (e) => {
+      if (!this.reviews || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      var r = this.reviews;
+      r.style.scrollSnapType = 'none';
+      r.scrollLeft += e.deltaX;
+      clearTimeout(this.wheelT);
+      this.wheelT = setTimeout(() => { r.style.scrollSnapType = 'x mandatory'; this.revLoop(); }, 160);
+    };
     this.certTouchMove = (e) => {
       if (e.pointerType !== 'touch' || !this.certWrap || !this.motionOk()) return;
       this.mx = e.clientX; this.my = e.clientY;
@@ -691,10 +700,7 @@ class Component extends DCLogic {
     this.mx = e.clientX; this.my = e.clientY;
     var t = e.target && e.target.closest ? e.target : null;
     var hot = t ? t.closest('a, button, summary, [data-card]') : null;
-    if (this.started && !this.state.cursorOn) {
-      this.root.classList.add('nocur');
-      this.setState({ cursorOn: true });
-    }
+    // своя точка-курсор выключена: обычная стрелка + «пар» (smoke-cursor.js)
     if (this.started && this.cursor) {
       if (!this.shown) { this.cursor.style.opacity = '1'; this.shown = true; }
       this.cursor.style.transform = 'translate3d(' + this.mx + 'px, ' + this.my + 'px, 0)';
