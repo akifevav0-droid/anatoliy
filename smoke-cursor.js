@@ -37,16 +37,16 @@
   var config = {
     SIM_RESOLUTION: 64,
     DYE_RESOLUTION: 512,
-    DENSITY_DISSIPATION: 4,             // след тает примерно за полсекунды
+    DENSITY_DISSIPATION: 3,             // след тает примерно за полсекунды
     VELOCITY_DISSIPATION: 2,
     PRESSURE: 0.8,
     PRESSURE_ITERATIONS: 20,
     CURL: 3,
-    SPLAT_RADIUS: 0.035,                 // тонкий «пар» за точкой, не облако
+    SPLAT_RADIUS: 0.05,                 // тонкий «пар» за точкой, не облако
     SPLAT_FORCE: 1500,
-    MAX_ALPHA: 0.08,                       // пар не плотнее 0,08 — текст под ним читается
-    COLOR_A: [143 / 255, 164 / 255, 209 / 255], // #8FA4D1
-    COLOR_B: [147 / 255, 119 / 255, 223 / 255]  // #9377DF
+    MAX_ALPHA: 0.2,                       // пар не плотнее 0,2 и только тонкой струйкой — текст читается
+    COLOR_A: [123 / 255, 92 / 255, 240 / 255], // #7B5CF0 — фиолетовый, заметен и на голубом
+    COLOR_B: [147 / 255, 119 / 255, 223 / 255]  // #9377DF — лаванда логотипа
   };
   var HOVER = 'a, button, [role="button"], summary, .card, [data-card], [data-cursor]';
   var me = document.currentScript;
