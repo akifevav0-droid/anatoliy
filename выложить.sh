@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 MSG="${1:-Обновление сайта}"
 
 # метка версии — по содержимому страницы, скриптов и файлов
-V=$(cat Main.dc.html smoke-cursor.js support.js assets/* | md5 -q | cut -c1-8)
+V=$(cat Main.dc.html gruppy/index.html smoke-cursor.js support.js assets/* | md5 -q | cut -c1-8)
 
 # страница под новым именем: старое имя браузер мог запомнить на 10 минут
 rm -f Main-*.dc.html
@@ -22,6 +22,9 @@ i = re.sub(r'<dc-import name="Main[\w-]*"', f'<dc-import name="Main-{v}"', i)
 i = re.sub(r'(src="\.?/?(?:support|smoke-cursor)\.js)(\?v=\w+)?"', r'\1?v=' + v + '"', i)
 i = re.sub(r'(href="(?:favicon\.svg|apple-touch-icon\.png))(\?v=\w+)?"', r'\1?v=' + v + '"', i)
 open('index.html', 'w', encoding='utf-8').write(i)
+g = open('gruppy/index.html', encoding='utf-8').read()
+g = re.sub(r'(\.\./(?:assets/[\w.-]+|smoke-cursor\.js|favicon\.svg|apple-touch-icon\.png))(\?v=\w+)?"', r'\1?v=' + v + '"', g)
+open('gruppy/index.html', 'w', encoding='utf-8').write(g)
 EOF
 
 if [ -n "$NOPUSH" ]; then echo "собрано локально, версия $V"; exit 0; fi
