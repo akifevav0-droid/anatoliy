@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
-<link rel="stylesheet" href="v2/v2.css?v=97136c4f">
+<link rel="stylesheet" href="v2/v2.css?v=15001376">
 </head>
 <body>
 
@@ -205,6 +205,22 @@
     var flip = function () { c.classList.toggle('flip'); };
     c.addEventListener('click', flip);
     c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+    // наклон и блик за курсором — только мышь
+    if (matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        c.classList.add('moving');
+        c.style.setProperty('--ry', ((x - .5) * 16).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', ((.5 - y) * 12).toFixed(2) + 'deg');
+        c.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
+        c.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+        c.style.setProperty('--hue', (x * 180).toFixed(0) + 'deg');
+      });
+      c.addEventListener('pointerleave', function () {
+        c.classList.remove('moving');
+        ['--rx', '--ry', '--gx', '--gy', '--hue'].forEach(function (k) { c.style.removeProperty(k); });
+      });
+    }
   }
   // мягкая прокрутка — только мышь
   if (window.Lenis && matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
