@@ -237,5 +237,5 @@ footer a:hover{text-decoration:underline}
   .hdr .btn,.pool .route{width:auto}
   .hdr .btn{padding:0 16px;font-size:14px}
 }
-@media (max-width:420px){.hdr .btn{display:none}}
+@media (max-width:420px){.hdr{gap:16px}.hdr .btn{min-height:40px;padding:0 14px}.logo{width:104px}}
 @media (prefers-reduced-motion:reduce){.rot>span{animation:none}.rot>span:nth-child(1){opacity:1}.rv{opacity:1;transform:none;transition:none}.shine{display:none}.card-in{transition:none}}
