@@ -96,32 +96,8 @@ html,body{scroll-behavior:auto}
 </div>
 </section>
 
-<!-- Блок 2. Сториз -->
-<section ref="{{setHeroEnd}}" aria-label="Видео" style="max-width: 1200px; margin: 0 auto; padding: 32px {{pad}} 0">
-<div class="noscroll" style="display: flex; gap: 24px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 4px 0 8px">
-<sc-for list="{{stories}}" as="st" hint-placeholder-count="4">
-<button type="button" onClick="{{st.open}}" aria-label="Смотреть видео: {{st.label}}" style="flex: 0 0 auto; scroll-snap-align: start; width: 88px; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0; border: 0; background: transparent; font-family: inherit; color: {{st.textColor}}; cursor: pointer">
-<span style="width: 80px; height: 80px; border-radius: 50%; background: {{st.ring}}; padding: 2.5px; box-sizing: border-box; display: flex"><span style="flex-grow: 1; border-radius: 50%; background: #F6F7FB; padding: 3px; display: flex"><img src="{{st.cover}}" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block"></span></span>
-<span style="font-size: 14px; font-weight: 500; line-height: 1.25; text-align: center">{{st.label}}</span>
-</button>
-</sc-for>
-</div>
-</section>
-
-<!-- Блок 2а. Узнаёте себя? -->
-<section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Узнаёте себя?</h2>
-<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: {{gridGap}}">
-<li style="background: #FFFFFF; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Боюсь воды и глубины</span><span style="font-size: 16px; color: #565B73">Сначала подружимся с водой. Тренер всё время рядом, в воде.</span></li>
-<li style="background: #FFFFFF; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Задыхаюсь через 25 метров</span><span style="font-size: 16px; color: #565B73">На видео видно, где сбивается дыхание. Это и разбираем.</span></li>
-<li style="background: #FFFFFF; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Неловко плавать при других</span><span style="font-size: 16px; color: #565B73">Только вы и тренер. Без группы и без сравнений.</span></li>
-<li style="background: #FFFFFF; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Готовлюсь к заплыву</span><span style="font-size: 16px; color: #565B73">Анатолий готовил к X‑Waters, SwimCup, Swimstar — на дистанции от 500 м до 25 км.</span></li>
-<li style="background: #FFFFFF; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Плаваю годами, а лучше не становится</span><span style="font-size: 16px; color: #565B73">Видео покажет ошибки, которых вы не чувствуете. И план до следующей тренировки.</span></li>
-</ul>
-</section>
-
 <!-- Блок 3. Тренировки -->
-<section id="trenirovki" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<section id="trenirovki" ref="{{setHeroEnd}}" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
 <h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: {{gridGap}}; align-items: stretch">
 <a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
