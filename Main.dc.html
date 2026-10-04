@@ -196,7 +196,7 @@ html,body{scroll-behavior:auto}
 <!-- Блок 7. Бассейны -->
 <section id="basseyny" style="padding: {{gap}} 0 0">
 <div style="max-width: 1200px; margin: 0 auto; padding: 0 {{pad}} 24px"><h2 data-reveal="1" style="margin: 0; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em">Где тренируемся</h2></div>
-<div style="position: relative; width: 100%; height: {{poolH}}; overflow: hidden; background: #23253A">
+<div style="position: relative; width: 100%; aspect-ratio: 1280 / 853; overflow: hidden; background: #23253A">
 <img src="{{poolImg}}" alt="Открытый бассейн «Акватории ЗИЛ»" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(35, 37, 58, 0.25) 0%, rgba(35, 37, 58, 0) 30%, rgba(35, 37, 58, 0) 50%, rgba(35, 37, 58, 0.7) 100%)"></div>
 <a href="https://yandex.ru/maps/org/akvatoriya_zil/220499522989/" target="_blank" rel="noopener" style="position: absolute; top: {{poolBtnTop}}; right: {{pad}}; display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 22px; background: #FFFFFF; color: #23253A; font-weight: 600; text-decoration: none">Маршрут →</a>
@@ -866,7 +866,7 @@ class Component extends DCLogic {
       pageTop: phone ? '32px' : '56px',
       hdrPos: page === 'pers' ? 'absolute' : 'sticky', hdrColor: '#23253A', hdrBg: page === 'pers' ? 'transparent' : '#F6F7FB', hdrShadow: page === 'pers' ? 'none' : '0 1px 0 #D8DEEC', showHdrLogo: page !== 'pers',
       introH: phone ? '76svh' : '88svh', introPadT: phone ? '62px' : '58px', introPadB: phone ? '24px' : '36px', introFont: phone ? '16px' : '20px', rotFont: phone ? '34px' : 'clamp(40px, 5vw, 76px)',
-      poolH: phone ? '72svh' : 'min(80vh, 760px)', poolImg: phone ? 'assets/pool-zil-tall.jpg' : 'assets/pool-zil-wide.jpg', poolBtnTop: phone ? '16px' : '28px', poolPadB: phone ? '24px' : '40px', poolNameFont: phone ? '26px' : '36px', coachBand: phone ? '56px' : '96px',
+      poolH: 'auto', poolImg: 'assets/pool-zil-full.jpg', poolBtnTop: phone ? '16px' : '28px', poolPadB: phone ? '24px' : '40px', poolNameFont: phone ? '26px' : '36px', coachBand: phone ? '56px' : '96px',
       hdrGap: phone ? '12px' : '20px', logoH: phone ? '58px' : '72px',
       footTitle: page === 'groups' ? 'Приходите на пробную' : page === 'cert' ? 'Подарите тренировку' : page === 'comp' ? 'Готовитесь к старту?' : 'Запишитесь на первую тренировку',
       footText: page === 'cert' ? 'Именная карта с номером придёт в Telegram — останется вручить.' : page === 'groups' ? 'Напишите Анатолию, в какой бассейн удобнее, — подберёт группу по уровню.' : page === 'comp' ? 'Напишите, к какому заплыву и какая дистанция, — Анатолий ответит сам.' : 'Два вопроса в Telegram-боте — и Анатолий напишет вам сам.',
