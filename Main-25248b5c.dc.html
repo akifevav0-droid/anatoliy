@@ -60,7 +60,7 @@ html,body{scroll-behavior:auto}
 <header ref="{{setHeader}}" style="position: sticky; top: 0; z-index: 40; background: #F6F7FB; box-shadow: 0 1px 0 #D8DEEC; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)">
 <div style="max-width: 1200px; margin: 0 auto; padding: 12px {{pad}}; display: flex; align-items: center; justify-content: space-between; gap: 24px">
 <a href="#top" aria-label="SHABARSHOV swimming club — наверх" style="display: flex; align-items: center; flex: 1 1 0">
-<img src="assets/logo.svg?v=16067d0a" alt="SHABARSHOV swimming club" style="height: 40px; width: auto; display: block">
+<img src="assets/logo.svg?v=25248b5c" alt="SHABARSHOV swimming club" style="height: 40px; width: auto; display: block">
 </a>
 <sc-if value="{{desktop}}" hint-placeholder-val="{{ true }}">
 <nav class="dnav" aria-label="Разделы" style="display: flex; align-items: center; gap: 32px">
@@ -84,7 +84,7 @@ html,body{scroll-behavior:auto}
 <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
 <div data-lenis-prevent="1" role="dialog" aria-modal="true" aria-label="Меню" style="position: fixed; inset: 0; z-index: 55; background: #F6F7FB; display: flex; flex-direction: column; padding: 16px">
 <div style="display: flex; justify-content: space-between; align-items: center">
-<img src="assets/logo.svg?v=16067d0a" alt="SHABARSHOV swimming club" style="height: 40px; width: auto; display: block">
+<img src="assets/logo.svg?v=25248b5c" alt="SHABARSHOV swimming club" style="height: 40px; width: auto; display: block">
 <button type="button" onClick="{{toggleMenu}}" aria-label="Закрыть меню" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: #E8EDF7; color: #23253A; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.8; stroke-linecap: round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
 </div>
 <nav aria-label="Разделы" style="display: flex; flex-direction: column; margin-top: 48px">
@@ -102,7 +102,7 @@ html,body{scroll-behavior:auto}
 <div style="position: relative; height: {{heroH}}; overflow: hidden; background: #23253A">
 <video ref="{{setHeroVideo}}" src="{{heroSrc}}" poster="{{heroPoster}}" preload="auto" autoplay="" muted="" loop="" playsinline="" aria-label="Тренировка в открытом бассейне «Акватории ЗИЛ»" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(35, 37, 58, 0.28) 0%, rgba(35, 37, 58, 0) 32%, rgba(35, 37, 58, 0) 42%, rgba(35, 37, 58, 0.7) 100%)"></div>
-<div aria-hidden="true" style="position: absolute; top: 3%; left: 0; right: 0; text-align: center; font-size: {{wordSize}}; font-weight: 500; letter-spacing: -0.035em; line-height: 0.82; color: #9377DF; opacity: 0.85; white-space: nowrap; pointer-events: none; user-select: none">SHABARSHOV</div>
+<div aria-hidden="true" style="position: absolute; top: {{wordTop}}; left: 50%; transform: translateX(-50%); width: {{wordW}}; color: #9377DF; opacity: 0.9; pointer-events: none; user-select: none"><svg aria-hidden="true" style="display: block; width: 100%; height: auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 274 1645 174" fill="currentColor"><g transform="translate(-209 0)"><path transform="matrix(1,0,0,-1,240.3379,386.32728)" d="M0 0C4.384-7.76 9.741-13.497 16.066-17.205 22.392-20.917 29.35-22.771 36.94-22.771 39.807-22.771 42.464-22.392 44.911-21.633 47.354-20.874 49.422-19.905 51.109-18.723 52.794-17.545 54.146-16.153 55.158-14.548 56.17-12.947 56.676-11.22 56.676-9.361 56.676-7.171 56.127-5.313 55.031-3.795 53.933-2.276 52.331-.885 50.225 .38 48.113 1.646 45.373 2.91 42.001 4.175 38.625 5.44 34.493 6.832 29.603 8.351 22.685 10.88 15.896 13.45 9.234 16.067 2.569 18.681-3.29 21.927-8.351 25.809-13.41 29.687-17.546 34.494-20.748 40.23-23.954 45.963-25.556 53.135-25.556 61.737-25.556 69.494-23.871 76.539-20.495 82.865-17.123 89.19-12.695 94.543-7.212 98.932-1.732 103.316 4.594 106.648 11.765 108.926 18.933 111.203 26.227 112.342 33.651 112.342 41.072 112.342 47.86 111.583 54.02 110.064 60.175 108.547 65.741 106.27 70.719 103.233 75.692 100.197 80.12 96.484 84.003 92.1 87.881 87.712 91.253 82.821 94.123 77.425L64.267 55.412C61.23 61.314 57.056 65.995 51.742 69.455 46.429 72.91 40.143 74.642 32.893 74.642 31.034 74.642 29.054 74.345 26.946 73.756 24.835 73.163 23.024 72.364 21.506 71.353 19.988 70.34 18.723 69.031 17.711 67.431 16.699 65.825 16.192 64.015 16.192 61.99 16.192 59.626 16.865 57.563 18.217 55.792 19.565 54.021 21.293 52.459 23.404 51.11 25.511 49.759 27.958 48.62 30.741 47.695 33.524 46.766 36.435 45.797 39.471 44.785 47.903 42.255 55.704 39.472 62.875 36.436 70.043 33.399 76.242 29.813 81.473 25.682 86.699 21.547 90.834 16.656 93.87 11.007 96.906 5.354 98.425-1.518 98.425-9.614 98.425-18.051 96.566-25.428 92.858-31.754 89.146-38.079 84.339-43.393 78.437-47.694 72.529-51.995 65.994-55.202 58.827-57.309 51.655-59.416 44.361-60.472 36.94-60.472 29.18-60.472 21.926-59.669 15.181-58.068 8.433-56.467 2.189-54.106-3.543-50.983-9.279-47.864-14.423-43.942-18.978-39.218-23.531-34.497-27.497-29.097-30.869-23.024Z"/></g><g transform="translate(-209 0)"><path transform="matrix(1,0,0,-1,0,1080)" d="M469.825 803.484H512.585V635.731H469.825ZM473.873 702.782H402.774V739.722H473.873ZM363.809 803.484H407.076V635.731H363.809Z"/></g><g transform="translate(-209 0)"><path transform="matrix(1,0,0,-1,591.5254,380.0011)" d="M0 0H45.29L43.014-3.543 21.254 62.496H24.037L2.53-3.543ZM-2.53 103.485H47.82L108.293-64.268H62.243L50.856-31.375 55.158-34.917H-9.868L-5.061-31.375-16.7-64.268H-62.75Z"/></g><g transform="translate(292 -207)"><path transform="matrix(1,0,0,-1,284.8691,614.59768)" d="M0 0C2.53 0 4.808 .379 6.832 1.138 8.855 1.897 10.583 2.949 12.019 4.301 13.449 5.649 14.588 7.294 15.435 9.234 16.276 11.172 16.699 13.069 16.699 14.928 16.699 17.288 16.32 19.355 15.561 21.127 14.802 22.898 13.663 24.499 12.145 25.935 10.627 27.365 8.855 28.465 6.832 29.224 4.808 29.982 2.53 30.362 0 30.362H-27.326V64.52H-2.277C.083 64.52 2.233 64.899 4.175 65.658 6.112 66.418 7.757 67.513 9.108 68.948 10.457 70.379 11.469 71.984 12.145 73.755 12.817 75.526 13.157 77.59 13.157 79.954 13.157 81.978 12.817 83.876 12.145 85.647 11.469 87.418 10.413 88.976 8.982 90.328 7.547 91.676 5.859 92.814 3.922 93.744 1.98 94.669-.34 95.136-3.036 95.136H-27.326L-23.025 99.436V-4.555L-27.326 0ZM-66.038 131.064H7.338C14.758 131.064 21.507 130.053 27.579 128.028 33.651 126.004 38.922 122.968 43.394 118.92 47.86 114.871 51.319 110.063 53.767 104.497 56.21 98.931 57.436 92.771 57.436 86.026 57.436 81.473 56.843 77.254 55.665 73.376 54.482 69.493 52.882 65.824 50.857 62.369 48.833 58.91 46.177 55.791 42.887 53.008 39.598 50.225 36.012 47.986 32.134 46.303L31.121 50.351C41.914 46.809 49.758 41.495 54.652 34.41 59.543 27.326 61.99 19.06 61.99 9.614 61.99 3.202 60.852-2.827 58.574-8.477 56.297-14.13 53.048-19.064 48.833-23.278 44.614-27.497 39.428-30.786 33.272-33.146 27.112-35.511 20.071-36.688 12.145-36.688H-66.038Z"/></g><g transform="translate(292 -207)"><path transform="matrix(1,0,0,-1,414.415,587.01858)" d="M0 0H45.29L43.014-3.543 21.254 62.496H24.037L2.53-3.543ZM-2.53 103.485H47.82L108.293-64.268H62.243L50.856-31.375 55.158-34.917H-9.868L-5.061-31.375-16.7-64.268H-62.75Z"/></g><g transform="translate(292 -207)"><path transform="matrix(1,0,0,-1,578.1162,520.9806)" d="M0 0 3.542 3.796V-130.306H-39.218V37.447H37.447C45.204 37.447 52.415 36.139 59.08 33.525 65.742 30.908 71.605 27.283 76.665 22.646 81.726 18.004 85.647 12.354 88.431 5.693 91.214-.973 92.605-8.267 92.605-16.193 92.605-27.832 89.696-38.206 83.877-47.314 78.057-56.424 70.253-62.749 60.472-66.291L62.496-61.23 97.16-130.306H51.11L19.988-68.315 25.302-71.604H-.759V-35.676H30.362C35.929-35.676 40.396-33.778 43.772-29.982 47.145-26.187 48.833-21.76 48.833-16.699 48.833-11.809 47.145-7.804 43.772-4.681 40.396-1.562 35.929 0 30.362 0Z"/></g><g transform="translate(778 -414)"><path transform="matrix(1,0,0,-1,240.3379,800.3624)" d="M0 0C4.384-7.76 9.741-13.497 16.066-17.205 22.392-20.917 29.35-22.771 36.94-22.771 39.807-22.771 42.464-22.392 44.911-21.633 47.354-20.874 49.422-19.905 51.109-18.723 52.794-17.545 54.146-16.153 55.158-14.548 56.17-12.947 56.676-11.22 56.676-9.361 56.676-7.171 56.127-5.313 55.031-3.795 53.933-2.276 52.331-.885 50.225 .38 48.113 1.646 45.373 2.91 42.001 4.175 38.625 5.44 34.493 6.832 29.603 8.351 22.685 10.88 15.896 13.45 9.234 16.067 2.569 18.681-3.29 21.927-8.351 25.809-13.41 29.687-17.546 34.494-20.748 40.23-23.954 45.963-25.556 53.135-25.556 61.737-25.556 69.494-23.871 76.539-20.495 82.865-17.123 89.19-12.695 94.543-7.212 98.932-1.732 103.316 4.594 106.648 11.765 108.926 18.933 111.203 26.227 112.342 33.651 112.342 41.072 112.342 47.86 111.583 54.02 110.064 60.175 108.547 65.741 106.27 70.719 103.233 75.692 100.197 80.12 96.484 84.003 92.1 87.881 87.712 91.253 82.821 94.123 77.425L64.267 55.412C61.23 61.314 57.056 65.995 51.742 69.455 46.429 72.91 40.143 74.642 32.893 74.642 31.034 74.642 29.054 74.345 26.946 73.756 24.835 73.163 23.024 72.364 21.506 71.353 19.988 70.34 18.723 69.031 17.711 67.431 16.699 65.825 16.192 64.015 16.192 61.99 16.192 59.626 16.865 57.563 18.217 55.792 19.565 54.021 21.293 52.459 23.404 51.11 25.511 49.759 27.958 48.62 30.741 47.695 33.524 46.766 36.435 45.797 39.471 44.785 47.903 42.255 55.704 39.472 62.875 36.436 70.043 33.399 76.242 29.813 81.473 25.682 86.699 21.547 90.834 16.656 93.87 11.007 96.906 5.354 98.425-1.518 98.425-9.614 98.425-18.051 96.566-25.428 92.858-31.754 89.146-38.079 84.339-43.393 78.437-47.694 72.529-51.995 65.994-55.202 58.827-57.309 51.655-59.416 44.361-60.472 36.94-60.472 29.18-60.472 21.926-59.669 15.181-58.068 8.433-56.467 2.189-54.106-3.543-50.983-9.279-47.864-14.423-43.942-18.978-39.218-23.531-34.497-27.497-29.097-30.869-23.024Z"/></g><g transform="translate(778 -414)"><path transform="matrix(1,0,0,-1,0,1080)" d="M469.825 389.449H512.585V221.696H469.825ZM473.873 288.747H402.774V325.687H473.873ZM363.809 389.449H407.076V221.696H363.809Z"/></g><g transform="translate(778 -414)"><path transform="matrix(1,0,0,-1,605.0615,731.6671)" d="M0 0C-4.808-2.277-8.942-5.4-12.397-9.361-15.857-13.327-18.558-18.134-20.494-23.783-22.436-29.437-23.404-35.719-23.404-42.634-23.404-49.553-22.436-55.834-20.494-61.483-18.558-67.138-15.857-71.984-12.397-76.032-8.942-80.081-4.851-83.243-.126-85.521 4.594-87.798 9.907-88.937 15.814-88.937 21.547-88.937 26.733-87.842 31.375-85.647 36.012-83.457 40.017-80.294 43.394-76.159 46.766-72.027 49.422-67.094 51.363-61.357 53.301-55.625 54.273-49.382 54.273-42.634 54.273-35.889 53.301-29.69 51.363-24.037 49.422-18.387 46.809-13.58 43.52-9.614 40.23-5.653 36.222-2.49 31.501-.126 26.777 2.234 21.547 3.416 15.814 3.416 10.077 3.416 4.808 2.277 0 0M-60.852-7.59C-56.803 2.949-51.11 12.019-43.772 19.609-36.435 27.2-27.793 33.103-17.838 37.321-7.887 41.535 3.163 43.646 15.308 43.646 27.283 43.646 38.333 41.535 48.454 37.321 58.574 33.103 67.304 27.2 74.642 19.609 81.979 12.019 87.672 2.91 91.721-7.717 95.769-18.344 97.793-29.982 97.793-42.634 97.793-55.285 95.769-66.924 91.721-77.551 87.672-88.178 81.979-97.33 74.642-105.003 67.304-112.681 58.574-118.627 48.454-122.842 38.333-127.056 27.283-129.167 15.308-129.167 3.329-129.167-7.634-127.017-17.585-122.715-27.54-118.413-36.182-112.428-43.52-104.75-50.857-97.077-56.594-87.925-60.725-77.298-64.86-66.671-66.924-55.032-66.924-42.381-66.924-29.729-64.899-18.134-60.852-7.59"/></g><g transform="translate(778 -414)"><path transform="matrix(1,0,0,-1,821.0166,690.5509)" d="M0 0H46.05L-11.892-167.753H-58.954L-117.148 0H-71.099L-34.157-120.944H-36.688Z"/></g></svg></div>
 <div style="position: absolute; left: 0; right: 0; bottom: 0">
 <div style="max-width: 1200px; margin: 0 auto; padding: 0 {{pad}} {{heroPadB}}; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; color: #FFFFFF">
 <h1 class="hero-rot" style="margin: 0; font-size: {{heroFont}}; font-weight: 500; line-height: 1.06; letter-spacing: -0.025em; max-width: 16ch">
@@ -145,7 +145,7 @@ html,body{scroll-behavior:auto}
 <h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: {{gridGap}}; align-items: stretch">
 <a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-one.jpg?v=16067d0a" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%"></span>
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-one.jpg?v=25248b5c" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%"></span>
 <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
 <span style="font-size: 24px; font-weight: 500; line-height: 1.2">Тренировка с разбором</span>
 <span style="font-size: 16px">45 минут. Тренер рядом в воде, видео — в том числе под водой, разбор ошибок и план.</span>
@@ -156,7 +156,7 @@ html,body{scroll-behavior:auto}
 </span>
 </a>
 <a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-pack.jpg?v=16067d0a" alt="Гребок под водой" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></span>
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-pack.jpg?v=25248b5c" alt="Гребок под водой" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></span>
 <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
 <span style="font-size: 24px; font-weight: 500; line-height: 1.2">8 тренировок</span>
 <span style="font-size: 16px">По 45 минут, по одному плану. Видео в начале и повторное позже — чтобы увидеть разницу. 4 000 ₽ за тренировку.</span>
@@ -167,7 +167,7 @@ html,body{scroll-behavior:auto}
 </span>
 </a>
 <a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-openwater.jpg?v=16067d0a" alt="Выход из воды после заплыва" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%"></span>
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-openwater.jpg?v=25248b5c" alt="Выход из воды после заплыва" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%"></span>
 <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
 <span style="font-size: 24px; font-weight: 500; line-height: 1.2">Подготовка к заплыву</span>
 <span style="font-size: 16px">X‑Waters, SwimCup, Swimstar, Grand Swim Series, Hydra Swim. От 500 м до 25 км.</span>
@@ -184,7 +184,7 @@ html,body{scroll-behavior:auto}
 <!-- Блок 4. Тренер -->
 <section id="trener" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
 <div style="background: #E8EDF7; border-radius: 32px; padding: {{coachPad}}; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: {{coachGap}}; align-items: center">
-<img src="assets/coach.jpg?v=16067d0a" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: center 40%; border-radius: 28px">
+<img src="assets/coach.jpg?v=25248b5c" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: center 40%; border-radius: 28px">
 <div style="display: flex; flex-direction: column; justify-content: center; gap: 24px">
 <div style="display: flex; flex-direction: column; gap: 16px">
 <span style="font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #34466F">Ваш тренер</span>
@@ -387,7 +387,7 @@ html,body{scroll-behavior:auto}
 <div style="position: relative; border-radius: 28px; overflow: clip; background: #E8EDF7">
 <sc-if value="{{desktop}}" hint-placeholder-val="{{ true }}">
 <div style="position: relative; width: 100%; aspect-ratio: 26 / 10">
-<img src="assets/map.jpg?v=16067d0a" alt="Карта Москвы с бассейнами" style="display: block; width: 100%; height: 100%; object-fit: cover">
+<img src="assets/map.jpg?v=25248b5c" alt="Карта Москвы с бассейнами" style="display: block; width: 100%; height: 100%; object-fit: cover">
 <sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
 <button type="button" onClick="{{pl.pick}}" aria-label="Показать бассейн: {{pl.name}}" style="position: absolute; left: {{pl.left}}; top: {{pl.top}}; transform: translate(-50%, -100%); display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border: 0; border-radius: 20px; background: {{pl.pinBg}}; color: {{pl.pinFg}}; font-family: inherit; font-size: 14px; font-weight: 600; white-space: nowrap; box-shadow: 0 8px 24px rgba(35, 37, 58, 0.12); cursor: pointer"><span style="width: 20px; height: 20px; border-radius: 50%; background: #8FA4D1; border: 3px solid #FFFFFF; box-sizing: border-box"></span>{{pl.short}}</button>
 </sc-for>
@@ -396,7 +396,7 @@ html,body{scroll-behavior:auto}
 <sc-if value="{{phone}}" hint-placeholder-val="{{ false }}">
 <div style="position: relative; height: 280px; overflow: clip">
 <div style="position: absolute; top: 0; left: 50%; width: 728px; height: 280px; transform: translateX(-50%)">
-<img src="assets/map.jpg?v=16067d0a" alt="Карта Москвы с бассейнами" style="display: block; width: 100%; height: 100%; max-width: none">
+<img src="assets/map.jpg?v=25248b5c" alt="Карта Москвы с бассейнами" style="display: block; width: 100%; height: 100%; max-width: none">
 <sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
 <button type="button" onClick="{{pl.pick}}" aria-label="Показать бассейн: {{pl.name}}" style="position: absolute; left: {{pl.left}}; top: {{pl.top}}; transform: translate(-50%, -50%); width: 44px; height: 44px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><span style="width: 22px; height: 22px; border-radius: 50%; background: {{pl.pinBg}}; border: 3px solid #FFFFFF; box-sizing: border-box; box-shadow: 0 8px 24px rgba(35, 37, 58, 0.12)"></span></button>
 </sc-for>
@@ -423,7 +423,7 @@ html,body{scroll-behavior:auto}
 <div ref="{{setCertIntro}}" style="position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(25deg)">
 <div style="position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); transform: rotateY({{certRot}})">
 <button type="button" onClick="{{flipCert}}" aria-label="Перевернуть сертификат: что входит" aria-hidden="{{certFront}}" style="position: absolute; inset: 0; padding: 0; border: 0; background: transparent; backface-visibility: hidden; -webkit-backface-visibility: hidden; cursor: pointer">
-<img data-shadow-target="1" src="assets/certificate.png?v=16067d0a" alt="Подарочный сертификат: персональная тренировка с Анатолием Шабаршовым" style="display: block; width: 100%; height: 100%; filter: drop-shadow(0px 16px 24px rgba(35, 37, 58, 0.16))">
+<img data-shadow-target="1" src="assets/certificate.png?v=25248b5c" alt="Подарочный сертификат: персональная тренировка с Анатолием Шабаршовым" style="display: block; width: 100%; height: 100%; filter: drop-shadow(0px 16px 24px rgba(35, 37, 58, 0.16))">
 <span class="cert-shine" aria-hidden="true"></span>
 <span data-glare="1" style="position: absolute; inset: 0; border-radius: 3.125% / 5%; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 45%)"></span>
 </button>
@@ -445,7 +445,7 @@ html,body{scroll-behavior:auto}
 <p style="margin: 0; max-width: 60ch; color: #565B73">Персональная тренировка в ЗИЛ или в Лужниках. Действует целый год — получатель выберет удобный день. Именная карта придёт в Telegram после оплаты.</p>
 <div style="font-size: 32px; font-weight: 500; line-height: 1.1">5 000 ₽</div>
 <div class="{{giftClass}}">
-<img class="gift-card" src="assets/certificate-mini.png?v=16067d0a" alt="">
+<img class="gift-card" src="assets/certificate-mini.png?v=25248b5c" alt="">
 <a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=gift_site" target="_blank" rel="noopener">Подарить тренировку<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
 </div>
 </div>
@@ -461,7 +461,7 @@ html,body{scroll-behavior:auto}
 <a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener">Записаться<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
 </div>
 <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #D8DEEC; display: grid; grid-template-columns: {{footCols}}; justify-items: {{footJustify}}; align-items: center; gap: 20px; font-size: 16px">
-<a href="#top" aria-label="Наверх" style="display: flex; justify-self: {{footStart}}"><img src="assets/logo.svg?v=16067d0a" alt="SHABARSHOV swimming club" style="height: 48px; width: auto; display: block"></a>
+<a href="#top" aria-label="Наверх" style="display: flex; justify-self: {{footStart}}"><img src="assets/logo.svg?v=25248b5c" alt="SHABARSHOV swimming club" style="height: 48px; width: auto; display: block"></a>
 <nav aria-label="Ссылки" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px">
 <a class="flink" href="https://t.me/shabarshov" target="_blank" rel="noopener">Telegram</a>
 <a class="flink" href="https://instagram.com/shabarshov_" target="_blank" rel="noopener">Instagram</a>
@@ -513,14 +513,14 @@ html,body{scroll-behavior:auto}
 <script type="text/x-dc" data-dc-script data-props='{"showReviews":{"editor":"boolean","default":true},"motion":{"editor":"boolean","default":true},"phone":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":8000}}'>
 var NB = ' ';
 var STORIES = [
-  { id: 's02', label: '400' + NB + 'м', cover: 'assets/story-400m.jpg?v=16067d0a', src: 'assets/story-400m.mp4?v=16067d0a' },
-  { id: 's03', label: 'ЧМ Сингапур', cover: 'assets/story-singapore.jpg?v=16067d0a', src: 'assets/story-singapore.mp4?v=16067d0a' },
-  { id: 's06', label: 'Экипировка', cover: 'assets/story-gear.jpg?v=16067d0a', src: 'assets/story-gear.mp4?v=16067d0a' },
-  { id: 's07', label: 'Очки', cover: 'assets/story-goggles.jpg?v=16067d0a', src: 'assets/story-goggles.mp4?v=16067d0a' }
+  { id: 's02', label: '400' + NB + 'м', cover: 'assets/story-400m.jpg?v=25248b5c', src: 'assets/story-400m.mp4?v=25248b5c' },
+  { id: 's03', label: 'ЧМ Сингапур', cover: 'assets/story-singapore.jpg?v=25248b5c', src: 'assets/story-singapore.mp4?v=25248b5c' },
+  { id: 's06', label: 'Экипировка', cover: 'assets/story-gear.jpg?v=25248b5c', src: 'assets/story-gear.mp4?v=25248b5c' },
+  { id: 's07', label: 'Очки', cover: 'assets/story-goggles.jpg?v=25248b5c', src: 'assets/story-goggles.mp4?v=25248b5c' }
 ];
 var POOLS = [
-  { id: 'zil', name: 'ЗИЛ «Акватория»', short: 'ЗИЛ', addr: 'Автозаводская ул.,' + NB + '23А' + NB + 'к4', img: 'assets/pool-zil.jpg?v=16067d0a', left: '49.8%', top: '73.3%', ask: false, metro: 'МЦК ЗИЛ' + NB + '·' + NB + 'м.' + NB + 'Автозаводская', route: 'https://yandex.ru/maps/org/akvatoriya_zil/220499522989/' },
-  { id: 'luzh', name: 'Лужники', short: 'Лужники', addr: 'ул.' + NB + 'Лужники,' + NB + '24' + NB + 'с4', img: 'assets/pool-luzhniki.jpg?v=16067d0a', left: '40.7%', top: '66.5%', ask: false, metro: 'м.' + NB + 'Воробьёвы горы' + NB + '·' + NB + 'МЦК Лужники', route: 'https://yandex.ru/maps/org/akvakompleks_luzhniki/184720394032/' }
+  { id: 'zil', name: 'ЗИЛ «Акватория»', short: 'ЗИЛ', addr: 'Автозаводская ул.,' + NB + '23А' + NB + 'к4', img: 'assets/pool-zil.jpg?v=25248b5c', left: '49.8%', top: '73.3%', ask: false, metro: 'МЦК ЗИЛ' + NB + '·' + NB + 'м.' + NB + 'Автозаводская', route: 'https://yandex.ru/maps/org/akvatoriya_zil/220499522989/' },
+  { id: 'luzh', name: 'Лужники', short: 'Лужники', addr: 'ул.' + NB + 'Лужники,' + NB + '24' + NB + 'с4', img: 'assets/pool-luzhniki.jpg?v=25248b5c', left: '40.7%', top: '66.5%', ask: false, metro: 'м.' + NB + 'Воробьёвы горы' + NB + '·' + NB + 'МЦК Лужники', route: 'https://yandex.ru/maps/org/akvakompleks_luzhniki/184720394032/' }
 ];
 
 class Component extends DCLogic {
@@ -871,14 +871,14 @@ class Component extends DCLogic {
       coachGap: phone ? '24px' : '48px',
       lettersDisplay: phone ? 'none' : 'block',
       heroH: phone ? 'min(84svh, 720px)' : 'min(86vh, 820px)',
-      heroSrc: phone ? 'assets/hero-pool-m.mp4?v=16067d0a' : 'assets/hero-pool.mp4?v=16067d0a',
-      heroPoster: phone ? 'assets/hero-pool-m.jpg?v=16067d0a' : 'assets/hero-pool.jpg?v=16067d0a',
+      heroSrc: phone ? 'assets/hero-pool-m.mp4?v=25248b5c' : 'assets/hero-pool.mp4?v=25248b5c',
+      heroPoster: phone ? 'assets/hero-pool-m.jpg?v=25248b5c' : 'assets/hero-pool.jpg?v=25248b5c',
       heroFont: phone ? '36px' : 'clamp(44px, 5.2vw, 76px)',
       heroSub: phone ? '16px' : '19px',
       heroPadB: phone ? '28px' : '56px',
       heroBtnW: phone ? '100%' : 'auto',
       heroBtnPad: phone ? '20px' : '28px', heroBtnFont: phone ? '15px' : '16px',
-      wordSize: phone ? '15.9vw' : 'min(14.6vw, 186px)',
+      wordW: phone ? 'calc(100% - 32px)' : 'min(calc(100% - 80px), 1200px)', wordTop: phone ? '20px' : '40px',
       footCtaPad: phone ? '40px 20px' : '64px 40px',
       footCols: phone ? '1fr' : '1fr auto 1fr',
       footJustify: 'center',
