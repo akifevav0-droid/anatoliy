@@ -57,25 +57,26 @@ html,body{scroll-behavior:auto}
 <div ref="{{setRoot}}" onMouseLeave="{{onLeave}}" onPointerDown="{{onTap}}" style="background: #F6F7FB; color: #23253A; font-family: Manrope, system-ui, sans-serif; font-size: {{bodySize}}; line-height: 1.55; overflow-x: clip">
 
 <!-- Шапка: слева список страниц, по центру логотип, справа запись -->
-<header ref="{{setHeader}}" style="position: sticky; top: 0; z-index: 40; background: #F6F7FB; box-shadow: 0 1px 0 #D8DEEC; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)">
+<header ref="{{setHeader}}" style="position: {{hdrPos}}; top: 0; left: 0; right: 0; z-index: 40; background: {{hdrBg}}; box-shadow: {{hdrShadow}}; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease, box-shadow 0.3s ease">
 <div style="max-width: 1200px; margin: 0 auto; padding: 12px {{pad}}; display: flex; align-items: center; gap: {{hdrGap}}">
-<a href="./" aria-label="SHABARSHOV swimming club — на главную" style="display: flex; flex: 0 0 auto"><img src="assets/logo.svg?v=02dabbf9" alt="SHABARSHOV swimming club" style="height: 40px; width: auto; display: block"></a>
+<a href="./" aria-label="SHABARSHOV swimming club — на главную" style="display: flex; flex: 0 0 auto"><img src="assets/logo.svg?v=b3461969" alt="SHABARSHOV swimming club" style="height: 40px; width: auto; display: block"></a>
 <div style="position: relative">
 <button type="button" class="pages-btn" onClick="{{togglePages}}" aria-haspopup="true" aria-expanded="{{pagesAria}}">{{pageLabel}}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s; transform: rotate({{pagesRot}})"><path d="M6 9l6 6 6-6"></path></svg></button>
 <sc-if value="{{pagesOpen}}" hint-placeholder-val="{{ false }}">
 <div onClick="{{closePages}}" style="position: fixed; inset: 0; z-index: 1"></div>
 <nav class="pages-list" aria-label="Страницы сайта">
 <a href="./" aria-current="{{curPers}}">Персональные</a>
-<a href="gruppy/">Группы</a>
+<a href="gruppy/" aria-current="{{curGroups}}">Группы</a>
 <a href="sorevnovaniya/" aria-current="{{curComp}}">Соревнования</a>
 <a href="sertifikat/" aria-current="{{curCert}}">Сертификат</a>
 </nav>
 </sc-if>
 </div>
-<div style="margin-left: auto"><a class="btn-sm" data-cta="1" href="https://t.me/shabarshov_club_bot?start={{ctaStart}}" target="_blank" rel="noopener">{{ctaLabel}}</a></div>
+<div style="margin-left: auto"><a class="btn-sm" data-cta="1" href="{{ctaHref}}" target="_blank" rel="noopener">{{ctaLabel}}</a></div>
 </div>
 </header>
 
+<!-- Персональные: первый экран и цены -->
 <sc-if value="{{pagePers}}" hint-placeholder-val="{{ true }}">
 <!-- Блок 1. Первый экран: видео во всю ширину, три фразы сменяют друг друга -->
 <section id="top" style="position: relative; margin: 0; padding: 0">
@@ -96,10 +97,213 @@ html,body{scroll-behavior:auto}
 </div>
 </section>
 
+<!-- Блок 3. Тренировки -->
+<section id="trenirovki" ref="{{setHeroEnd}}" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: {{gridGap}}; align-items: stretch">
+<a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-one.jpg?v=b3461969" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%"></span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
+<span style="font-size: 24px; font-weight: 500; line-height: 1.2">Тренировка с разбором</span>
+<span style="font-size: 16px">45 минут. Тренер рядом в воде, видео — в том числе под водой, разбор ошибок и план.</span>
+<span style="margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<span style="font-size: 24px; font-weight: 500">6 000 ₽</span>
+<span class="btn-ic" style="background: #34466F; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</span>
+</span>
+</a>
+<a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-pack.jpg?v=b3461969" alt="Гребок под водой" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
+<span style="font-size: 24px; font-weight: 500; line-height: 1.2">8 тренировок</span>
+<span style="font-size: 16px">По 45 минут, по одному плану. Видео в начале и повторное позже — чтобы увидеть разницу. 4 000 ₽ за тренировку.</span>
+<span style="margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<span style="font-size: 24px; font-weight: 500">32 000 ₽</span>
+<span class="btn-ic" style="background: #34466F; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</span>
+</span>
+</a>
+<a class="tile" data-card="1" href="sorevnovaniya/" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-openwater.jpg?v=b3461969" alt="Выход из воды после заплыва" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%"></span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
+<span style="font-size: 24px; font-weight: 500; line-height: 1.2">Подготовка к заплыву</span>
+<span style="font-size: 16px">X‑Waters, SwimCup, Swimstar, Grand Swim Series, Hydra Swim. От 500 м до 25 км.</span>
+<span style="margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 500">По договорённости</span>
+<span class="btn-ic" style="background: #34466F; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</span>
+</span>
+</a>
+</div>
+<p style="margin: 24px 0 0; font-size: 14px; color: #565B73">Тренировка — 45 минут. Проход тренера уже в цене, ваш вход в бассейн — по его тарифу.</p>
+</section>
+</sc-if>
+
+<!-- Группы: первый экран и цены -->
+<sc-if value="{{pageGroups}}" hint-placeholder-val="{{ false }}">
+<section style="max-width: 1200px; margin: 0 auto; padding: {{pageTop}} {{pad}} 0">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
+<span style="font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #34466F">Группы</span>
+<h1 data-reveal="1" style="margin: 0; font-size: clamp(32px, 3.6vw, 52px); font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance">Плавание в группе для взрослых</h1>
+<p style="margin: 0; max-width: 42ch; font-size: 18px; color: #565B73">Группы по уровню — рядом будут те, кто плавает примерно как вы. Тренер — мастер спорта Анатолий Шабаршов.</p>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px"><li style="background: #FFFFFF; color: #23253A; border-radius: 20px; padding: 8px 16px; font-size: 14px; font-weight: 500">Первая тренировка бесплатно</li><li style="background: #FFFFFF; color: #23253A; border-radius: 20px; padding: 8px 16px; font-size: 14px; font-weight: 500">3 бассейна в Москве</li><li style="background: #FFFFFF; color: #23253A; border-radius: 20px; padding: 8px 16px; font-size: 14px; font-weight: 500">От 1 700 ₽ за тренировку</li></ul>
+<a class="btn" data-cta="1" href="https://t.me/shabarshov" target="_blank" rel="noopener">Записаться на пробную<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+</div>
+<img src="assets/group-hero.jpg?v=b3461969" alt="Группа SHABARSHOV swimming club в бассейне" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 32px">
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: {{gridGap}}"><div style="background: #E8EDF7; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 18px; font-weight: 600">Пробная</span><span style="color: #565B73">Посмотрите группу и тренера</span><span style="margin-top: auto; padding-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.1">0 ₽</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 18px; font-weight: 600">Разовая</span><span style="color: #565B73">Попробовать без абонемента</span><span style="margin-top: auto; padding-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.1">2 000 ₽</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 18px; font-weight: 600">4 тренировки</span><span style="color: #565B73">1 раз в неделю · 1 875 ₽ за тренировку</span><span style="margin-top: auto; padding-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.1">7 500 ₽</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 18px; font-weight: 600">8 тренировок</span><span style="color: #565B73">2 раза в неделю · 1 700 ₽ за тренировку</span><span style="margin-top: auto; padding-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.1">13 600 ₽</span></div></div>
+<p style="margin: 24px 0 0; font-size: 14px; color: #565B73; text-align: center">В Бауманке проход в бассейн уже в абонементе. В ЗИЛ проход покупаете сами, по тарифу бассейна.</p>
+<div style="margin-top: 32px; display: flex; justify-content: center"><a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=group_site" target="_blank" rel="noopener">Оплатить в Telegram<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div>
+</section>
+</sc-if>
+
+<!-- Соревнования: первый экран и цены -->
+<sc-if value="{{pageComp}}" hint-placeholder-val="{{ false }}">
+<section style="max-width: 1200px; margin: 0 auto; padding: {{pageTop}} {{pad}} 0">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
+<span style="font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #34466F">Соревнования</span>
+<h1 data-reveal="1" style="margin: 0; font-size: clamp(32px, 3.6vw, 52px); font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance">Подготовка к заплыву на открытой воде</h1>
+<p style="margin: 0; max-width: 46ch; font-size: 18px; color: #565B73">X‑Waters, SwimCup, Swimstar, Grand Swim Series, Hydra Swim. Дистанции от 500 м до 25 км.</p>
+<a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=pers_comp" target="_blank" rel="noopener">Обсудить подготовку<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+</div>
+<img src="assets/tile-openwater.jpg?v=b3461969" alt="Анатолий выходит из воды после заплыва" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%; border-radius: 32px">
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: {{gridGap}}"><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Подготовка к заплыву</span><span style="color: #565B73">План до старта и тренировки под вашу дистанцию.</span><span style="margin-top: auto; padding-top: 16px; font-size: 28px; font-weight: 500; line-height: 1.1">По договорённости</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Тренировка с разбором</span><span style="color: #565B73">45 минут, тренер рядом в воде, видео и разбор техники.</span><span style="margin-top: auto; padding-top: 16px; font-size: 28px; font-weight: 500; line-height: 1.1">6 000 ₽</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">8 тренировок</span><span style="color: #565B73">По 45 минут, по одному плану. 4 000 ₽ за тренировку.</span><span style="margin-top: auto; padding-top: 16px; font-size: 28px; font-weight: 500; line-height: 1.1">32 000 ₽</span></div></div>
+<p style="margin: 24px 0 0; font-size: 14px; color: #565B73">Проход тренера уже в цене, ваш вход в бассейн — по его тарифу.</p>
+</section>
+</sc-if>
+
+<!-- Сертификат: первый экран и цена -->
+<sc-if value="{{pageCert}}" hint-placeholder-val="{{ false }}">
+<!-- Блок 8. Подарочный сертификат -->
+<section id="sertifikat" style="max-width: 1200px; margin: 0 auto; padding: {{pageTop}} {{pad}} 0">
+<div style="background: #EEEAFB; border-radius: 32px; padding: {{certPad}}; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: center; overflow: clip">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div ref="{{setCertWrap}}" data-card="1" data-tilt="1" data-tilt-max="10" onPointerMove="{{certTouchMove}}" onPointerUp="{{certTouchEnd}}" onPointerCancel="{{certTouchEnd}}" onPointerLeave="{{certTouchEnd}}" style="position: relative; width: 100%; aspect-ratio: 1200 / 750; transform-style: preserve-3d; touch-action: pan-y">
+<div ref="{{setCertIntro}}" style="position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(25deg)">
+<div style="position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); transform: rotateY({{certRot}})">
+<button type="button" onClick="{{flipCert}}" aria-label="Перевернуть сертификат: что входит" aria-hidden="{{certFront}}" style="position: absolute; inset: 0; padding: 0; border: 0; background: transparent; backface-visibility: hidden; -webkit-backface-visibility: hidden; cursor: pointer">
+<img data-shadow-target="1" src="assets/certificate.png?v=b3461969" alt="Подарочный сертификат: персональная тренировка с Анатолием Шабаршовым" style="display: block; width: 100%; height: 100%; filter: drop-shadow(0px 16px 24px rgba(35, 37, 58, 0.16))">
+<span class="cert-shine" aria-hidden="true"></span>
+<span data-glare="1" style="position: absolute; inset: 0; border-radius: 3.125% / 5%; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 45%)"></span>
+</button>
+<div aria-hidden="{{certBack}}" role="button" tabindex="-1" onClick="{{flipCert}}" style="position: absolute; inset: 0; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; background: radial-gradient(90% 110% at 95% 5%, #B4C3E4 0%, #E8EDF7 45%, #F6F7FB 100%); border-radius: 3.125% / 5%; box-shadow: 0px 16px 24px rgba(35, 37, 58, 0.16); overflow: hidden; cursor: pointer">
+<div data-lenis-prevent="1" style="height: 100%; box-sizing: border-box; overflow-y: auto; padding: {{certBackPad}}; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 8px; font-size: {{certBackSize}}; line-height: 1.4; color: #23253A">
+<span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #34466F">Подарочный сертификат</span>
+<div style="font-size: 1.5em; font-weight: 500; line-height: 1.3">Бассейн:<br>ЗИЛ «Акватория»</div>
+<div style="width: 64px; height: 2px; background: #9377DF; margin: 4px 0"></div>
+<div style="font-size: 1.15em; color: #565B73">Сертификат действует один год</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span style="font-size: 14px; color: #565B73; text-align: center">Нажмите на карту — она перевернётся</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+<h1 data-reveal="1" style="margin: 0; font-size: clamp(32px, 3.6vw, 52px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Подарите тренировку с Анатолием</h1>
+<p style="margin: 0; max-width: 60ch; color: #565B73">Персональная тренировка в «Акватории ЗИЛ». Действует целый год — получатель выберет удобный день. Именная карта придёт в Telegram после оплаты.</p>
+<div class="{{giftClass}}">
+<img class="gift-card" src="assets/certificate-mini.png?v=b3461969" alt="">
+<a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=gift_site" target="_blank" rel="noopener">Подарить тренировку<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+</div>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: {{gridGap}}"><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Подарочный сертификат</span><span style="color: #565B73">Персональная тренировка 45 минут с Анатолием в «Акватории ЗИЛ». Действует год.</span><span style="margin-top: auto; padding-top: 16px; font-size: 28px; font-weight: 500; line-height: 1.1">5 000 ₽</span></div></div>
+<div style="margin-top: 32px; display: flex; justify-content: center"><a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=gift_site" target="_blank" rel="noopener">Подарить тренировку<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div>
+</section>
+</sc-if>
+
+<!-- Бассейн ЗИЛ — персональные, соревнования, сертификат -->
+<sc-if value="{{showZil}}" hint-placeholder-val="{{ false }}">
+<!-- Блок 7. Бассейны -->
+<section id="basseyny" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px">
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 data-reveal="1" style="margin: 0; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em">Где тренируемся</h2><span style="color: #565B73">Все персональные тренировки — в «Акватории ЗИЛ»: крытый и открытый бассейн по 50 м.</span></div>
+<div role="group" aria-label="Вид" style="display: flex; gap: 8px">
+<button type="button" class="btn-line" aria-pressed="{{listPressed}}" onClick="{{showList}}">Списком</button>
+<button type="button" class="btn-line" aria-pressed="{{mapPressed}}" onClick="{{showMap}}">Картой</button>
+</div>
+</div>
+<sc-if value="{{poolList}}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: {{gridGap}}; align-items: stretch">
+<sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
+<div data-card="1" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; outline: 2px solid {{pl.ring}}; outline-offset: 2px">
+<img src="{{pl.img}}" alt="{{pl.name}}" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
+<span style="font-size: 20px; font-weight: 500; line-height: 1.25">{{pl.name}}</span>
+<sc-if value="{{pl.hasAddr}}" hint-placeholder-val="{{ true }}"><span style="font-size: 16px">{{pl.addr}}</span></sc-if>
+<sc-if value="{{pl.noAddr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 16px">Адрес: <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 12px; font-weight: 600">[УТОЧНИТЬ у Анатолия]</span></span></sc-if>
+<span style="font-size: 16px; color: #565B73">{{pl.metro}}</span>
+<sc-if value="{{pl.persAsk}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; align-self: flex-start; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 12px; font-weight: 600">[УТОЧНИТЬ у Анатолия: есть ли персональные]</span></sc-if>
+<span style="flex-grow: 1"></span>
+<sc-if value="{{pl.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="btn-route" href="{{pl.route}}" target="_blank" rel="noopener" style="align-self: flex-start; margin-top: 8px">Маршрут →</a></sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{poolMap}}" hint-placeholder-val="{{ false }}">
+<div style="position: relative; border-radius: 28px; overflow: clip; background: #E8EDF7">
+<sc-if value="{{desktop}}" hint-placeholder-val="{{ true }}">
+<div style="position: relative; width: 100%; aspect-ratio: 26 / 10">
+<img src="assets/map.jpg?v=b3461969" alt="Карта Москвы с бассейнами" style="display: block; width: 100%; height: 100%; object-fit: cover">
+<sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
+<button type="button" onClick="{{pl.pick}}" aria-label="Показать бассейн: {{pl.name}}" style="position: absolute; left: {{pl.left}}; top: {{pl.top}}; transform: translate(-50%, -100%); display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border: 0; border-radius: 20px; background: {{pl.pinBg}}; color: {{pl.pinFg}}; font-family: inherit; font-size: 14px; font-weight: 600; white-space: nowrap; box-shadow: 0 8px 24px rgba(35, 37, 58, 0.12); cursor: pointer"><span style="width: 20px; height: 20px; border-radius: 50%; background: #8FA4D1; border: 3px solid #FFFFFF; box-sizing: border-box"></span>{{pl.short}}</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{phone}}" hint-placeholder-val="{{ false }}">
+<div style="position: relative; height: 280px; overflow: clip">
+<div style="position: absolute; top: 0; left: 50%; width: 728px; height: 280px; transform: translateX(-50%)">
+<img src="assets/map.jpg?v=b3461969" alt="Карта Москвы с бассейнами" style="display: block; width: 100%; height: 100%; max-width: none">
+<sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
+<button type="button" onClick="{{pl.pick}}" aria-label="Показать бассейн: {{pl.name}}" style="position: absolute; left: {{pl.left}}; top: {{pl.top}}; transform: translate(-50%, -50%); width: 44px; height: 44px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><span style="width: 22px; height: 22px; border-radius: 50%; background: {{pl.pinBg}}; border: 3px solid #FFFFFF; box-sizing: border-box; box-shadow: 0 8px 24px rgba(35, 37, 58, 0.12)"></span></button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<span style="position: absolute; right: 12px; bottom: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(246, 247, 251, 0.9); font-size: 12px; color: #565B73">© Участники OpenStreetMap</span>
+</div>
+<sc-if value="{{poolPicked}}" hint-placeholder-val="{{ false }}">
+<div style="margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding: 16px 24px; border-radius: 28px; background: #FFFFFF">
+<span style="font-weight: 500">{{picked.name}}</span><span style="color: #565B73">{{picked.addr}}</span>
+<sc-if value="{{picked.hasAddr}}" hint-placeholder-val="{{ true }}"><a href="{{picked.route}}" target="_blank" rel="noopener" style="color: #34466F; font-weight: 600; text-decoration: none">Маршрут →</a></sc-if>
+</div>
+</sc-if>
+</sc-if>
+<a href="gruppy/" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 24px; color: #565B73; font-size: 16px; text-underline-offset: 3px">Групповые тренировки →</a>
+</section>
+</sc-if>
+
+<!-- Группы: бассейны и расписание -->
+<sc-if value="{{pageGroups}}" hint-placeholder-val="{{ false }}">
+<section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Где и когда</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: {{gridGap}}"><article style="background: #FFFFFF; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column"><img src="assets/pool-mgtu.jpg?v=b3461969" alt="Бассейн СК МГТУ им. Баумана" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">СК МГТУ им. Баумана</span><span style="color: #565B73">Госпитальная наб., 4с1 · м. Электрозаводская</span><div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-top: 1px solid #D8DEEC"><span style="font-size: 18px; font-weight: 600">Пн и Чт, 19:45</span><span style="color: #565B73">средний и продвинутый уровень</span></div><div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-top: 1px solid #D8DEEC"><span style="font-size: 18px; font-weight: 600">Пн и Чт, вечером</span><span style="color: #565B73">начинающий и средний — время второй группы уточните в Telegram</span></div><a class="btn-route" href="https://yandex.ru/maps/org/sportivny_kompleks_mgtu_imeni_n_e_baumana/1077634910/" target="_blank" rel="noopener" style="align-self: flex-start; margin-top: auto">Маршрут →</a></div></article><article style="background: #FFFFFF; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column"><img src="assets/pool-formula.jpg?v=b3461969" alt="Бассейн «Формула Воды»" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">«Формула Воды»</span><span style="color: #565B73">Мироновская ул., 27с2</span><div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-top: 1px solid #D8DEEC"><span style="font-size: 18px; font-weight: 600">Вт и Пт, 20:45</span><span style="color: #565B73">начинающий и средний уровень</span></div><a class="btn-route" href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9C%D0%B8%D1%80%D0%BE%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%2027%D1%812" target="_blank" rel="noopener" style="align-self: flex-start; margin-top: auto">Маршрут →</a></div></article><article style="background: #FFFFFF; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column"><img src="assets/pool-zil.jpg?v=b3461969" alt="Бассейн ЗИЛ «Акватория»" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">ЗИЛ «Акватория»</span><span style="color: #565B73">Автозаводская ул., 23А к4 · МЦК ЗИЛ</span><div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-top: 1px solid #D8DEEC"><span style="font-size: 18px; font-weight: 600">Ср и Пт, 7:45</span><span style="color: #565B73">мини-группа до 5 человек — до работы</span></div><a class="btn-route" href="https://yandex.ru/maps/org/akvatoriya_zil/220499522989/" target="_blank" rel="noopener" style="align-self: flex-start; margin-top: auto">Маршрут →</a></div></article></div>
+</section>
+</sc-if>
+
+<!-- Персональные: тренер, отзывы, вопросы -->
+<sc-if value="{{pagePers}}" hint-placeholder-val="{{ true }}">
 <!-- Блок 4. Тренер -->
-<section id="trener" ref="{{setHeroEnd}}" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<section id="trener" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
 <div style="background: #E8EDF7; border-radius: 32px; padding: {{coachPad}}; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: {{coachGap}}; align-items: center">
-<img src="assets/coach.jpg?v=02dabbf9" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: center 40%; border-radius: 28px">
+<img src="assets/coach.jpg?v=b3461969" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: center 40%; border-radius: 28px">
 <div style="display: flex; flex-direction: column; justify-content: center; gap: 24px">
 <div style="display: flex; flex-direction: column; gap: 16px">
 <span style="font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #34466F">Ваш тренер</span>
@@ -127,70 +331,6 @@ html,body{scroll-behavior:auto}
 <p style="margin: 0; max-width: 60ch; color: #565B73">Училище олимпийского резерва и РГУФКСМиТ, кафедра теории и методики плавания.</p>
 </div>
 </div>
-</section>
-
-<!-- Блок 5. Как проходит -->
-<section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<h2 data-reveal="1" style="margin: 0 0 40px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; text-align: center">Как проходит</h2>
-<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: {{gridGap}}">
-<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
-<span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">1</span>
-<span style="font-size: 20px; font-weight: 500">Пишете в бота</span>
-<span style="color: #565B73; max-width: 60ch">Два вопроса, 30 секунд.</span>
-</li>
-<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
-<span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">2</span>
-<span style="font-size: 20px; font-weight: 500">В воде</span>
-<span style="color: #565B73; max-width: 60ch">Анатолий плывёт рядом. Снимаем, как вы плывёте, — и под водой тоже.</span>
-</li>
-<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
-<span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">3</span>
-<span style="font-size: 20px; font-weight: 500">Разбор</span>
-<span style="color: #565B73; max-width: 60ch">Видео с вашими ошибками и план приходят в Telegram.</span>
-</li>
-</ol>
-<div style="margin-top: 40px; display: flex; justify-content: center"><a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener">Записаться<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div>
-</section>
-
-<!-- Блок 3. Тренировки -->
-<section id="trenirovki" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: {{gridGap}}; align-items: stretch">
-<a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-one.jpg?v=02dabbf9" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%"></span>
-<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
-<span style="font-size: 24px; font-weight: 500; line-height: 1.2">Тренировка с разбором</span>
-<span style="font-size: 16px">45 минут. Тренер рядом в воде, видео — в том числе под водой, разбор ошибок и план.</span>
-<span style="margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-<span style="font-size: 24px; font-weight: 500">6 000 ₽</span>
-<span class="btn-ic" style="background: #34466F; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-</span>
-</span>
-</a>
-<a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-pack.jpg?v=02dabbf9" alt="Гребок под водой" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></span>
-<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
-<span style="font-size: 24px; font-weight: 500; line-height: 1.2">8 тренировок</span>
-<span style="font-size: 16px">По 45 минут, по одному плану. Видео в начале и повторное позже — чтобы увидеть разницу. 4 000 ₽ за тренировку.</span>
-<span style="margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-<span style="font-size: 24px; font-weight: 500">32 000 ₽</span>
-<span class="btn-ic" style="background: #34466F; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-</span>
-</span>
-</a>
-<a class="tile" data-card="1" href="sorevnovaniya/" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-openwater.jpg?v=02dabbf9" alt="Выход из воды после заплыва" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%"></span>
-<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
-<span style="font-size: 24px; font-weight: 500; line-height: 1.2">Подготовка к заплыву</span>
-<span style="font-size: 16px">X‑Waters, SwimCup, Swimstar, Grand Swim Series, Hydra Swim. От 500 м до 25 км.</span>
-<span style="margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-<span style="display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 500">По договорённости</span>
-<span class="btn-ic" style="background: #34466F; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-</span>
-</span>
-</a>
-</div>
-<p style="margin: 24px 0 0; font-size: 14px; color: #565B73">Тренировка — 45 минут. Проход тренера уже в цене, ваш вход в бассейн — по его тарифу.</p>
 </section>
 
 <!-- Блок 6. Отзывы -->
@@ -288,65 +428,6 @@ html,body{scroll-behavior:auto}
 </section>
 </sc-if>
 
-<!-- Блок 7. Бассейны -->
-<section id="basseyny" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px">
-<div style="display: flex; flex-direction: column; gap: 8px"><h2 data-reveal="1" style="margin: 0; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em">Где тренируемся</h2><span style="color: #565B73">ЗИЛ «Акватория» и Лужники — выбирайте, куда ближе.</span></div>
-<div role="group" aria-label="Вид" style="display: flex; gap: 8px">
-<button type="button" class="btn-line" aria-pressed="{{listPressed}}" onClick="{{showList}}">Списком</button>
-<button type="button" class="btn-line" aria-pressed="{{mapPressed}}" onClick="{{showMap}}">Картой</button>
-</div>
-</div>
-<sc-if value="{{poolList}}" hint-placeholder-val="{{ true }}">
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: {{gridGap}}; align-items: stretch">
-<sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
-<div data-card="1" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; outline: 2px solid {{pl.ring}}; outline-offset: 2px">
-<img src="{{pl.img}}" alt="{{pl.name}}" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
-<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
-<span style="font-size: 20px; font-weight: 500; line-height: 1.25">{{pl.name}}</span>
-<sc-if value="{{pl.hasAddr}}" hint-placeholder-val="{{ true }}"><span style="font-size: 16px">{{pl.addr}}</span></sc-if>
-<sc-if value="{{pl.noAddr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 16px">Адрес: <span style="display: inline-block; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 12px; font-weight: 600">[УТОЧНИТЬ у Анатолия]</span></span></sc-if>
-<span style="font-size: 16px; color: #565B73">{{pl.metro}}</span>
-<sc-if value="{{pl.persAsk}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; align-self: flex-start; background: #FFF0BF; color: #5E4500; border: 1px dashed #B8901A; border-radius: 8px; padding: 0 6px; font-size: 12px; font-weight: 600">[УТОЧНИТЬ у Анатолия: есть ли персональные]</span></sc-if>
-<span style="flex-grow: 1"></span>
-<sc-if value="{{pl.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="btn-route" href="{{pl.route}}" target="_blank" rel="noopener" style="align-self: flex-start; margin-top: 8px">Маршрут →</a></sc-if>
-</div>
-</div>
-</sc-for>
-</div>
-</sc-if>
-<sc-if value="{{poolMap}}" hint-placeholder-val="{{ false }}">
-<div style="position: relative; border-radius: 28px; overflow: clip; background: #E8EDF7">
-<sc-if value="{{desktop}}" hint-placeholder-val="{{ true }}">
-<div style="position: relative; width: 100%; aspect-ratio: 26 / 10">
-<img src="assets/map.jpg?v=02dabbf9" alt="Карта Москвы с бассейнами" style="display: block; width: 100%; height: 100%; object-fit: cover">
-<sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
-<button type="button" onClick="{{pl.pick}}" aria-label="Показать бассейн: {{pl.name}}" style="position: absolute; left: {{pl.left}}; top: {{pl.top}}; transform: translate(-50%, -100%); display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border: 0; border-radius: 20px; background: {{pl.pinBg}}; color: {{pl.pinFg}}; font-family: inherit; font-size: 14px; font-weight: 600; white-space: nowrap; box-shadow: 0 8px 24px rgba(35, 37, 58, 0.12); cursor: pointer"><span style="width: 20px; height: 20px; border-radius: 50%; background: #8FA4D1; border: 3px solid #FFFFFF; box-sizing: border-box"></span>{{pl.short}}</button>
-</sc-for>
-</div>
-</sc-if>
-<sc-if value="{{phone}}" hint-placeholder-val="{{ false }}">
-<div style="position: relative; height: 280px; overflow: clip">
-<div style="position: absolute; top: 0; left: 50%; width: 728px; height: 280px; transform: translateX(-50%)">
-<img src="assets/map.jpg?v=02dabbf9" alt="Карта Москвы с бассейнами" style="display: block; width: 100%; height: 100%; max-width: none">
-<sc-for list="{{pools}}" as="pl" hint-placeholder-count="4">
-<button type="button" onClick="{{pl.pick}}" aria-label="Показать бассейн: {{pl.name}}" style="position: absolute; left: {{pl.left}}; top: {{pl.top}}; transform: translate(-50%, -50%); width: 44px; height: 44px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><span style="width: 22px; height: 22px; border-radius: 50%; background: {{pl.pinBg}}; border: 3px solid #FFFFFF; box-sizing: border-box; box-shadow: 0 8px 24px rgba(35, 37, 58, 0.12)"></span></button>
-</sc-for>
-</div>
-</div>
-</sc-if>
-<span style="position: absolute; right: 12px; bottom: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(246, 247, 251, 0.9); font-size: 12px; color: #565B73">© Участники OpenStreetMap</span>
-</div>
-<sc-if value="{{poolPicked}}" hint-placeholder-val="{{ false }}">
-<div style="margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding: 16px 24px; border-radius: 28px; background: #FFFFFF">
-<span style="font-weight: 500">{{picked.name}}</span><span style="color: #565B73">{{picked.addr}}</span>
-<sc-if value="{{picked.hasAddr}}" hint-placeholder-val="{{ true }}"><a href="{{picked.route}}" target="_blank" rel="noopener" style="color: #34466F; font-weight: 600; text-decoration: none">Маршрут →</a></sc-if>
-</div>
-</sc-if>
-</sc-if>
-<a href="gruppy/" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 24px; color: #565B73; font-size: 16px; text-underline-offset: 3px">Групповые тренировки →</a>
-</section>
-
 <!-- Блок 8. Вопросы -->
 <section id="voprosy" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
 <h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-align: center">Частые вопросы</h2>
@@ -375,73 +456,29 @@ html,body{scroll-behavior:auto}
 </div>
 </div>
 </section>
-
 </sc-if>
 
-<sc-if value="{{pageCert}}" hint-placeholder-val="{{ false }}">
-<!-- Блок 8. Подарочный сертификат -->
-<section id="sertifikat" style="max-width: 1200px; margin: 0 auto; padding: {{pageTop}} {{pad}} 0">
-<div style="background: #EEEAFB; border-radius: 32px; padding: {{certPad}}; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: center; overflow: clip">
-<div style="display: flex; flex-direction: column; gap: 16px">
-<div ref="{{setCertWrap}}" data-card="1" data-tilt="1" data-tilt-max="10" onPointerMove="{{certTouchMove}}" onPointerUp="{{certTouchEnd}}" onPointerCancel="{{certTouchEnd}}" onPointerLeave="{{certTouchEnd}}" style="position: relative; width: 100%; aspect-ratio: 1200 / 750; transform-style: preserve-3d; touch-action: pan-y">
-<div ref="{{setCertIntro}}" style="position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(25deg)">
-<div style="position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); transform: rotateY({{certRot}})">
-<button type="button" onClick="{{flipCert}}" aria-label="Перевернуть сертификат: что входит" aria-hidden="{{certFront}}" style="position: absolute; inset: 0; padding: 0; border: 0; background: transparent; backface-visibility: hidden; -webkit-backface-visibility: hidden; cursor: pointer">
-<img data-shadow-target="1" src="assets/certificate.png?v=02dabbf9" alt="Подарочный сертификат: персональная тренировка с Анатолием Шабаршовым" style="display: block; width: 100%; height: 100%; filter: drop-shadow(0px 16px 24px rgba(35, 37, 58, 0.16))">
-<span class="cert-shine" aria-hidden="true"></span>
-<span data-glare="1" style="position: absolute; inset: 0; border-radius: 3.125% / 5%; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 45%)"></span>
-</button>
-<div aria-hidden="{{certBack}}" role="button" tabindex="-1" onClick="{{flipCert}}" style="position: absolute; inset: 0; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; background: radial-gradient(90% 110% at 95% 5%, #B4C3E4 0%, #E8EDF7 45%, #F6F7FB 100%); border-radius: 3.125% / 5%; box-shadow: 0px 16px 24px rgba(35, 37, 58, 0.16); overflow: hidden; cursor: pointer">
-<div data-lenis-prevent="1" style="height: 100%; box-sizing: border-box; overflow-y: auto; padding: {{certBackPad}}; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 8px; font-size: {{certBackSize}}; line-height: 1.4; color: #23253A">
-<span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #34466F">Подарочный сертификат</span>
-<div style="font-size: 1.5em; font-weight: 500; line-height: 1.3">Удобный бассейн:<br>ЗИЛ «Акватория» или Лужники</div>
-<div style="width: 64px; height: 2px; background: #9377DF; margin: 4px 0"></div>
-<div style="font-size: 1.15em; color: #565B73">Сертификат действует один год</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span style="font-size: 14px; color: #565B73; text-align: center">Нажмите на карту — она перевернётся</span>
-</div>
-<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
-<h1 data-reveal="1" style="margin: 0; font-size: clamp(32px, 3.6vw, 52px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Подарите тренировку с Анатолием</h1>
-<p style="margin: 0; max-width: 60ch; color: #565B73">Персональная тренировка в ЗИЛ или в Лужниках. Действует целый год — получатель выберет удобный день. Именная карта придёт в Telegram после оплаты.</p>
-<div style="font-size: 32px; font-weight: 500; line-height: 1.1">5 000 ₽</div>
-<div class="{{giftClass}}">
-<img class="gift-card" src="assets/certificate-mini.png?v=02dabbf9" alt="">
-<a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=gift_site" target="_blank" rel="noopener">Подарить тренировку<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
-</div>
-</div>
-</div>
+<!-- Группы: пропуски и клуб -->
+<sc-if value="{{pageGroups}}" hint-placeholder-val="{{ false }}">
+<section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<h2 data-reveal="1" style="margin: 0 0 24px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-align: center">Если пропустили</h2>
+<ul style="list-style: none; margin: 0 auto; padding: 0; max-width: 720px; border-top: 1px solid #D8DEEC"><li style="padding: 20px 0; border-bottom: 1px solid #D8DEEC; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 18px; font-weight: 500">Заболели — предупредите за 8 часов</span><span style="color: #565B73">Тогда тренировка не сгорает.</span></li><li style="padding: 20px 0; border-bottom: 1px solid #D8DEEC; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 18px; font-weight: 500">Отплавайте в другой группе</span><span style="color: #565B73">Пропущенную тренировку можно отплавать в другой группе в течение месяца.</span></li></ul>
 </section>
 
 <section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<h2 data-reveal="1" style="margin: 0 0 40px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-align: center">Как подарить</h2>
-<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: {{gridGap}}">
-<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px"><span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">1</span><span style="font-size: 20px; font-weight: 500">Откройте бота</span><span style="color: #565B73; max-width: 32ch">Кнопка «Подарить тренировку» — Telegram-бот Анатолия.</span></li>
-<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px"><span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">2</span><span style="font-size: 20px; font-weight: 500">Бассейн и имя</span><span style="color: #565B73; max-width: 32ch">ЗИЛ «Акватория» или Лужники и имя того, кому дарите.</span></li>
-<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px"><span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">3</span><span style="font-size: 20px; font-weight: 500">Именная карта</span><span style="color: #565B73; max-width: 32ch">Карта с номером и видео придут вам в Telegram.</span></li>
-</ol>
+<h2 data-reveal="1" style="margin: 0 0 12px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em">Клуб — это не только бассейн</h2>
+<p style="margin: 0 0 32px; max-width: 46ch; color: #565B73">Вместе выходим на открытую воду и на старты.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: {{gridGap}}">
+<img src="assets/group-1.jpg?v=b3461969" alt="Группа у бортика бассейна" loading="lazy" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
+<img src="assets/group-2.jpg?v=b3461969" alt="Клуб с флагом SHABARSHOV" loading="lazy" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
+<img src="assets/group-3.jpg?v=b3461969" alt="Тренировка на открытой воде" loading="lazy" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
+<img src="assets/group-4.jpg?v=b3461969" alt="Клуб на старте X‑Waters" loading="lazy" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
+</div>
 </section>
-
 </sc-if>
 
-<!-- Страница «Соревнования» -->
+<!-- Соревнования: подготовка, тренер, отзыв, фото -->
 <sc-if value="{{pageComp}}" hint-placeholder-val="{{ false }}">
-<section style="max-width: 1200px; margin: 0 auto; padding: {{pageTop}} {{pad}} 0">
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: center">
-<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
-<span style="font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #34466F">Соревнования</span>
-<h1 data-reveal="1" style="margin: 0; font-size: clamp(32px, 3.6vw, 52px); font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance">Подготовка к заплыву на открытой воде</h1>
-<p style="margin: 0; max-width: 46ch; font-size: 18px; color: #565B73">X‑Waters, SwimCup, Swimstar, Grand Swim Series, Hydra Swim. Дистанции от 500 м до 25 км.</p>
-<div style="font-size: 24px; font-weight: 500">По договорённости</div>
-<a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=pers_comp" target="_blank" rel="noopener">Обсудить подготовку<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
-</div>
-<img src="assets/tile-openwater.jpg?v=02dabbf9" alt="Анатолий выходит из воды после заплыва" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%; border-radius: 32px">
-</div>
-</section>
-
 <section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
 <h2 data-reveal="1" style="margin: 0 0 40px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-align: center">Как готовимся</h2>
 <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: {{gridGap}}">
@@ -475,10 +512,22 @@ html,body{scroll-behavior:auto}
 
 <section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: {{gridGap}}">
-<img src="assets/group-3.jpg?v=02dabbf9" alt="Клуб на открытой воде" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
-<img src="assets/group-4.jpg?v=02dabbf9" alt="Клуб на старте X‑Waters" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
-<img src="assets/group-2.jpg?v=02dabbf9" alt="Клуб с флагом SHABARSHOV" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
+<img src="assets/group-3.jpg?v=b3461969" alt="Клуб на открытой воде" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
+<img src="assets/group-4.jpg?v=b3461969" alt="Клуб на старте X‑Waters" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
+<img src="assets/group-2.jpg?v=b3461969" alt="Клуб с флагом SHABARSHOV" style="display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 28px">
 </div>
+</section>
+</sc-if>
+
+<!-- Сертификат: как подарить -->
+<sc-if value="{{pageCert}}" hint-placeholder-val="{{ false }}">
+<section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
+<h2 data-reveal="1" style="margin: 0 0 40px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-align: center">Как подарить</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: {{gridGap}}">
+<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px"><span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">1</span><span style="font-size: 20px; font-weight: 500">Откройте бота</span><span style="color: #565B73; max-width: 32ch">Кнопка «Подарить тренировку» — Telegram-бот Анатолия.</span></li>
+<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px"><span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">2</span><span style="font-size: 20px; font-weight: 500">Имя получателя</span><span style="color: #565B73; max-width: 32ch">Напишите, кому дарите, — имя будет на карте.</span></li>
+<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px"><span style="font-size: 64px; font-weight: 500; line-height: 1; color: #8FA4D1">3</span><span style="font-size: 20px; font-weight: 500">Именная карта</span><span style="color: #565B73; max-width: 32ch">Карта с номером и видео придут вам в Telegram.</span></li>
+</ol>
 </section>
 </sc-if>
 
@@ -488,10 +537,10 @@ html,body{scroll-behavior:auto}
 <div style="background: #E8EDF7; border-radius: 32px; padding: {{footCtaPad}}; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center">
 <h2 data-reveal="1" style="margin: 0; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">{{footTitle}}</h2>
 <p style="margin: 0; max-width: 46ch; color: #565B73">{{footText}}</p>
-<a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start={{footStart2}}" target="_blank" rel="noopener">{{footBtn}}<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+<a class="btn" data-cta="1" href="{{footHref}}" target="_blank" rel="noopener">{{footBtn}}<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
 </div>
 <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #D8DEEC; display: grid; grid-template-columns: {{footCols}}; justify-items: {{footJustify}}; align-items: center; gap: 20px; font-size: 16px">
-<a href="./" aria-label="На главную" style="display: flex; justify-self: {{footStart}}"><img src="assets/logo.svg?v=02dabbf9" alt="SHABARSHOV swimming club" style="height: 48px; width: auto; display: block"></a>
+<a href="./" aria-label="На главную" style="display: flex; justify-self: {{footStart}}"><img src="assets/logo.svg?v=b3461969" alt="SHABARSHOV swimming club" style="height: 48px; width: auto; display: block"></a>
 <nav aria-label="Страницы" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px">
 <a class="flink" href="./">Персональные</a>
 <a class="flink" href="gruppy/">Группы</a>
@@ -548,14 +597,13 @@ html,body{scroll-behavior:auto}
 <script type="text/x-dc" data-dc-script data-props='{"showReviews":{"editor":"boolean","default":true},"motion":{"editor":"boolean","default":true},"phone":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":8000}}'>
 var NB = ' ';
 var STORIES = [
-  { id: 's02', label: '400' + NB + 'м', cover: 'assets/story-400m.jpg?v=02dabbf9', src: 'assets/story-400m.mp4?v=02dabbf9' },
-  { id: 's03', label: 'ЧМ Сингапур', cover: 'assets/story-singapore.jpg?v=02dabbf9', src: 'assets/story-singapore.mp4?v=02dabbf9' },
-  { id: 's06', label: 'Экипировка', cover: 'assets/story-gear.jpg?v=02dabbf9', src: 'assets/story-gear.mp4?v=02dabbf9' },
-  { id: 's07', label: 'Очки', cover: 'assets/story-goggles.jpg?v=02dabbf9', src: 'assets/story-goggles.mp4?v=02dabbf9' }
+  { id: 's02', label: '400' + NB + 'м', cover: 'assets/story-400m.jpg?v=b3461969', src: 'assets/story-400m.mp4?v=b3461969' },
+  { id: 's03', label: 'ЧМ Сингапур', cover: 'assets/story-singapore.jpg?v=b3461969', src: 'assets/story-singapore.mp4?v=b3461969' },
+  { id: 's06', label: 'Экипировка', cover: 'assets/story-gear.jpg?v=b3461969', src: 'assets/story-gear.mp4?v=b3461969' },
+  { id: 's07', label: 'Очки', cover: 'assets/story-goggles.jpg?v=b3461969', src: 'assets/story-goggles.mp4?v=b3461969' }
 ];
 var POOLS = [
-  { id: 'zil', name: 'ЗИЛ «Акватория»', short: 'ЗИЛ', addr: 'Автозаводская ул.,' + NB + '23А' + NB + 'к4', img: 'assets/pool-zil.jpg?v=02dabbf9', left: '49.8%', top: '73.3%', ask: false, metro: 'МЦК ЗИЛ' + NB + '·' + NB + 'м.' + NB + 'Автозаводская', route: 'https://yandex.ru/maps/org/akvatoriya_zil/220499522989/' },
-  { id: 'luzh', name: 'Лужники', short: 'Лужники', addr: 'ул.' + NB + 'Лужники,' + NB + '24' + NB + 'с4', img: 'assets/pool-luzhniki.jpg?v=02dabbf9', left: '40.7%', top: '66.5%', ask: false, metro: 'м.' + NB + 'Воробьёвы горы' + NB + '·' + NB + 'МЦК Лужники', route: 'https://yandex.ru/maps/org/akvakompleks_luzhniki/184720394032/' }
+  { id: 'zil', name: 'ЗИЛ «Акватория»', short: 'ЗИЛ', addr: 'Автозаводская ул.,' + NB + '23А' + NB + 'к4', img: 'assets/pool-zil.jpg?v=b3461969', left: '49.8%', top: '73.3%', ask: false, metro: 'МЦК ЗИЛ' + NB + '·' + NB + 'м.' + NB + 'Автозаводская', route: 'https://yandex.ru/maps/org/akvatoriya_zil/220499522989/' },
 ];
 
 class Component extends DCLogic {
@@ -705,9 +753,16 @@ class Component extends DCLogic {
     }, { threshold: 0.2 });
     els.forEach((el) => this.rio.observe(el));
   }
+  isPers() { return ['cert', 'comp', 'groups'].indexOf(this.props.page) < 0; }
   scrolled() {
     var y = window.scrollY || 0;
     if (this.letters && this.motionOk()) this.letters.style.transform = 'translate3d(0, ' + (-Math.min(y, 600) * 0.45).toFixed(1) + 'px, 0)';
+    // на главной шапка прозрачная поверх видео, ниже видео — светлая
+    if (this.header && this.isPers()) {
+      var solid = y > Math.max(0, window.innerHeight * 0.6);
+      this.header.style.background = solid ? '#F6F7FB' : 'transparent';
+      this.header.style.boxShadow = solid ? '0 1px 0 #D8DEEC' : 'none';
+    }
     if (!this.props.phone && this.header) {
       var down = y > this.lastY && y > 120;
       this.header.style.transform = down ? 'translateY(-100%)' : 'translateY(0)';
@@ -859,7 +914,7 @@ class Component extends DCLogic {
     }));
     var cur = s.story >= 0 ? STORIES[s.story] : STORIES[0];
     var bars = STORIES.map((st, n) => ({ w: n < s.story ? '100%' : '0%', ref: this.fillRefs[n] }));
-    var page = ['cert', 'comp'].indexOf(this.props.page) >= 0 ? this.props.page : 'pers';
+    var page = ['cert', 'comp', 'groups'].indexOf(this.props.page) >= 0 ? this.props.page : 'pers';
     var pools = POOLS.map((pl) => ({
       name: pl.name, short: pl.short, addr: pl.addr, metro: pl.metro, img: pl.img, left: pl.left, top: pl.top, route: pl.route,
       hasAddr: !!pl.addr, noAddr: !pl.addr, persAsk: pl.ask,
@@ -883,18 +938,23 @@ class Component extends DCLogic {
       certBackSize: phone ? '13px' : 'clamp(13px, 1.1vw, 15px)',
       revCard: phone ? 'calc(100vw - 64px)' : 'clamp(300px, 30vw, 440px)',
       giftClass: phone ? 'gift gift-phone' : 'gift',
+      showZil: page !== 'groups',
+      pageGroups: page === 'groups', curGroups: page === 'groups' ? 'page' : 'false',
+      ctaHref: page === 'groups' ? 'https://t.me/shabarshov' : 'https://t.me/shabarshov_club_bot?start=' + (page === 'cert' ? 'gift_site' : page === 'comp' ? 'pers_comp' : 'pers_site'),
+      footHref: page === 'groups' ? 'https://t.me/shabarshov' : 'https://t.me/shabarshov_club_bot?start=' + (page === 'comp' ? 'pers_comp' : page === 'cert' ? 'gift_site' : 'pers_site'),
       page: page, pagePers: page === 'pers', pageCert: page === 'cert', pageComp: page === 'comp',
-      pageLabel: ({ pers: 'Персональные', cert: 'Сертификат', comp: 'Соревнования' })[page],
+      pageLabel: ({ pers: 'Персональные', groups: 'Группы', cert: 'Сертификат', comp: 'Соревнования' })[page],
       curPers: page === 'pers' ? 'page' : 'false', curCert: page === 'cert' ? 'page' : 'false', curComp: page === 'comp' ? 'page' : 'false',
       pagesOpen: s.pages, pagesAria: s.pages ? 'true' : 'false', pagesRot: s.pages ? '180deg' : '0deg',
       togglePages: this.togglePages, closePages: this.closePages,
       ctaStart: page === 'cert' ? 'gift_site' : page === 'comp' ? 'pers_comp' : 'pers_site',
-      ctaLabel: page === 'cert' ? 'Подарить' : 'Записаться',
+      ctaLabel: page === 'cert' ? 'Подарить' : page === 'groups' ? 'Пробная' : 'Записаться',
       pageTop: phone ? '32px' : '56px',
+      hdrPos: page === 'pers' ? 'fixed' : 'sticky', hdrBg: page === 'pers' ? 'transparent' : '#F6F7FB', hdrShadow: page === 'pers' ? 'none' : '0 1px 0 #D8DEEC',
       hdrGap: phone ? '12px' : '20px',
-      footTitle: page === 'cert' ? 'А себе — первую тренировку?' : page === 'comp' ? 'Готовитесь к старту?' : 'Запишитесь на первую тренировку',
-      footText: page === 'comp' ? 'Напишите, к какому заплыву и какая дистанция, — Анатолий ответит сам.' : 'Два вопроса в Telegram-боте — и Анатолий напишет вам сам.',
-      footBtn: page === 'comp' ? 'Обсудить подготовку' : 'Записаться',
+      footTitle: page === 'groups' ? 'Приходите на пробную' : page === 'cert' ? 'Подарите тренировку' : page === 'comp' ? 'Готовитесь к старту?' : 'Запишитесь на первую тренировку',
+      footText: page === 'cert' ? 'Именная карта с номером придёт в Telegram — останется вручить.' : page === 'groups' ? 'Напишите Анатолию, в какой бассейн удобнее, — подберёт группу по уровню.' : page === 'comp' ? 'Напишите, к какому заплыву и какая дистанция, — Анатолий ответит сам.' : 'Два вопроса в Telegram-боте — и Анатолий напишет вам сам.',
+      footBtn: page === 'comp' ? 'Обсудить подготовку' : page === 'groups' ? 'Написать в Telegram' : page === 'cert' ? 'Подарить тренировку' : 'Записаться',
       footStart2: page === 'comp' ? 'pers_comp' : 'pers_site',
       menuOpen: s.menu, menuAria: s.menu ? 'true' : 'false',
       toggleMenu: this.toggleMenu, closeMenu: this.closeMenu,
@@ -922,14 +982,14 @@ class Component extends DCLogic {
       coachGap: phone ? '24px' : '48px',
       lettersDisplay: phone ? 'none' : 'block',
       heroH: phone ? 'min(84svh, 720px)' : 'min(86vh, 820px)',
-      heroSrc: phone ? 'assets/hero-pool-m.mp4?v=02dabbf9' : 'assets/hero-pool.mp4?v=02dabbf9',
-      heroPoster: phone ? 'assets/hero-pool-m.jpg?v=02dabbf9' : 'assets/hero-pool.jpg?v=02dabbf9',
+      heroSrc: phone ? 'assets/hero-pool-m.mp4?v=b3461969' : 'assets/hero-pool.mp4?v=b3461969',
+      heroPoster: phone ? 'assets/hero-pool-m.jpg?v=b3461969' : 'assets/hero-pool.jpg?v=b3461969',
       heroFont: phone ? '36px' : 'clamp(44px, 5.2vw, 76px)',
       heroSub: phone ? '16px' : '19px',
       heroPadB: phone ? '28px' : '56px',
       heroBtnW: phone ? '100%' : 'auto',
       heroBtnPad: phone ? '20px' : '28px', heroBtnFont: phone ? '15px' : '16px',
-      wordW: phone ? 'calc(100% - 32px)' : 'min(calc(100% - 80px), 1200px)', wordTop: phone ? '20px' : '40px',
+      wordW: phone ? 'calc(100% - 32px)' : 'min(calc(100% - 80px), 1200px)', wordTop: phone ? '76px' : '96px',
       footCtaPad: phone ? '40px 20px' : '64px 40px',
       footCols: phone ? '1fr' : '1fr auto 1fr',
       footJustify: 'center',

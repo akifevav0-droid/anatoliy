@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 MSG="${1:-Обновление сайта}"
 
 # метка версии — по содержимому страницы, скриптов и файлов
-V=$(cat Main.dc.html gruppy/index.html smoke-cursor.js support.js assets/* | md5 -q | cut -c1-8)
+V=$(cat Main.dc.html smoke-cursor.js support.js assets/* | md5 -q | cut -c1-8)
 
 # страница под новым именем: старое имя браузер мог запомнить на 10 минут
 rm -f Main-*.dc.html
@@ -24,6 +24,8 @@ i = re.sub(r'(href="(?:favicon\.svg|apple-touch-icon\.png))(\?v=\w+)?"', r'\1?v=
 open('index.html', 'w', encoding='utf-8').write(i)
 # отдельные страницы: та же обёртка, другой page; <base> — чтобы пути вели в корень сайта
 PAGES = {
+    'gruppy': ('groups', 'Групповые тренировки по плаванию для взрослых в Москве | SHABARSHOV swimming club',
+               'Группы по плаванию для взрослых с Анатолием Шабаршовым, мастером спорта: Бауманка, «Формула Воды», ЗИЛ «Акватория». Первая тренировка бесплатно.'),
     'sertifikat': ('cert', 'Подарочный сертификат на тренировку по плаванию | Анатолий Шабаршов',
                    'Подарочный сертификат на персональную тренировку по плаванию с Анатолием Шабаршовым: 5 000 ₽, ЗИЛ «Акватория» или Лужники, действует год.'),
     'sorevnovaniya': ('comp', 'Подготовка к заплыву на открытой воде | Анатолий Шабаршов',
@@ -36,10 +38,9 @@ for d, (pg, title, desc) in PAGES.items():
     w = re.sub(r'<title>[^<]*</title>', f'<title>{title}</title>', w, 1)
     w = re.sub(r'(<meta name="description" content=")[^"]*(")', lambda m: m.group(1) + desc + m.group(2), w, 1)
     w = w.replace("page: 'pers' }", f"page: '{pg}' }}", 1)
+    if pg == 'groups':
+        w = w.replace('/anatoliy/assets/hero.jpg', '/anatoliy/assets/group-hero.jpg')
     open(f'{d}/index.html', 'w', encoding='utf-8').write(w)
-g = open('gruppy/index.html', encoding='utf-8').read()
-g = re.sub(r'(\.\./(?:assets/[\w.-]+|smoke-cursor\.js|favicon\.svg|apple-touch-icon\.png))(\?v=\w+)?"', r'\1?v=' + v + '"', g)
-open('gruppy/index.html', 'w', encoding='utf-8').write(g)
 EOF
 
 if [ -n "$NOPUSH" ]; then echo "собрано локально, версия $V"; exit 0; fi
