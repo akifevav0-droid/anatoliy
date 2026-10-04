@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="ru">
 <head>
+<base href="../">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Тренер по плаванию в Москве — персональные тренировки и открытая вода | Анатолий Шабаршов</title>
-<meta name="description" content="Персональные тренировки по плаванию в Москве с Анатолием Шабаршовым, мастером спорта по плаванию. Тренер рядом с вами в воде, первая тренировка — со съёмкой и разбором техники.">
+<title>Подарочный сертификат на тренировку по плаванию | Анатолий Шабаршов</title>
+<meta name="description" content="Подарочный сертификат на персональную тренировку по плаванию с Анатолием Шабаршовым: 5 000 ₽, ЗИЛ «Акватория» или Лужники, действует год.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Анатолий Шабаршов — персональные тренировки по плаванию">
 <meta property="og:description" content="Тренер не на бортике — рядом в воде. Персональные тренировки по плаванию, Москва: ЗИЛ «Акватория» и Лужники.">
@@ -93,7 +94,7 @@ class Component extends DCLogic {
   }
   componentDidMount() { this.mq.addEventListener('change', this.onMq); }
   componentWillUnmount() { this.mq.removeEventListener('change', this.onMq); }
-  renderVals() { return { phone: this.state.phone, page: 'pers' }; }
+  renderVals() { return { phone: this.state.phone, page: 'cert' }; }
 }
 </script>
 <noscript><p style="font-family:sans-serif;padding:24px">Персональные тренировки по плаванию с Анатолием Шабаршовым. Записаться: <a href="https://t.me/shabarshov_club_bot?start=pers_site">t.me/shabarshov_club_bot</a></p></noscript>

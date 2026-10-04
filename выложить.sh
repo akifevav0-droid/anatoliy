@@ -18,10 +18,25 @@ s = open('Main.dc.html', encoding='utf-8').read()
 s = re.sub(r'(assets/[\w.-]+\.(?:jpg|png|svg|mp4))', r'\1?v=' + v, s)
 open(f'Main-{v}.dc.html', 'w', encoding='utf-8').write(s)
 i = open('index.html', encoding='utf-8').read()
-i = re.sub(r'<dc-import name="Main[\w-]*"', f'<dc-import name="Main-{v}"', i)
+i = re.sub(r'(<dc-import[^>]*?name=")Main[\w-]*"', lambda m: m.group(1) + f'Main-{v}"', i)
 i = re.sub(r'(src="\.?/?(?:support|smoke-cursor)\.js)(\?v=\w+)?"', r'\1?v=' + v + '"', i)
 i = re.sub(r'(href="(?:favicon\.svg|apple-touch-icon\.png))(\?v=\w+)?"', r'\1?v=' + v + '"', i)
 open('index.html', 'w', encoding='utf-8').write(i)
+# отдельные страницы: та же обёртка, другой page; <base> — чтобы пути вели в корень сайта
+PAGES = {
+    'sertifikat': ('cert', 'Подарочный сертификат на тренировку по плаванию | Анатолий Шабаршов',
+                   'Подарочный сертификат на персональную тренировку по плаванию с Анатолием Шабаршовым: 5 000 ₽, ЗИЛ «Акватория» или Лужники, действует год.'),
+    'sorevnovaniya': ('comp', 'Подготовка к заплыву на открытой воде | Анатолий Шабаршов',
+                      'Подготовка к X‑Waters, SwimCup, Swimstar, Grand Swim Series, Hydra Swim с мастером спорта Анатолием Шабаршовым. Дистанции от 500 м до 25 км.'),
+}
+import os
+for d, (pg, title, desc) in PAGES.items():
+    os.makedirs(d, exist_ok=True)
+    w = i.replace('<head>', '<head>\n<base href="../">', 1)
+    w = re.sub(r'<title>[^<]*</title>', f'<title>{title}</title>', w, 1)
+    w = re.sub(r'(<meta name="description" content=")[^"]*(")', lambda m: m.group(1) + desc + m.group(2), w, 1)
+    w = w.replace("page: 'pers' }", f"page: '{pg}' }}", 1)
+    open(f'{d}/index.html', 'w', encoding='utf-8').write(w)
 g = open('gruppy/index.html', encoding='utf-8').read()
 g = re.sub(r'(\.\./(?:assets/[\w.-]+|smoke-cursor\.js|favicon\.svg|apple-touch-icon\.png))(\?v=\w+)?"', r'\1?v=' + v + '"', g)
 open('gruppy/index.html', 'w', encoding='utf-8').write(g)

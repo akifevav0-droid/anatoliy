@@ -10,8 +10,8 @@
 <meta property="og:description" content="Группы для взрослых в Москве. Первая тренировка бесплатно.">
 <meta property="og:image" content="https://akifevav0-droid.github.io/anatoliy/assets/group-hero.jpg">
 <meta name="theme-color" content="#F6F7FB">
-<link rel="icon" href="../favicon.svg?v=0fa30dec" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=0fa30dec">
+<link rel="icon" href="../favicon.svg?v=ddbaab74" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=ddbaab74">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
@@ -45,6 +45,18 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 .btn:active .btn-ic{transform:translateX(3px) scale(.92)}
 .btn-line{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:22px;border:1.5px solid #34466F;color:#34466F;font-weight:600;font-size:16px;text-decoration:none;transition:background-color .3s,color .3s}
 .btn-line:hover{background:#34466F;color:#FFFFFF}
+.hdr{display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center}
+.hdr .logo{justify-self:center;display:flex}
+.hdr .btn-sm{justify-self:end;display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:20px;background:#34466F;color:#FFFFFF;font-weight:600;font-size:14px;text-decoration:none}
+.pg{position:relative;justify-self:start}
+.pg summary{list-style:none}.pg summary::-webkit-details-marker{display:none}
+.pg[open] summary svg{transform:rotate(180deg)}
+.pages-btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:20px;background:#E8EDF7;color:#23253A;font-size:15px;font-weight:600;cursor:pointer}
+.pages-btn svg{transition:transform .3s}
+.pages-list{position:absolute;top:calc(100% + 8px);left:0;z-index:30;min-width:220px;padding:8px;background:#FFFFFF;border-radius:20px;box-shadow:0 16px 24px rgba(35,37,58,.16);display:flex;flex-direction:column}
+.pages-list a{display:flex;align-items:center;min-height:44px;padding:0 14px;border-radius:12px;color:#23253A;text-decoration:none;font-size:16px;font-weight:500}
+.pages-list a:hover{background:#F6F7FB}
+.pages-list a[aria-current="page"]{color:#34466F;font-weight:600;background:#E8EDF7}
 /* первый экран */
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-top:32px}
 .hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:32px}
@@ -92,9 +104,6 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
   body{font-size:16px}
   .lead{font-size:18px}
   .grid3,.prices{gap:16px}
-  .top .logo{display:none}
-  .top .wrap{justify-content:center}
-  .top .cta-sm{display:none}
   .foot-cta{padding:48px 20px}
   .foot-row{grid-template-columns:1fr;justify-items:center;text-align:center}
   .foot-end{justify-self:center}
@@ -105,13 +114,18 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 <body>
 
 <header class="top">
-<div class="wrap">
-<a class="logo" href="../" aria-label="На главную"><img src="../assets/logo.svg?v=0fa30dec" alt="SHABARSHOV swimming club" style="height:40px;width:auto"></a>
-<nav class="tabs" aria-label="Тренировки">
-<a class="tab" href="../">Персонально</a>
-<a class="tab" href="./" aria-current="page">В группе</a>
+<div class="wrap hdr">
+<details class="pg">
+<summary class="pages-btn">Группы<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+<nav class="pages-list" aria-label="Страницы сайта">
+<a href="../">Персональные</a>
+<a href="./" aria-current="page">Группы</a>
+<a href="../sorevnovaniya/">Соревнования</a>
+<a href="../sertifikat/">Сертификат</a>
 </nav>
-<a class="btn-line cta-sm" href="https://t.me/shabarshov" target="_blank" rel="noopener">Пробная бесплатно</a>
+</details>
+<a class="logo" href="../" aria-label="На главную"><img src="../assets/logo.svg?v=ddbaab74" alt="SHABARSHOV swimming club" style="height:40px;width:auto"></a>
+<a class="btn-sm" href="https://t.me/shabarshov" target="_blank" rel="noopener">Пробная</a>
 </div>
 </header>
 
@@ -128,7 +142,7 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 </ul>
 <div><a class="btn" href="https://t.me/shabarshov" target="_blank" rel="noopener">Записаться на пробную<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
 </div>
-<img src="../assets/group-hero.jpg?v=0fa30dec" alt="Группа SHABARSHOV swimming club в бассейне" fetchpriority="high">
+<img src="../assets/group-hero.jpg?v=ddbaab74" alt="Группа SHABARSHOV swimming club в бассейне" fetchpriority="high">
 </div>
 </div>
 
@@ -137,7 +151,7 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 <h2>Где и когда</h2>
 <div class="grid3">
 <article class="card">
-<img src="../assets/pool-mgtu.jpg?v=0fa30dec" alt="Бассейн СК МГТУ им. Баумана" loading="lazy">
+<img src="../assets/pool-mgtu.jpg?v=ddbaab74" alt="Бассейн СК МГТУ им. Баумана" loading="lazy">
 <div class="card-body">
 <span class="card-title">СК МГТУ им.&nbsp;Баумана</span>
 <span class="muted">Госпитальная наб.,&nbsp;4с1 · м.&nbsp;Электрозаводская</span>
@@ -147,7 +161,7 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 </div>
 </article>
 <article class="card">
-<img src="../assets/pool-formula.jpg?v=0fa30dec" alt="Бассейн «Формула Воды»" loading="lazy">
+<img src="../assets/pool-formula.jpg?v=ddbaab74" alt="Бассейн «Формула Воды»" loading="lazy">
 <div class="card-body">
 <span class="card-title">«Формула Воды»</span>
 <span class="muted">Мироновская ул.,&nbsp;27с2</span>
@@ -156,7 +170,7 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 </div>
 </article>
 <article class="card">
-<img src="../assets/pool-zil.jpg?v=0fa30dec" alt="Бассейн ЗИЛ «Акватория»" loading="lazy">
+<img src="../assets/pool-zil.jpg?v=ddbaab74" alt="Бассейн ЗИЛ «Акватория»" loading="lazy">
 <div class="card-body">
 <span class="card-title">ЗИЛ «Акватория»</span>
 <span class="muted">Автозаводская ул.,&nbsp;23А&nbsp;к4 · МЦК&nbsp;ЗИЛ</span>
@@ -200,10 +214,10 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 <h2>Клуб — это не только бассейн</h2>
 <p class="lead" style="margin:-24px 0 40px">Вместе выходим на открытую воду и на старты.</p>
 <div class="strip">
-<img src="../assets/group-1.jpg?v=0fa30dec" alt="Группа у бортика бассейна" loading="lazy">
-<img src="../assets/group-2.jpg?v=0fa30dec" alt="Клуб с флагом SHABARSHOV" loading="lazy">
-<img src="../assets/group-3.jpg?v=0fa30dec" alt="Тренировка на открытой воде" loading="lazy">
-<img src="../assets/group-4.jpg?v=0fa30dec" alt="Клуб на старте X‑Waters" loading="lazy">
+<img src="../assets/group-1.jpg?v=ddbaab74" alt="Группа у бортика бассейна" loading="lazy">
+<img src="../assets/group-2.jpg?v=ddbaab74" alt="Клуб с флагом SHABARSHOV" loading="lazy">
+<img src="../assets/group-3.jpg?v=ddbaab74" alt="Тренировка на открытой воде" loading="lazy">
+<img src="../assets/group-4.jpg?v=ddbaab74" alt="Клуб на старте X‑Waters" loading="lazy">
 </div>
 </div>
 </section>
@@ -216,7 +230,7 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 <a class="btn" href="https://t.me/shabarshov" target="_blank" rel="noopener" style="margin-top:8px">Написать в Telegram<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
 </div>
 <div class="foot-row">
-<a href="../"><img src="../assets/logo.svg?v=0fa30dec" alt="SHABARSHOV swimming club" style="height:48px;width:auto"></a>
+<a href="../"><img src="../assets/logo.svg?v=ddbaab74" alt="SHABARSHOV swimming club" style="height:48px;width:auto"></a>
 <nav aria-label="Ссылки">
 <a href="https://t.me/shabarshov" target="_blank" rel="noopener">Telegram</a>
 <a href="https://www.instagram.com/shabarshov_/" target="_blank" rel="noopener">Instagram</a>
@@ -229,6 +243,7 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
 </section>
 </main>
 
+<script>document.addEventListener('click',function(e){var d=document.querySelector('.pg');if(d&&d.open&&!d.contains(e.target))d.open=false;});</script>
 <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
 <script>
 (function () {
@@ -240,6 +255,6 @@ h2{margin:0 0 40px;font-size:clamp(28px,3.06vw,44px);font-weight:500;line-height
   requestAnimationFrame(raf);
 })();
 </script>
-<script src="../smoke-cursor.js?v=0fa30dec" data-dot="off"></script>
+<script src="../smoke-cursor.js?v=ddbaab74" data-dot="off"></script>
 </body>
 </html>
