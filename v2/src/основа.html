@@ -31,7 +31,7 @@
     <a href="v2/sorevnovaniya/"%%CUR_comp%%>Соревнования</a>
     <a href="v2/sertifikat/"%%CUR_cert%%>Сертификат</a>
   </nav>
-  <a class="btn" href="%%BTN_HREF%%" target="_blank" rel="noopener">%%BTN%%</a>
+  <button class="btn" type="button" data-contact>%%BTN%%</button>
 </header>
 
 <main>
@@ -42,7 +42,11 @@
   <div class="wrap">
     <h2 class="h-xl rv">%%CTA_TITLE%%</h2>
     <p class="lead rv">%%CTA_TEXT%%</p>
-    <a class="btn rv" href="%%BTN_HREF%%" target="_blank" rel="noopener">%%CTA_BTN%% %%ARROW%%</a>
+    <div class="choice rv">
+      <a class="btn" href="%%TEL%%">Позвонить %%ARROW%%</a>
+      <a class="btn btn-tg" href="https://t.me/shabarshov" target="_blank" rel="noopener">Написать в Telegram %%ARROW%%</a>
+    </div>
+    <p class="phone rv">%%PHONE%%</p>
   </div>
 </section>
 <footer>
@@ -52,6 +56,25 @@
     <div style="flex-basis:100%">ИП Шабаршов Анатолий Сергеевич · ИНН 711614136307 · ОГРНИП 322710000047663</div>
   </div>
 </footer>
+
+<!-- Выбор: позвонить или написать -->
+<div class="modal" id="contact" hidden>
+  <div class="m-box" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="h-m" id="m-title">Как удобнее?</h2>
+    <p class="m-sub">Анатолий ответит сам.</p>
+    <div class="choice">
+      <a class="btn" href="%%TEL%%">Позвонить %%ARROW%%</a>
+      <a class="btn btn-tg" href="https://t.me/shabarshov" target="_blank" rel="noopener">Написать в Telegram %%ARROW%%</a>
+    </div>
+    <p class="phone">%%PHONE%%</p>
+  </div>
+</div>
+<!-- Ролик на весь экран -->
+<div class="lb" id="lb" hidden>
+  <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+  <video id="lbv" controls playsinline></video>
+</div>
 
 <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
 <script>
@@ -68,15 +91,23 @@
   // появление блоков
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
-  // ролики: по нажатию играют на месте, со звуком
-  document.querySelectorAll('.reel').forEach(function (r) {
-    r.addEventListener('click', function () {
-      if (r.classList.contains('on')) return;
-      document.querySelectorAll('.reel.on video').forEach(function (x) { x.pause(); });
-      var x = document.createElement('video');
-      x.src = r.dataset.src; x.controls = true; x.playsInline = true; x.autoplay = true;
-      r.querySelector('img').replaceWith(x); r.classList.add('on'); x.play();
-    });
+  // окна: выбор связи и ролик на весь экран; закрываются по фону, крестику и Esc
+  var opened = null, back = null;
+  function openBox(el) { back = document.activeElement; el.hidden = false; requestAnimationFrame(function () { el.classList.add('show'); }); document.documentElement.style.overflow = 'hidden'; opened = el; var f = el.querySelector('[data-close]'); if (f) f.focus(); }
+  function closeBox() {
+    if (!opened) return; var el = opened; opened = null;
+    el.classList.remove('show'); document.documentElement.style.overflow = '';
+    var v = el.querySelector('video'); if (v) { v.pause(); v.removeAttribute('src'); v.load(); }
+    setTimeout(function () { el.hidden = true; }, 250); if (back) back.focus();
+  }
+  document.querySelectorAll('[data-contact]').forEach(function (b) { b.addEventListener('click', function () { openBox(document.getElementById('contact')); }); });
+  document.querySelectorAll('.modal,.lb').forEach(function (m) {
+    m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('[data-close]')) closeBox(); });
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeBox(); });
+  var lb = document.getElementById('lb'), lbv = document.getElementById('lbv');
+  document.querySelectorAll('.reel[data-video]').forEach(function (r) {
+    r.addEventListener('click', function () { lbv.src = r.dataset.video; openBox(lb); lbv.play(); });
   });
   // карта сертификата переворачивается по нажатию
   var c = document.getElementById('card');
@@ -88,6 +119,8 @@
   // мягкая прокрутка — только мышь
   if (window.Lenis && matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var l = new Lenis({ lerp: 0.09 }); (function raf(t) { l.raf(t); requestAnimationFrame(raf); })(0);
+    new MutationObserver(function () { if (document.documentElement.style.overflow === 'hidden') l.stop(); else l.start(); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['style'] });
   }
 })();
 </script>

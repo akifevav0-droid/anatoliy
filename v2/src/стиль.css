@@ -84,11 +84,19 @@ h1,h2,h3,.lead{text-wrap:balance}
 .sign{margin-top:8px;font-family:Caveat,"Segoe Script",cursive;font-size:38px;color:var(--lav);line-height:1}
 .watch{margin-top:clamp(64px,7vw,104px);display:grid;grid-template-columns:1fr auto;align-items:end;gap:16px 32px}
 .reels{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);margin-top:32px}
-.reel{position:relative;aspect-ratio:9/16;background:#E9EBF1;cursor:pointer;overflow:hidden}
+.reel{position:relative;display:block;width:100%;padding:0;border:0;aspect-ratio:9/16;background:#E9EBF1;cursor:pointer;overflow:hidden}
+.reel img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.reel:hover img{transform:scale(1.03)}
+.reel.still{cursor:default}
+.reel.still:hover img{transform:none}
+.reels.three{grid-template-columns:repeat(3,1fr)}
+.formats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g)}
+.formats h3{margin-top:20px}
+.formats p{margin-top:16px;color:var(--mute)}
 .reel video,.reel img{width:100%;height:100%;object-fit:cover}
 .reel .cap{position:absolute;left:0;right:0;bottom:0;padding:16px;color:#fff;font-weight:700;line-height:1.3;background:linear-gradient(transparent,rgba(0,0,0,.65));pointer-events:none}
 .reel .cap small{display:block;font-weight:500;opacity:.85}
-.reel .play{position:absolute;inset:0;margin:auto;width:56px;height:56px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;pointer-events:none}
+.reel .play{position:absolute;inset:0;margin:auto;width:64px;height:64px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;pointer-events:none}
 .reel.on .play,.reel.on .cap{display:none}
 /* факты */
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px)}
@@ -159,11 +167,33 @@ h1,h2,h3,.lead{text-wrap:balance}
 .card-hint{margin-top:16px;font-size:14px;color:var(--mute);text-align:center}
 .shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%);background-size:250% 100%;animation:shine 6s ease-in-out infinite}
 @keyframes shine{0%,60%{background-position:130% 0}100%{background-position:-30% 0}}
+/* выбор связи и ролик на весь экран */
+.choice{display:flex;flex-wrap:wrap;gap:12px}
+.btn-tg{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn-tg:hover{background:var(--ink);color:#fff}
+.phone{margin-top:16px;font-size:15px;color:var(--mute)}
+.phone:empty{display:none}
+.modal,.lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(10,11,18,.82);opacity:0;transition:opacity .25s}
+.modal.show,.lb.show{opacity:1}
+.modal[hidden],.lb[hidden]{display:none}
+.m-box{position:relative;width:min(440px,100%);background:#fff;padding:40px 32px 32px;transform:translateY(12px);transition:transform .25s}
+.modal.show .m-box{transform:none}
+.m-sub{margin-top:8px;color:var(--mute)}
+.m-box .choice{margin-top:28px;flex-direction:column}
+.m-box .btn{width:100%}
+.m-close{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;background:none;font:400 32px/1 Manrope,system-ui,sans-serif;color:var(--ink);cursor:pointer}
+.lb .m-close{top:12px;right:12px;color:#fff}
+.lb video{max-height:92svh;max-width:100%;aspect-ratio:9/16;background:#000;transform:scale(.94);transition:transform .25s}
+.lb.show video{transform:none}
 /* призыв и подвал */
 .cta{background:var(--ink);color:#fff;margin-top:var(--gap);padding:clamp(80px,10vw,152px) 0}
 .cta .h-xl{max-width:14ch}
-.cta .btn{background:#fff;color:var(--ink);margin-top:40px}
+.cta .choice{margin-top:40px}
+.cta .btn{background:#fff;color:var(--ink)}
 .cta .btn:hover{background:#E6E7EE}
+.cta .btn-tg{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px #fff}
+.cta .btn-tg:hover{background:#fff;color:var(--ink)}
+.cta .phone{color:#B9BCCB}
 .cta .lead{color:#B9BCCB;margin-top:24px}
 footer{background:var(--ink);color:#9A9DB0;font-size:14px;border-top:1px solid #2A2C3B}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px;padding-top:28px;padding-bottom:28px}
@@ -194,9 +224,10 @@ footer a:hover{text-decoration:underline}
   .pain .lead{justify-self:start}
   .duo,.coach,.split,.steps,.facts,.revs,.trio{grid-template-columns:1fr}
   .watch{grid-template-columns:1fr}
-  .reels{grid-template-columns:repeat(4,72%);overflow-x:auto;scroll-snap-type:x mandatory;margin-left:calc(-1*var(--pad));margin-right:calc(-1*var(--pad));padding:0 var(--pad);scrollbar-width:none}
+  .reels,.reels.three,.formats{grid-template-columns:repeat(3,72%);overflow-x:auto;scroll-snap-type:x mandatory;margin-left:calc(-1*var(--pad));margin-right:calc(-1*var(--pad));padding:0 var(--pad);scrollbar-width:none}
   .reels::-webkit-scrollbar{display:none}
-  .reel{scroll-snap-align:start}
+  .reel,.formats>article{scroll-snap-align:start}
+  .formats::-webkit-scrollbar{display:none}
   .pool .full{aspect-ratio:4/5}
   .cal div{grid-template-columns:1fr}
   .plist>div{grid-template-columns:1fr}

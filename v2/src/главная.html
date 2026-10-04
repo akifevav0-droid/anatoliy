@@ -11,7 +11,7 @@
       <h1 class="lead" style="color:var(--ink);font-weight:500">Персональные тренировки по плаванию в «Акватории ЗИЛ». Тренер — мастер спорта, рядом с вами в воде.</h1>
       <div class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span>5,0 на Профи.ру · 10 лет тренерского стажа</span></div>
     </div>
-    <a class="btn" href="https://t.me/shabarshov_club_bot?start=pers_v2" target="_blank" rel="noopener">Записаться на тренировку %%ARROW%%</a>
+    <button class="btn" type="button" data-contact>Записаться на тренировку %%ARROW%%</button>
   </div>
 </section>
 
@@ -34,44 +34,30 @@
       <img class="full" src="assets/w-tariff-pers.jpg" alt="Пловец в очках у бортика" loading="lazy">
       <div class="row"><h3 class="h-m">Персональная тренировка</h3><span class="price">5 000 ₽</span></div>
       <p>60 минут, тренер в воде рядом.</p>
-      <a class="btn btn-ghost" href="https://t.me/shabarshov_club_bot?start=pers_v2" target="_blank" rel="noopener">Записаться %%ARROW%%</a>
+      <button class="btn btn-ghost" type="button" data-contact>Записаться %%ARROW%%</button>
     </article>
     <article class="rv">
       <img class="full" src="assets/w-tariff-pack.jpg" alt="Пловец под водой" loading="lazy">
       <div class="row"><h3 class="h-m">Пакет из 8 тренировок</h3><span class="price"><s>40 000 ₽</s>32 000 ₽</span></div>
       <p>8 × 60 минут. Видео в начале и позже — увидите разницу.</p>
-      <a class="btn" href="https://t.me/shabarshov_club_bot?start=pers_v2" target="_blank" rel="noopener">Взять пакет %%ARROW%%</a>
+      <button class="btn" type="button" data-contact>Взять пакет %%ARROW%%</button>
     </article>
   </div>
 </section>
 
-<!-- 5. Тренер: записка и ролики -->
+<!-- 5. Тренер: ролики вместо регалий -->
 <section class="wrap sec" id="trener">
-  <img class="full rv" src="assets/w-coach.jpg" alt="Анатолий Шабаршов в бассейне" loading="lazy">
-  <div class="coach">
-    <div class="rv"><span class="label">Тренер</span><div class="sign">Анатолий Шабаршов</div></div>
-    <div class="rv">
-      <blockquote>
-        <p>«С бортика не видно, что делают руки под водой. Поэтому я в воде, рядом с вами. Моя задача — чтобы вам захотелось проплыть ещё 25 метров».</p>
-      </blockquote>
-    </div>
-  </div>
   <div class="watch">
-    <h2 class="h-l rv">Чем читать обо мне — лучше посмотрите.</h2>
+    <div class="head" style="margin:0">
+      <h2 class="h-l rv">Тренер, с которым весело.</h2>
+      <p class="lead rv">Чем читать регалии — лучше посмотрите.</p>
+    </div>
     <a class="more rv" href="https://instagram.com/shabarshov_" target="_blank" rel="noopener">Ещё в Instagram</a>
   </div>
-  <div class="reels">
-    <div class="reel rv" data-src="assets/story-gear.mp4"><img src="assets/story-gear.jpg" alt="Ролик «Экипировка»" loading="lazy"><span class="play">%%PLAY%%</span><span class="cap">Экипировка<small>672 тыс. просмотров</small></span></div>
-    <div class="reel rv" data-src="assets/story-goggles.mp4"><img src="assets/story-goggles.jpg" alt="Ролик про очки" loading="lazy"><span class="play">%%PLAY%%</span><span class="cap">Очки перед Кубком России Мастерс</span></div>
-    <div class="reel rv" data-src="assets/story-400m.mp4"><img src="assets/story-400m.jpg" alt="Ролик с заплыва 400 м" loading="lazy"><span class="play">%%PLAY%%</span><span class="cap">400 м вольным стилем</span></div>
-    <div class="reel rv" data-src="assets/story-singapore.mp4"><img src="assets/story-singapore.jpg" alt="Ролик с чемпионата мира" loading="lazy"><span class="play">%%PLAY%%</span><span class="cap">Чемпионат мира Мастерс, Сингапур</span></div>
-  </div>
-</section>
-
-<!-- 6. Факты -->
-<section class="wrap sec">
-  <div class="facts">
-    %%FACTS%%
+  <div class="reels three">
+    <button class="reel rv" type="button" data-video="assets/story-gear.mp4" aria-label="Смотреть ролик «Пришёл в топовой экипировке»"><img src="assets/cover-gear.jpg" alt="" loading="lazy"><span class="play">%%PLAY%%</span></button>
+    <button class="reel rv" type="button" data-video="assets/story-goggles.mp4" aria-label="Смотреть ролик «Новые очки»"><img src="assets/cover-goggles.jpg" alt="" loading="lazy"><span class="play">%%PLAY%%</span></button>
+    <button class="reel rv" type="button" data-video="assets/story-singapore.mp4" aria-label="Смотреть ролик «Сингапур»"><img src="assets/cover-singapore.jpg" alt="" loading="lazy"><span class="play">%%PLAY%%</span></button>
   </div>
 </section>
 
