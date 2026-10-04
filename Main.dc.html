@@ -57,7 +57,7 @@ html,body{scroll-behavior:auto}
 <div ref="{{setRoot}}" onMouseLeave="{{onLeave}}" onPointerDown="{{onTap}}" style="background: #F6F7FB; color: #23253A; font-family: Manrope, system-ui, sans-serif; font-size: {{bodySize}}; line-height: 1.55; overflow-x: clip">
 
 <!-- Шапка: слева три полоски (разделы) и логотип -->
-<header ref="{{setHeader}}" style="position: {{hdrPos}}; top: 0; left: 0; right: 0; z-index: 40; background: {{hdrBg}}; box-shadow: {{hdrShadow}}; color: {{hdrColor}}; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease, box-shadow 0.3s ease">
+<header ref="{{setHeader}}" style="position: {{hdrPos}}; top: 0; left: 0; right: 0; z-index: 52; background: {{hdrBg}}; box-shadow: {{hdrShadow}}; color: {{hdrColor}}; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease, box-shadow 0.3s ease">
 <div style="padding: 10px {{pad}}; display: flex; align-items: center; gap: {{hdrGap}}">
 <div style="position: relative; flex: 0 0 auto">
 <button type="button" class="burger" onClick="{{togglePages}}" aria-label="Разделы сайта" aria-haspopup="true" aria-expanded="{{pagesAria}}"><svg width="30" height="24" viewBox="0 0 30 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M2 5 q3.25 -3.5 6.5 0 t6.5 0 t6.5 0 t6.5 0"></path><path d="M2 12 q3.25 -3.5 6.5 0 t6.5 0 t6.5 0 t6.5 0"></path><path d="M2 19 q3.25 -3.5 6.5 0 t6.5 0 t6.5 0 t6.5 0"></path></svg></button>
@@ -97,10 +97,10 @@ html,body{scroll-behavior:auto}
 
 <!-- Блок 3. Тренировки -->
 <section id="trenirovki" ref="{{setHeroEnd}}" style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Тарифы</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: {{gridGap}}; align-items: stretch">
 <a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-one.jpg" alt="Анатолий Шабаршов у бортика бассейна" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%"></span>
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><video class="ph" ref="{{setTileVideo}}" src="assets/tariff-razbor.mp4" poster="assets/tariff-razbor.jpg" autoplay="" muted="" loop="" playsinline="" preload="metadata" aria-label="Тренер в воде объясняет ученикам технику" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></video></span>
 <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
 <span style="font-size: 24px; font-weight: 500; line-height: 1.2">Тренировка с разбором</span>
 <span style="font-size: 16px">45 минут. Тренер рядом в воде, видео — в том числе под водой, разбор ошибок и план.</span>
@@ -111,7 +111,7 @@ html,body{scroll-behavior:auto}
 </span>
 </a>
 <a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/hero.jpg" alt="Анатолий плывёт баттерфляем" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%"></span>
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><video class="ph" ref="{{setTileVideo}}" src="assets/tariff-pers.mp4" poster="assets/tariff-pers.jpg" autoplay="" muted="" loop="" playsinline="" preload="metadata" aria-label="Анатолий плывёт кролем" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></video></span>
 <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
 <span style="font-size: 24px; font-weight: 500; line-height: 1.2">Персональная тренировка</span>
 <span style="font-size: 16px">Тренер рядом в воде, без видеоразбора. Проход в бассейн за вас и тренера — отдельно.</span>
@@ -122,7 +122,7 @@ html,body{scroll-behavior:auto}
 </span>
 </a>
 <a class="tile" data-card="1" href="https://t.me/shabarshov_club_bot?start=pers_site" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #FFFFFF; color: #23253A; text-decoration: none">
-<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><img class="ph" src="assets/tile-pack.jpg" alt="Гребок под водой" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></span>
+<span style="display: block; aspect-ratio: 4 / 3; overflow: hidden"><video class="ph" ref="{{setTileVideo}}" src="assets/tariff-pack.mp4" poster="assets/tariff-pack.jpg" autoplay="" muted="" loop="" playsinline="" preload="metadata" aria-label="Анатолий плывёт баттерфляем" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></video></span>
 <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 24px">
 <span style="font-size: 24px; font-weight: 500; line-height: 1.2">8 тренировок</span>
 <span style="font-size: 16px">По 45 минут, по одному плану. Видео в начале и повторное позже — чтобы увидеть разницу. 4 000 ₽ за тренировку.</span>
@@ -153,7 +153,7 @@ html,body{scroll-behavior:auto}
 </section>
 
 <section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Тарифы</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: {{gridGap}}"><div style="background: #E8EDF7; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 18px; font-weight: 600">Пробная</span><span style="color: #565B73">Посмотрите группу и тренера</span><span style="margin-top: auto; padding-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.1">0 ₽</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 18px; font-weight: 600">Разовая</span><span style="color: #565B73">Попробовать без абонемента</span><span style="margin-top: auto; padding-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.1">2 000 ₽</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 18px; font-weight: 600">4 тренировки</span><span style="color: #565B73">1 раз в неделю · 1 875 ₽ за тренировку</span><span style="margin-top: auto; padding-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.1">7 500 ₽</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 18px; font-weight: 600">8 тренировок</span><span style="color: #565B73">2 раза в неделю · 1 700 ₽ за тренировку</span><span style="margin-top: auto; padding-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.1">13 600 ₽</span></div></div>
 <p style="margin: 24px 0 0; font-size: 14px; color: #565B73; text-align: center">В Бауманке проход в бассейн уже в абонементе. В ЗИЛ проход покупаете сами, по тарифу бассейна.</p>
 <div style="margin-top: 32px; display: flex; justify-content: center"><a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=group_site" target="_blank" rel="noopener">Оплатить в Telegram<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div>
@@ -175,7 +175,7 @@ html,body{scroll-behavior:auto}
 </section>
 
 <section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Тарифы</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: {{gridGap}}"><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Подготовка к заплыву</span><span style="color: #565B73">План до старта и тренировки под вашу дистанцию.</span><span style="margin-top: auto; padding-top: 16px; font-size: 28px; font-weight: 500; line-height: 1.1">По договорённости</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Тренировка с разбором</span><span style="color: #565B73">45 минут, тренер рядом в воде, видео и разбор техники.</span><span style="margin-top: auto; padding-top: 16px; font-size: 28px; font-weight: 500; line-height: 1.1">6 000 ₽</span></div><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">8 тренировок</span><span style="color: #565B73">По 45 минут, по одному плану. 4 000 ₽ за тренировку.</span><span style="margin-top: auto; padding-top: 16px; font-size: 28px; font-weight: 500; line-height: 1.1">32 000 ₽</span></div></div>
 <p style="margin: 24px 0 0; font-size: 14px; color: #565B73">Проход тренера уже в цене, ваш вход в бассейн — по его тарифу.</p>
 </section>
@@ -220,7 +220,7 @@ html,body{scroll-behavior:auto}
 </section>
 
 <section style="max-width: 1200px; margin: 0 auto; padding: {{gap}} {{pad}} 0">
-<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Цены</h2>
+<h2 data-reveal="1" style="margin: 0 0 32px; font-size: clamp(28px, 3.06vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">Тарифы</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: {{gridGap}}"><div style="background: #FFFFFF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 500; line-height: 1.25">Подарочный сертификат</span><span style="color: #565B73">Персональная тренировка 45 минут с Анатолием в «Акватории ЗИЛ». Действует год.</span><span style="margin-top: auto; padding-top: 16px; font-size: 28px; font-weight: 500; line-height: 1.1">5 000 ₽</span></div></div>
 <div style="margin-top: 32px; display: flex; justify-content: center"><a class="btn" data-cta="1" href="https://t.me/shabarshov_club_bot?start=gift_site" target="_blank" rel="noopener">Подарить тренировку<span class="btn-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div>
 </section>
@@ -629,6 +629,7 @@ class Component extends DCLogic {
     this.fillRefs = STORIES.map((s, n) => (el) => { this.fills[n] = el; });
     var refs = ['Root', 'Cursor', 'CursorDot', 'Ripple', 'Video', 'CertWrap', 'CertIntro', 'Header', 'Letters', 'HeroEnd', 'Footer', 'Sticky', 'Reviews', 'HeroVideo', 'HeroBtnText'];
     refs.forEach((n) => { var key = n.charAt(0).toLowerCase() + n.slice(1); this['set' + n] = (el) => { this[key] = el; }; });
+    this.setTileVideo = (el) => { if (el) { el.muted = true; el.playsInline = true; var pr = el.play && el.play(); if (pr && pr.catch) pr.catch(function () {}); } };
     var heroSet = this.setHeroVideo;
     this.setHeroVideo = (el) => {
       heroSet(el);
@@ -988,7 +989,7 @@ class Component extends DCLogic {
       setRoot: this.setRoot, setCursor: this.setCursor, setCursorDot: this.setCursorDot,
       setRipple: this.setRipple, setVideo: this.setVideo, setCertWrap: this.setCertWrap, setCertIntro: this.setCertIntro,
       setHeader: this.setHeader, setLetters: this.setLetters, setHeroEnd: this.setHeroEnd, setFooter: this.setFooter,
-      setSticky: this.setSticky, setReviews: this.setReviews, setHeroVideo: this.setHeroVideo,
+      setSticky: this.setSticky, setReviews: this.setReviews, setHeroVideo: this.setHeroVideo, setTileVideo: this.setTileVideo,
       onLeave: this.onLeave, onTap: this.onTap,
       cursorOn: s.cursorOn, curX: this.mx + 'px', curY: this.my + 'px',
       setHeroBtnText: this.setHeroBtnText,
