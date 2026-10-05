@@ -10,8 +10,8 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="v3/v3.css?v=8c775b6a">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Manrope:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="v3/v3.css?v=8ae2ea2c">
 </head>
 <body>
 
@@ -34,70 +34,78 @@
 </header>
 
 <main>
-<!-- 1. Вопрос -->
-<section class="screen" id="vopros">
-  <div class="in">
-    <h1 class="t-2xl">Как вы плаваете?</h1>
-    <div class="quiz">
-      <div class="opts">
-        <button class="opt" type="button" aria-pressed="false" data-head="Шея устаёт раньше, чем руки." data-sub="Научим выдыхать в воду — и плыть станет легче. С этого начнём первую тренировку.">Голова над водой, как у черепахи <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <button class="opt" type="button" aria-pressed="false" data-head="Обычно дело не в выносливости, а в дыхании." data-sub="Разберём технику рядом с вами в воде и уберём то, что тормозит.">Кроль 25 метров — и бортик <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <button class="opt" type="button" aria-pressed="false" data-head="Брасс — это прекрасно. Но кроль быстрее." data-sub="Покажем кроль шаг за шагом: дыхание, ноги, руки.">Брасс. Всю жизнь брасс <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <button class="opt" type="button" aria-pressed="false" data-head="Скорость теряется в деталях." data-sub="Мастер спорта видит их, плывя рядом: гребок, поворот, дыхание. Найдём ваши.">Нормально. Но хочу быстрее <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      </div>
-      <div class="answer" aria-live="polite">
-        <p class="t-xl">Выберите свой вариант.</p>
-        <p class="ans-sub">Скажем, с чего начнём.</p>
-        <p class="t-l" style="margin-top:var(--s3)">Персональная тренировка<br>60 минут · 5 000 ₽</p>
-        <button class="btn" type="button" data-contact>Записаться <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 2. Анти-продажа -->
-<section class="screen" id="ne-zapisyvaytes">
-  <div class="in narrow">
-    <h2 class="t-2xl">Не записывайтесь, если…</h2>
-    <ul class="anti">
-      <li>вы хотите, чтобы вас хвалили, а не исправляли</li>
-      <li>ваш идеал — тренер, который кричит с бортика</li>
-      <li>вы уверены, что взрослые не учатся</li>
-    </ul>
-    <div class="acts"><p class="t-l">Остальным — сюда.</p><button class="btn" type="button" data-contact>Записаться <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 3. Мокрый тренер -->
+<!-- 1. Мокрый тренер — картинка и фраза -->
 <section class="screen media on-dark" id="trener">
   <video class="bg" id="hv" autoplay muted loop playsinline preload="metadata" poster="assets/hero-pool.jpg" aria-label="Анатолий плывёт в открытом бассейне «Акватории ЗИЛ»">
     <source src="assets/hero-pool.mp4" type="video/mp4">
   </video>
   <div class="in">
-    <h2 class="t-2xl">Ваш тренер стоит на бортике.<br>Наш — мокрый.</h2>
-    <p class="t-l" style="margin-top:var(--s2)">Анатолий Шабаршов · мастер спорта · 10 лет тренирует · ★ 5,0 на Профи.ру</p>
-    <figure class="quote">
-      <blockquote>«Большой плюс в том, что тренер плавает с тобой рядом в воде, а не кричит с бортиков на весь бассейн».</blockquote>
-      <figcaption><a href="https://profi.ru/profile/ShabarshovAS/" target="_blank" rel="noopener" style="color:inherit">Юлия, Профи.ру</a></figcaption>
-    </figure>
-    <div class="acts"><button class="link" type="button" data-video="assets/story-gear.mp4">Смотреть, как он шутит</button></div>
+    <h1 class="t-2xl rise">Ваш тренер стоит на бортике.<br>Наш — <i>мокрый</i>.</h1>
+    <p class="t-l rise" style="margin-top:var(--s3)">Персональные тренировки по плаванию в «Акватории ЗИЛ».</p>
+    <div class="acts rise"><button class="btn" type="button" data-contact>Записаться</button><button class="link" type="button" data-video="assets/story-gear.mp4">Смотреть, как он шутит</button></div>
+    <div class="proof"><span>Мастер спорта</span><span>10 лет тренирует</span><span>★ 5,0 на Профи.ру</span><span>X‑WATERS · Мастерс</span></div>
   </div>
 </section>
 
-<!-- 4. Цена -->
+<!-- 2. Вопрос -->
+<section class="screen" id="vopros">
+  <div class="in">
+    <h2 class="t-2xl rise">Как вы плаваете?</h2>
+    <div class="quiz">
+      <div class="opts">
+        <button class="opt" type="button" aria-pressed="false" data-head="Шея устаёт раньше, чем руки." data-sub="Научим выдыхать в воду — и плыть станет легче. С этого начнём первую тренировку.">Голова над водой, как у черепахи</button>
+        <button class="opt" type="button" aria-pressed="false" data-head="Обычно дело не в выносливости, а в дыхании." data-sub="Разберём технику рядом с вами в воде и уберём то, что тормозит.">Кроль 25 метров — и бортик</button>
+        <button class="opt" type="button" aria-pressed="false" data-head="Брасс — это прекрасно. Но кроль быстрее." data-sub="Покажем кроль шаг за шагом: дыхание, ноги, руки.">Брасс. Всю жизнь брасс</button>
+        <button class="opt" type="button" aria-pressed="false" data-head="Скорость теряется в деталях." data-sub="Мастер спорта видит их, плывя рядом: гребок, поворот, дыхание. Найдём ваши.">Нормально. Но хочу быстрее</button>
+      </div>
+      <div class="answer" aria-live="polite">
+        <p class="caps mark">Персональная тренировка · 60 минут</p>
+        <p class="t-xl" style="margin-top:var(--s2)">Выберите вариант — скажем, с чего начнём.</p>
+        <p class="ans-sub">5 000 ₽ за тренировку.</p>
+        <button class="btn" type="button" data-contact>Записаться</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Анти-продажа -->
+<section class="screen" id="ne-zapisyvaytes">
+  <div class="in narrow">
+    <h2 class="t-2xl rise">Не записывайтесь, если…</h2>
+    <ul class="anti">
+      <li>вы хотите, чтобы вас хвалили, а не исправляли</li>
+      <li>ваш идеал — тренер, который кричит с бортика</li>
+      <li>вы уверены, что взрослые не учатся</li>
+    </ul>
+    <div class="acts"><p class="caps">Остальным — сюда</p><button class="btn" type="button" data-contact>Записаться</button></div>
+  </div>
+</section>
+
+<!-- 4. Отзыв — тёмный блок -->
+<section class="screen dark" id="otzyv">
+  <div class="in">
+    <p class="caps mark">★ 5,0 на Профи.ру</p>
+    <figure class="quote big" style="margin-top:var(--s3)">
+      <blockquote class="rise">«…Тренер плавает с тобой рядом в воде, а не кричит с бортиков на весь бассейн».</blockquote>
+      <figcaption><a href="https://profi.ru/profile/ShabarshovAS/" target="_blank" rel="noopener" style="color:inherit">Юлия, Профи.ру — все отзывы</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 5. Цена -->
 <section class="screen" id="tseny">
   <div class="in">
-    <h2 class="t-xl">Сколько стоит перестать бояться бортика.</h2>
+    <h2 class="t-xl rise">Сколько стоит перестать бояться бортика.</h2>
     <div class="prices">
       <div>
-        <p class="price-big">5 000 ₽<small>за 60 минут в воде с тренером</small></p>
+        <p class="price-big">5 000<span class="rub">₽</span><small>Одна тренировка · 60 минут в воде с тренером</small></p>
         <p class="mute">Попробовать и понять, что мешает плыть.</p>
-        <button class="btn" type="button" data-contact>Записаться <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="btn ghost" type="button" data-contact>Записаться</button>
       </div>
       <div>
-        <p class="price-big">32 000 ₽<small>за 8 тренировок — по 4 000 вместо 5 000</small></p>
+        <p class="price-big">32 000<span class="rub">₽</span><small>8 тренировок · по 4 000 вместо 5 000</small></p>
         <p class="mute">Видео в начале и позже — увидите разницу.</p>
-        <button class="btn ghost" type="button" data-contact>Записаться <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="btn" type="button" data-contact>Записаться</button>
       </div>
     </div>
     <p class="facts"><span>«Акватория ЗИЛ», открытый бассейн 50 м</span><span>Не умеете плавать — можно</span><span>Перенос — за 8 часов</span><a class="link" href="https://yandex.ru/maps/org/akvatoriya_zil/220499522989/" target="_blank" rel="noopener">Маршрут</a></p>
@@ -105,10 +113,10 @@
 </section>
 
 
-<section class="screen cta tint" id="zapis">
+<section class="screen cta dark" id="zapis">
   <div class="in">
     <h2 class="t-2xl">Бассейн уже налит. Осталось записаться.</h2>
-    <p class="t-l mute" style="margin-top:var(--s2)">Позвоните или напишите — Анатолий ответит сам.</p>
+    <p class="t-l mute" style="margin-top:var(--s3)">Позвоните или напишите — Анатолий ответит сам.</p>
     <div class="choice">
       <a class="btn" href="tel:+79969669160">Позвонить <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="btn ghost" href="https://t.me/shabarshov" target="_blank" rel="noopener">Написать в Telegram <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -190,6 +198,9 @@
     r.addEventListener('click', function () { lbv.src = r.dataset.video; openBox(lb); lbv.play(); });
   });
 
+  // мягкое появление заголовков
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('up'); io.unobserve(e.target); } }); }, { threshold: .2 });
+  document.querySelectorAll('.rise').forEach(function (el) { io.observe(el); });
   // вопрос-диагноз: ответ меняется на месте
   document.querySelectorAll('.quiz').forEach(function (q) {
     var ans = q.querySelector('.answer'), head = ans.querySelector('.t-xl'), sub = ans.querySelector('.ans-sub');

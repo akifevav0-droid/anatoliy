@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Manrope:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="v3/v3.css?v=%%V%%">
 </head>
 <body>
@@ -36,10 +36,10 @@
 <main>
 %%BODY%%
 
-<section class="screen cta tint" id="zapis">
+<section class="screen cta dark" id="zapis">
   <div class="in">
     <h2 class="t-2xl">%%CTA_TITLE%%</h2>
-    <p class="t-l mute" style="margin-top:var(--s2)">%%CTA_TEXT%%</p>
+    <p class="t-l mute" style="margin-top:var(--s3)">%%CTA_TEXT%%</p>
     <div class="choice">
       %%CHOICE%%
     </div>
@@ -119,6 +119,9 @@
     r.addEventListener('click', function () { lbv.src = r.dataset.video; openBox(lb); lbv.play(); });
   });
 
+  // мягкое появление заголовков
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('up'); io.unobserve(e.target); } }); }, { threshold: .2 });
+  document.querySelectorAll('.rise').forEach(function (el) { io.observe(el); });
   // вопрос-диагноз: ответ меняется на месте
   document.querySelectorAll('.quiz').forEach(function (q) {
     var ans = q.querySelector('.answer'), head = ans.querySelector('.t-xl'), sub = ans.querySelector('.ans-sub');
