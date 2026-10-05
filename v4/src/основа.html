@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<base href="%%BASE%%">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>%%TITLE%%</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="%%DESC%%">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="v4/v4.css?v=%%V%%">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="v4/" aria-label="SHABARSHOV swimming club — на главную">%%WORDMARK%%</a>
+    <nav class="nav" aria-label="Разделы сайта">
+      <a href="v4/"%%CUR_pers%%>Персональные</a>
+      <a href="v4/gruppy/"%%CUR_groups%%>Группы</a>
+      <a href="v4/sorevnovaniya/"%%CUR_comp%%>Соревнования</a>
+      <a href="v4/sertifikat/"%%CUR_cert%%>Сертификат</a>
+    </nav>
+    <button class="menu-btn" type="button" id="menu" aria-expanded="false" aria-controls="pages">Меню</button>
+    <button class="btn" type="button" data-contact>%%HDR_BTN%%</button>
+  </div>
+  <nav class="pages" id="pages" aria-label="Разделы сайта">
+    <a href="v4/"%%CUR_pers%%>Персональные</a>
+    <a href="v4/gruppy/"%%CUR_groups%%>Группы</a>
+    <a href="v4/sorevnovaniya/"%%CUR_comp%%>Соревнования</a>
+    <a href="v4/sertifikat/"%%CUR_cert%%>Сертификат</a>
+  </nav>
+</header>
+
+<main>
+%%BODY%%
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Страницы"><a href="v4/">Персональные</a><a href="v4/gruppy/">Группы</a><a href="v4/sorevnovaniya/">Соревнования</a><a href="v4/sertifikat/">Сертификат</a><a href="v4/oferta/">Оферта</a></nav>
+    <nav aria-label="Контакты"><a href="tel:%%TEL%%">%%PHONE%%</a><a href="https://t.me/shabarshov" target="_blank" rel="noopener">Telegram</a><a href="https://instagram.com/shabarshov_" target="_blank" rel="noopener">Instagram</a><a href="https://profi.ru/profile/ShabarshovAS/" target="_blank" rel="noopener">Профи.ру</a></nav>
+    <div style="flex-basis:100%">ИП Шабаршов Анатолий Сергеевич · ИНН 711614136307 · ОГРНИП 322710000047663</div>
+  </div>
+</footer>
+
+<!-- Запись: позвонить или написать -->
+<div class="modal" id="contact" hidden>
+  <div class="m-box" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="h2" id="m-title">Как удобнее?</h2>
+    <p class="mute" style="margin-top:var(--s1)">Анатолий ответит сам и предложит время.</p>
+    <div class="choice">%%CHOICE%%</div>
+    <p class="phone">%%PHONE%%</p>
+  </div>
+</div>
+<!-- Оплата: согласие с офертой, потом счёт ЮKassa -->
+<div class="modal" id="pay" hidden>
+  <div class="m-box" role="dialog" aria-modal="true" aria-labelledby="pay-title">
+    <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="h2" id="pay-title">Оплата</h2>
+    <p class="h3" id="pay-price" style="margin-top:var(--s1)"></p>
+    <label class="agree"><input type="checkbox" id="pay-ok"><span>Согласен с <a href="v4/oferta/" target="_blank" rel="noopener">офертой</a></span></label>
+    <a class="btn" id="pay-go" href="#" target="_blank" rel="noopener" aria-disabled="true">Перейти к оплате</a>
+    <p class="mute" style="margin-top:14px;font-size:var(--t-s)">Картой или СБП через ЮKassa. Получатель — ИП Шабаршов А. С.</p>
+  </div>
+</div>
+<!-- Ролик на весь экран -->
+<div class="lb" id="lb" hidden>
+  <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+  <video id="lbv" controls playsinline></video>
+</div>
+
+<script>
+(function () {
+  var mb = document.getElementById('menu'), pg = document.getElementById('pages');
+  mb.addEventListener('click', function (e) { e.stopPropagation(); var o = pg.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
+  document.addEventListener('click', function (e) { if (!pg.contains(e.target)) { pg.classList.remove('open'); mb.setAttribute('aria-expanded', 'false'); } });
+
+  var opened = null, back = null;
+  function openBox(el) { back = document.activeElement; el.hidden = false; requestAnimationFrame(function () { el.classList.add('show'); }); document.documentElement.style.overflow = 'hidden'; opened = el; var f = el.querySelector('[data-close]'); if (f) f.focus(); }
+  function closeBox() {
+    if (!opened) return; var el = opened; opened = null;
+    el.classList.remove('show'); document.documentElement.style.overflow = '';
+    var v = el.querySelector('video'); if (v) { v.pause(); v.removeAttribute('src'); v.load(); }
+    setTimeout(function () { el.hidden = true; }, 250); if (back) back.focus();
+  }
+  document.querySelectorAll('[data-contact]').forEach(function (b) { b.addEventListener('click', function () { openBox(document.getElementById('contact')); }); });
+  document.querySelectorAll('.modal,.lb').forEach(function (m) { m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('[data-close]')) closeBox(); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeBox(); pg.classList.remove('open'); } });
+
+  var payOk = document.getElementById('pay-ok'), payGo = document.getElementById('pay-go');
+  function paySync() { payGo.setAttribute('aria-disabled', payOk.checked ? 'false' : 'true'); }
+  payOk.addEventListener('change', paySync);
+  payGo.addEventListener('click', function (e) { if (!payOk.checked) e.preventDefault(); else setTimeout(closeBox, 300); });
+  document.querySelectorAll('[data-pay]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.getElementById('pay-title').textContent = b.dataset.title;
+      document.getElementById('pay-price').textContent = b.dataset.price;
+      payGo.href = b.dataset.pay; payOk.checked = false; paySync(); openBox(document.getElementById('pay'));
+    });
+  });
+
+  // ролики: превью играют сами без звука, по нажатию — на весь экран со звуком
+  var lb = document.getElementById('lb'), lbv = document.getElementById('lbv');
+  document.querySelectorAll('[data-video]').forEach(function (r) {
+    r.addEventListener('click', function () { lbv.src = r.dataset.video; openBox(lb); lbv.play(); });
+  });
+  var vio = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }); }, { threshold: .25 });
+  document.querySelectorAll('video[data-auto]').forEach(function (v) { vio.observe(v); });
+
+  // отзывы: стрелки
+  document.querySelectorAll('[data-rev]').forEach(function (b) {
+    b.addEventListener('click', function () { var r = document.querySelector('.revs'); r.scrollBy({ left: (b.dataset.rev === 'next' ? 1 : -1) * r.firstElementChild.offsetWidth * 1.05, behavior: 'smooth' }); });
+  });
+
+  // карта сертификата
+  var c = document.getElementById('card');
+  if (c) {
+    var flip = function () { c.classList.toggle('flip'); };
+    c.addEventListener('click', flip);
+    c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+  }
+
+  // мягкое появление
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('up'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rise').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
