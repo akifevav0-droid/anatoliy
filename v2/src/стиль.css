@@ -10,8 +10,8 @@ h1,h2,h3,.lead{text-wrap:balance}
 .wrap{max-width:1280px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
 .sec{margin-top:var(--gap)}
 .label{display:block;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lav-s);margin-bottom:20px}
-.h-xl{font-size:clamp(40px,6vw,88px);font-weight:700;line-height:1.04;letter-spacing:-.025em}
-.h-l{font-size:clamp(30px,4.2vw,60px);font-weight:700;line-height:1.08;letter-spacing:-.025em}
+.h-xl{font-size:clamp(36px,min(6vw,9svh),88px);font-weight:700;line-height:1.04;letter-spacing:-.025em}
+.h-l{font-size:clamp(28px,min(4.2vw,6.4svh),60px);font-weight:700;line-height:1.08;letter-spacing:-.025em}
 .h-m{font-size:clamp(21px,2vw,28px);font-weight:700;line-height:1.2;letter-spacing:-.02em}
 .lead{font-size:clamp(18px,1.6vw,22px);line-height:1.5;color:var(--mute);max-width:42ch}
 .head{display:flex;flex-direction:column;gap:20px;margin-bottom:clamp(40px,5vw,72px)}
@@ -238,6 +238,36 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
 footer a{color:var(--ink);text-decoration:none}
 footer a:hover{text-decoration:underline}
 .offer-text{margin-top:40px;max-width:72ch;display:grid;gap:16px;color:var(--ink)}
+/* разделы-экраны */
+.slide{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(72px,10vh,112px);padding-bottom:clamp(48px,8vh,96px);margin-top:0}
+.slide.split,.slide.pain{display:grid;align-content:center}
+.slide.hero{justify-content:flex-end;padding-bottom:clamp(40px,7vh,72px)}
+.slide.sub-hero{padding-top:120px}
+.slide.sub-hero .hero-foot{margin-bottom:0}
+.slide.cert-hero{display:grid;padding-top:120px}
+.media{padding:0;height:100svh;min-height:0;overflow:hidden}
+.media>img,.media>video{width:100%;height:100%;object-fit:cover;aspect-ratio:auto;max-height:none}
+.pool.slide{padding:0;height:100svh;min-height:0}
+.pool.slide>.full{height:100%;aspect-ratio:auto}
+.cta.slide{margin-top:0;padding:0;justify-content:flex-start}
+.cta-in{flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(72px,10vh,112px);padding-bottom:clamp(40px,6vh,72px)}
+.cta-in>*{align-self:flex-start}
+.cta-in .choice{align-self:stretch}
+.slide .reels.three{width:min(100%,calc(3 * 48svh * 9 / 16 + 2 * var(--g)))}
+.slide .formats{width:min(100%,calc(3 * 42svh * 9 / 16 + 2 * var(--g)))}
+.slide .tar{width:min(100%,calc(2 * 27svh * 16 / 9 + var(--g)))}
+.slide .trio .full{max-height:28svh}
+.slide .places .full{max-height:20svh}
+.slide .head{margin-bottom:clamp(24px,4svh,56px)}
+.slide .plist>div{padding:clamp(10px,1.9svh,22px) 0}
+.slide .note-s{margin-top:clamp(10px,1.6svh,20px)}
+.slide .act{margin-top:clamp(20px,3.5svh,40px)}
+.slide .watch{margin-top:0}
+.slide .reels{margin-top:clamp(16px,3svh,32px)}
+/* компьютер: каждый раздел ровно в экран */
+.slide .cal div{padding:clamp(8px,1.4svh,16px) 0}
+@media (min-width:1200px) and (min-height:640px){.slide{height:100svh;min-height:0;overflow:hidden}.slide:has(details[open]){height:auto;min-height:100svh;overflow:visible}}
+@media (pointer:coarse){html{scroll-snap-type:y proximity}.slide,footer{scroll-snap-align:start}}
 /* появление */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -259,6 +289,9 @@ footer a:hover{text-decoration:underline}
   .sub-hero{padding-top:110px}
   .cert-hero{padding-top:110px}
   .vid{height:auto;aspect-ratio:9/16;max-height:100svh}
+  .slide{padding-top:88px;padding-bottom:56px}
+  .slide .reels.three,.slide .formats,.slide .tar{width:auto}
+  .slide .trio .full,.slide .places .full{max-height:none}
   .pain .lead{justify-self:start}
   .duo,.coach,.split,.steps,.facts,.revs,.trio{grid-template-columns:1fr}
   .watch{grid-template-columns:1fr}

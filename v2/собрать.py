@@ -125,6 +125,12 @@ for fn, folder, pg, title, desc, btn, href, ct, ctt, ctb in PAGES:
         s = s.replace(f'%%{k}%%', v)
     s = s.replace('%%WORDMARK%%', wm).replace('%%ARROW%%', ARROW).replace('%%PLAY%%', PLAY)
     assert '%%' not in s, (fn, re.findall(r'%%\w+%%', s))
+    a, b = s.index('<main>'), s.index('</main>') if pg != 'offer' else s.index('<main>')
+    m = s[a:b]
+    m = re.sub(r'(?m)^<section class="', '<section class="slide ', m)
+    m = re.sub(r'(?m)^(<video class="vid"[\s\S]*?</video>)', r'<section class="slide media">\1</section>', m)
+    m = re.sub(r'(?m)^(<img class="full"[^>]*>)', r'<section class="slide media">\1</section>', m)
+    s = s[:a] + m + s[b:]
     s = typo(s)
     os.makedirs(folder or '.', exist_ok=True)
     open(os.path.join(folder, 'index.html'), 'w', encoding='utf-8').write(s)
