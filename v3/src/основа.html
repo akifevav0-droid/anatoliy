@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<base href="%%BASE%%">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>%%TITLE%%</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="%%DESC%%">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="v3/v3.css?v=%%V%%">
+</head>
+<body>
+
+<header class="hdr">
+  <a class="logo" href="v3/" aria-label="SHABARSHOV swimming club — на главную">%%WORDMARK%%</a>
+  <nav class="nav" aria-label="Разделы сайта">
+    <a href="v3/"%%CUR_pers%%>Персональные</a>
+    <a href="v3/gruppy/"%%CUR_groups%%>Группы</a>
+    <a href="v3/sorevnovaniya/"%%CUR_comp%%>Соревнования</a>
+    <a href="v3/sertifikat/"%%CUR_cert%%>Сертификат</a>
+  </nav>
+  <button class="menu-btn" type="button" id="menu" aria-expanded="false" aria-controls="pages">Меню</button>
+  <nav class="pages" id="pages" aria-label="Разделы сайта">
+    <a href="v3/"%%CUR_pers%%>Персональные</a>
+    <a href="v3/gruppy/"%%CUR_groups%%>Группы</a>
+    <a href="v3/sorevnovaniya/"%%CUR_comp%%>Соревнования</a>
+    <a href="v3/sertifikat/"%%CUR_cert%%>Сертификат</a>
+  </nav>
+  <button class="btn" type="button" data-contact>Связаться</button>
+</header>
+
+<main>
+%%BODY%%
+
+<section class="screen cta tint" id="zapis">
+  <div class="in">
+    <h2 class="t-2xl">%%CTA_TITLE%%</h2>
+    <p class="t-l mute" style="margin-top:var(--s2)">%%CTA_TEXT%%</p>
+    <div class="choice">
+      %%CHOICE%%
+    </div>
+    <p class="phone">%%PHONE%%</p>
+  </div>
+  <footer>
+    <div class="in">
+      <nav aria-label="Страницы"><a href="v3/">Персональные</a><a href="v3/gruppy/">Группы</a><a href="v3/sorevnovaniya/">Соревнования</a><a href="v3/sertifikat/">Сертификат</a><a href="v3/oferta/">Оферта</a></nav>
+      <nav aria-label="Контакты"><a href="https://t.me/shabarshov" target="_blank" rel="noopener">Telegram</a><a href="https://instagram.com/shabarshov_" target="_blank" rel="noopener">Instagram</a><a href="https://profi.ru/profile/ShabarshovAS/" target="_blank" rel="noopener">Профи.ру</a></nav>
+      <div style="flex-basis:100%">ИП Шабаршов Анатолий Сергеевич · ИНН 711614136307 · ОГРНИП 322710000047663</div>
+    </div>
+  </footer>
+</section>
+</main>
+
+<!-- Выбор: позвонить или написать -->
+<div class="modal" id="contact" hidden>
+  <div class="m-box" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="t-xl" id="m-title">Как удобнее?</h2>
+    <p class="mute" style="margin-top:var(--s1)">Анатолий ответит сам и предложит время.</p>
+    <div class="choice">
+      %%CHOICE%%
+    </div>
+    <p class="phone">%%PHONE%%</p>
+  </div>
+</div>
+<!-- Оплата: сначала согласие с офертой, потом счёт ЮKassa -->
+<div class="modal" id="pay" hidden>
+  <div class="m-box" role="dialog" aria-modal="true" aria-labelledby="pay-title">
+    <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="t-xl" id="pay-title">Оплата</h2>
+    <p class="t-l" id="pay-price" style="margin-top:var(--s1)"></p>
+    <label class="agree"><input type="checkbox" id="pay-ok"><span>Согласен с <a href="v3/oferta/" target="_blank" rel="noopener">офертой</a></span></label>
+    <a class="btn" id="pay-go" href="#" target="_blank" rel="noopener" aria-disabled="true">Перейти к оплате %%ARROW%%</a>
+    <p class="mute" style="margin-top:14px;font-size:var(--t-s)">Картой или СБП через ЮKassa. Получатель — ИП Шабаршов А. С.</p>
+  </div>
+</div>
+<!-- Ролик на весь экран -->
+<div class="lb" id="lb" hidden>
+  <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+  <video id="lbv" controls playsinline></video>
+</div>
+
+<script>
+(function () {
+  // меню на телефоне
+  var mb = document.getElementById('menu'), pg = document.getElementById('pages');
+  mb.addEventListener('click', function (e) { e.stopPropagation(); var o = pg.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
+  document.addEventListener('click', function (e) { if (!pg.contains(e.target)) { pg.classList.remove('open'); mb.setAttribute('aria-expanded', 'false'); } });
+
+  // окна: связь, оплата, ролик; закрываются по фону, крестику и Esc
+  var opened = null, back = null;
+  function openBox(el) { back = document.activeElement; el.hidden = false; requestAnimationFrame(function () { el.classList.add('show'); }); document.documentElement.style.overflow = 'hidden'; opened = el; var f = el.querySelector('[data-close]'); if (f) f.focus(); }
+  function closeBox() {
+    if (!opened) return; var el = opened; opened = null;
+    el.classList.remove('show'); document.documentElement.style.overflow = '';
+    var v = el.querySelector('video'); if (v) { v.pause(); v.removeAttribute('src'); v.load(); }
+    setTimeout(function () { el.hidden = true; }, 250); if (back) back.focus();
+  }
+  document.querySelectorAll('[data-contact]').forEach(function (b) { b.addEventListener('click', function () { openBox(document.getElementById('contact')); }); });
+  document.querySelectorAll('.modal,.lb').forEach(function (m) { m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('[data-close]')) closeBox(); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeBox(); pg.classList.remove('open'); } });
+  var payOk = document.getElementById('pay-ok'), payGo = document.getElementById('pay-go');
+  function paySync() { payGo.setAttribute('aria-disabled', payOk.checked ? 'false' : 'true'); }
+  payOk.addEventListener('change', paySync);
+  payGo.addEventListener('click', function (e) { if (!payOk.checked) e.preventDefault(); else setTimeout(closeBox, 300); });
+  document.querySelectorAll('[data-pay]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.getElementById('pay-title').textContent = b.dataset.title;
+      document.getElementById('pay-price').textContent = b.dataset.price;
+      payGo.href = b.dataset.pay; payOk.checked = false; paySync(); openBox(document.getElementById('pay'));
+    });
+  });
+  var lb = document.getElementById('lb'), lbv = document.getElementById('lbv');
+  document.querySelectorAll('[data-video]').forEach(function (r) {
+    r.addEventListener('click', function () { lbv.src = r.dataset.video; openBox(lb); lbv.play(); });
+  });
+
+  // вопрос-диагноз: ответ меняется на месте
+  document.querySelectorAll('.quiz').forEach(function (q) {
+    var ans = q.querySelector('.answer'), head = ans.querySelector('.t-xl'), sub = ans.querySelector('.ans-sub');
+    q.querySelectorAll('.opt').forEach(function (o) {
+      o.addEventListener('click', function () {
+        q.querySelectorAll('.opt').forEach(function (x) { x.setAttribute('aria-pressed', x === o ? 'true' : 'false'); });
+        ans.classList.add('swap');
+        setTimeout(function () { head.textContent = o.dataset.head; sub.textContent = o.dataset.sub; ans.classList.remove('swap'); }, 180);
+      });
+    });
+  });
+
+  // карта сертификата
+  var c = document.getElementById('card');
+  if (c) {
+    var flip = function () { c.classList.toggle('flip'); };
+    c.addEventListener('click', flip);
+    c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+    if (matchMedia('(pointer: fine)').matches) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        c.classList.add('moving');
+        c.style.setProperty('--ry', ((x - .5) * 16).toFixed(2) + 'deg'); c.style.setProperty('--rx', ((.5 - y) * 12).toFixed(2) + 'deg');
+        c.style.setProperty('--gx', (x * 100).toFixed(1) + '%'); c.style.setProperty('--gy', (y * 100).toFixed(1) + '%'); c.style.setProperty('--hue', (x * 180).toFixed(0) + 'deg');
+      });
+      c.addEventListener('pointerleave', function () { c.classList.remove('moving'); ['--rx', '--ry', '--gx', '--gy', '--hue'].forEach(function (k) { c.style.removeProperty(k); }); });
+    }
+  }
+
+  // видео-фон: на телефоне вертикальное
+  var hv = document.getElementById('hv');
+  if (hv && matchMedia('(max-width: 767px)').matches) { hv.poster = 'assets/hero-pool-m.jpg'; hv.querySelector('source').src = 'assets/hero-pool-m.mp4'; hv.load(); }
+
+  // мягкое перелистывание по экранам (мышь); высокий экран сначала докручивается
+  var screens = [].slice.call(document.querySelectorAll('.screen'));
+  if (matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches && screens.length > 1) {
+    var busy = false, lastT = 0;
+    var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+    var top = function (el) { return el.getBoundingClientRect().top + scrollY; };
+    var go = function (y) {
+      y = Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight));
+      var from = scrollY, d = y - from, t0 = performance.now(), dur = Math.min(1100, 520 + Math.abs(d) * .45);
+      if (Math.abs(d) < 2) return;
+      busy = true;
+      (function step(now) { var k = Math.min(1, (now - t0) / dur); scrollTo(0, from + d * ease(k)); if (k < 1) requestAnimationFrame(step); else setTimeout(function () { busy = false; }, 120); })(t0);
+    };
+    var page = function (dir) {
+      var y = scrollY, vh = innerHeight, cur = 0;
+      screens.forEach(function (s, i) { if (top(s) <= y + 4) cur = i; });
+      var s = screens[cur], sTop = top(s), sBot = sTop + s.offsetHeight;
+      if (dir > 0) { if (sBot > y + vh + 4) go(Math.min(y + vh * .85, sBot - vh)); else if (screens[cur + 1]) go(top(screens[cur + 1])); }
+      else { if (y > sTop + 4) go(Math.max(sTop, y - vh * .85)); else if (cur > 0) { var p = screens[cur - 1]; go(top(p) + Math.max(0, p.offsetHeight - vh)); } }
+    };
+    addEventListener('wheel', function (e) {
+      if (opened || e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+      e.preventDefault();
+      var now = performance.now();
+      if (busy || now - lastT < 380 || Math.abs(e.deltaY) < 3) { if (busy) lastT = now; return; }
+      lastT = now; page(e.deltaY > 0 ? 1 : -1);
+    }, { passive: false });
+    addEventListener('keydown', function (e) {
+      if (opened || /input|textarea|select|button/i.test(e.target.tagName || '')) return;
+      var k = e.key;
+      if (k === 'PageDown' || k === 'ArrowDown' || (k === ' ' && !e.shiftKey)) { e.preventDefault(); if (!busy) page(1); }
+      else if (k === 'PageUp' || k === 'ArrowUp' || (k === ' ' && e.shiftKey)) { e.preventDefault(); if (!busy) page(-1); }
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) { var t = document.getElementById(a.getAttribute('href').slice(1)); if (t) { e.preventDefault(); go(top(t)); } });
+    });
+  }
+})();
+</script>
+<script src="smoke-cursor.js" data-dot="off"></script>
+</body>
+</html>
