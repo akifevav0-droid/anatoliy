@@ -70,6 +70,17 @@
     <p class="phone">%%PHONE%%</p>
   </div>
 </div>
+<!-- Оплата: сначала согласие с офертой, потом счёт ЮKassa -->
+<div class="modal" id="pay" hidden>
+  <div class="m-box" role="dialog" aria-modal="true" aria-labelledby="pay-title">
+    <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="h-m" id="pay-title">Оплата</h2>
+    <p class="m-price" id="pay-price"></p>
+    <label class="agree"><input type="checkbox" id="pay-ok"><span>Согласен с <a href="v2/oferta/" target="_blank" rel="noopener">офертой</a></span></label>
+    <a class="btn" id="pay-go" href="#" target="_blank" rel="noopener" aria-disabled="true">Перейти к оплате %%ARROW%%</a>
+    <p class="m-note">Оплата картой или СБП через ЮKassa. Получатель — ИП Шабаршов А. С.</p>
+  </div>
+</div>
 <!-- Ролик на весь экран -->
 <div class="lb" id="lb" hidden>
   <button class="m-close" type="button" data-close aria-label="Закрыть">×</button>
@@ -101,6 +112,17 @@
     setTimeout(function () { el.hidden = true; }, 250); if (back) back.focus();
   }
   document.querySelectorAll('[data-contact]').forEach(function (b) { b.addEventListener('click', function () { openBox(document.getElementById('contact')); }); });
+  var pay = document.getElementById('pay'), payOk = document.getElementById('pay-ok'), payGo = document.getElementById('pay-go');
+  function paySync() { payGo.setAttribute('aria-disabled', payOk.checked ? 'false' : 'true'); }
+  payOk.addEventListener('change', paySync);
+  payGo.addEventListener('click', function (e) { if (!payOk.checked) e.preventDefault(); else setTimeout(closeBox, 300); });
+  document.querySelectorAll('[data-pay]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.getElementById('pay-title').textContent = b.dataset.title;
+      document.getElementById('pay-price').textContent = b.dataset.price;
+      payGo.href = b.dataset.pay; payOk.checked = false; paySync(); openBox(pay);
+    });
+  });
   document.querySelectorAll('.modal,.lb').forEach(function (m) {
     m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('[data-close]')) closeBox(); });
   });

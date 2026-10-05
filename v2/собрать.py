@@ -27,6 +27,12 @@ FACTS = '''<div class="rv"><b>Мастер спорта<br>по плаванию
     <div class="rv"><b>Побед —<br>не сосчитать</b><span>Победы и медали: X‑WATERS, Кубок и чемпионат России Мастерс.</span></div>'''
 # Телефон Анатолия для кнопки «Позвонить». Пусто — кнопка ведёт в Telegram, номер не показывается.
 PHONE = '+7 996 966-91-60'
+# Кнопки «Оплатить» у групп (счета ЮKassa берутся из bot/config.json). False — только «Записаться».
+PAY = True
+
+POOL_LINE = '''<section class="wrap sec">
+  <div class="pool-line rv"><b>Тренируемся в «Акватории ЗИЛ»</b><span>Автозаводская ул., 23А к4 · МЦК ЗИЛ · открытый бассейн 50 м</span><a class="more" href="https://yandex.ru/maps/org/akvatoriya_zil/220499522989/" target="_blank" rel="noopener">Маршрут</a></div>
+</section>'''
 
 LOGO = '<a class="logo" href="v2/" aria-label="SHABARSHOV swimming club — на главную">%%WORDMARK%%</a>'
 
@@ -44,6 +50,9 @@ PAGES = [
      'Подготовка к X‑WATERS, SwimCup, Swimstar, Grand Swim Series, Hydra Swim с мастером спорта Анатолием Шабаршовым. Дистанции от 500 м до 25 км.',
      'Связаться', '',
      'Готовитесь к старту?', 'Позвоните или напишите — Анатолий ответит сам.', ''),
+    ('_оферта', 'oferta/', 'offer', 'Договор-оферта | SHABARSHOV swimming club',
+     'Договор-оферта ИП Шабаршов А. С. на оказание услуг по обучению плаванию.',
+     'Связаться', '', 'Остались вопросы?', 'Позвоните или напишите — Анатолий ответит сам.', ''),
     ('сертификат.html', 'sertifikat/', 'cert', 'Подарочный сертификат на тренировку по плаванию | Анатолий Шабаршов',
      'Подарочный сертификат на персональную тренировку по плаванию с Анатолием Шабаршовым: 5 000 ₽, «Акватория ЗИЛ», действует 2 месяца.',
      'Связаться', '',
@@ -70,12 +79,41 @@ def typo(html):
     return ''.join(parts)
 
 
+import json
+CFG = json.load(open('../../../bot/config.json', encoding='utf-8'))
+INV = {p['code']: p for p in CFG['products']}
+
+
+def pay_buttons(s):
+    """Кнопки оплаты групп: счёт ЮKassa из конфига бота, окно с галочкой оферты."""
+    on = PAY and all(INV.get(c, {}).get('invoice_url') for c in ('g1', 'g4', 'g8'))
+    for c, title in (('g1', 'Разовая тренировка'), ('g4', '4 тренировки на месяц'), ('g8', '8 тренировок на месяц')):
+        btn = ''
+        if on:
+            price = f"{INV[c]['price']:,}".replace(',', ' ') + ' ₽'
+            btn = (f'<button class="btn pay" type="button" data-pay="{INV[c]["invoice_url"]}" '
+                   f'data-title="{title}" data-price="{price}">Оплатить</button>')
+        s = s.replace(f'%%PAY_{c}%%', btn)
+    s = s.replace('%%PAY_TRIAL%%', '<button class="btn btn-ghost pay" type="button" data-contact>Записаться</button>' if on else '')
+    s = s.replace('%%PAYCLASS%%', ' has-pay' if on else '')
+    s = s.replace('%%ACT_GHOST%%', ' btn-ghost' if on else '').replace('%%ACT_TEXT%%', 'Задать вопрос' if on else 'Записаться')
+    return s
+
+
+def offer_body():
+    lines = [l.strip() for l in src('оферта.md').split('\n\n') if l.strip()]
+    paras = '\n'.join(f'    <p>{l}</p>' for l in lines[1:])
+    return (f'<section class="wrap sub-hero offer">\n  <h1 class="h-l">{lines[0]}</h1>\n'
+            f'  <div class="offer-text">\n{paras}\n  </div>\n</section>')
+
+
 base = src('основа.html')
 for fn, folder, pg, title, desc, btn, href, ct, ctt, ctb in PAGES:
-    s = base.replace('%%BODY%%', src(fn))
+    s = base.replace('%%BODY%%', offer_body() if fn == '_оферта' else src(fn))
     if not PHONE:  # без телефона остаётся только Telegram
         s = re.sub(r'\s*<a class="btn" href="%%TEL%%">Позвонить %%ARROW%%</a>', '', s)
-    s = s.replace('%%POOL%%', POOL).replace('%%FACTS%%', FACTS)
+    s = s.replace('%%POOL%%', POOL).replace('%%POOL_LINE%%', POOL_LINE).replace('%%FACTS%%', FACTS)
+    s = pay_buttons(s)
     s = s.replace('%%LOGO%%', '' if pg == 'pers' else LOGO)
     for k in ('pers', 'groups', 'comp', 'cert'):
         s = s.replace(f'%%CUR_{k}%%', ' aria-current="page"' if k == pg else '')
