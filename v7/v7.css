@@ -322,3 +322,16 @@ footer .legal{flex-basis:100%}
 @media (max-width:900px){#sertifikat .wrap>.cardbox{order:-1;padding:24px var(--pad) 0}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* v7.2: меньше фото, легче страница */
+:root{--sec:clamp(52px,5.5vw,88px)}
+.top .wrap{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr)}
+.top .ph{aspect-ratio:4/5;max-height:520px}
+.fears{grid-template-columns:minmax(0,.5fr) minmax(0,2fr)}
+.wide{aspect-ratio:16/4.2}
+.coach{grid-template-columns:minmax(0,.6fr) minmax(0,1.4fr)}
+.place{grid-template-columns:minmax(0,.55fr) minmax(0,1.45fr)}
+.gallery{max-width:720px}
+.media{grid-template-columns:minmax(0,.55fr) minmax(0,1.45fr)}
+@media (max-width:900px){.top .wrap,.fears,.coach,.place,.media{grid-template-columns:1fr}.fears figure,.place .ph,.media .ph{max-width:300px}.coach .ph{aspect-ratio:16/9}}
+@media (max-width:600px){.top .ph{height:min(30svh,260px)}.wide{aspect-ratio:16/7}.fears figure{display:none}}
