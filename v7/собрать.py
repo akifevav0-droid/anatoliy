@@ -125,6 +125,8 @@ for fn, folder, pg, title, desc, hdr in PAGES:
     for k, v in rep.items():
         s = s.replace(f'%%{k}%%', v)
     s = s.replace('%%WORDMARK%%', wm)
+    # якоря «#блок»: из-за <base> ссылка считалась бы от корня сайта и уводила на версию 1 — ведём на свою страницу
+    s = re.sub(r'href="#([\w-]+)"', lambda m: f'href="v7/{folder}#{m.group(1)}"', s)
     assert '%%' not in s, (fn, re.findall(r'%%\w+%%', s))
     s = typo(s)
     os.makedirs(folder or '.', exist_ok=True)
