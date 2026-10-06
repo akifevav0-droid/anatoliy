@@ -144,7 +144,8 @@ main{position:relative;flex:1;min-height:0}
 .tmap .tag2{display:inline-block;margin:-4px 0 0 18%;transform:rotate(-3deg);background:#fff;color:var(--violet);font:800 15px/1 var(--f);letter-spacing:.06em;text-transform:uppercase;padding:9px 12px;box-shadow:0 0 0 1.5px var(--violet),0 6px 14px rgba(31,27,46,.18);white-space:nowrap}
 .tmap{text-align:left}
 .tmap:focus-visible{outline:3px solid var(--ink);outline-offset:6px}
-@media (max-width:700px){.tmap{width:132px;left:50%;top:auto;bottom:10px;margin-left:-66px}.tmap .tag2{font-size:12px;padding:7px 9px;margin-left:8%}}
+/* телефон: бутылка слева, пловец справа — в отдельной полосе под пузырями, приподняты над краем экрана */
+@media (max-width:700px){.tmap{width:124px;left:12px;top:auto;bottom:calc(30px + env(safe-area-inset-bottom,0px));margin-left:0}.tmap .tag2{font-size:12px;padding:7px 9px;margin-left:8%}}
 @media (prefers-reduced-motion:reduce){.tmap svg g{animation:none}}
 .mapbox{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:rgba(31,27,46,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s}
 .mapbox.open{opacity:1;pointer-events:auto}
@@ -186,7 +187,7 @@ main{position:relative;flex:1;min-height:0}
 .swim:hover img,.swim:focus-visible img{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 18px 20px rgba(106,79,208,.35))}
 .swim:focus-visible{outline:3px solid var(--ink);outline-offset:6px}
 @keyframes bobs{0%,100%{translate:0 0}50%{translate:-8px -6px}}
-@media (max-width:700px){.swim{top:auto;bottom:4px;width:190px;transform:translateX(42%) rotate(-6deg)} .swim .lbl{font-size:9px;padding:5px 7px;top:auto;bottom:-4px}}
+@media (max-width:700px){.swim{top:auto;bottom:calc(34px + env(safe-area-inset-bottom,0px));width:180px;transform:translateX(26%) rotate(-6deg)} .swim .lbl{font-size:9px;padding:5px 7px;top:auto;bottom:-4px}}
 @media (prefers-reduced-motion:reduce){.swim{animation:none}}
 .coach{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:rgba(31,27,46,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s}
 .coach.open{opacity:1;pointer-events:auto}
@@ -430,8 +431,8 @@ header{flex:none;z-index:4}
     pr.style.left=(c.pr[0]+o)+'px';pr.style.top=c.pr[1]+'px';pr.style.width=c.pr[2]+'px';pr.style.height=c.pr[3]+'px';
     cl.querySelectorAll('.f').forEach(function(e){e.style.display='none';});
     for(var k in c.b){var e=cl.querySelector('[data-k="'+k+'"]'),v=c.b[k];e.style.display='';e.style.left=(v[0]+o-v[2]/2)+'px';e.style.top=(v[1]-v[3]/2)+'px';e.style.width=v[2]+'px';e.style.height=v[3]+'px';}
-    var aw=main.clientWidth-16,ah=main.clientHeight-12-(mob?58:0),s=Math.min(aw/c.w,ah/c.h,1.25);
-    cl.style.transform='translate(-50%,calc(-50% - '+(mob?29:0)+'px)) scale('+s+')';
+    var aw=main.clientWidth-16,ah=main.clientHeight-12-(mob?150:0),s=Math.min(aw/c.w,ah/c.h,1.25);
+    cl.style.transform='translate(-50%,calc(-50% - '+(mob?75:0)+'px)) scale('+s+')';
     var bu=document.getElementById('buoy'),bw=mob?46:74;bu.style.left=(c.buoy[0]+c.ox-bw/2)+'px';bu.style.top=c.buoy[1]+'px';
     /* верёвка тянется от верха области под шапкой до буя */
     var clTop=cl.getBoundingClientRect().top,rl=c.buoy[1]+clTop/s+12; document.getElementById('rope').style.height=rl+'px';
