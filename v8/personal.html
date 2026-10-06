@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Персональные тренировки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Раздел «Персональные»: в центре две плашки с ценами, вокруг плавают пять воздушных пузырей. Стиль SHABARSHOV */
+:root{
+  --paper:#FFFFFF; --tint:#F1EDFC; --tint-deep:#E4DCFA; --lilac:#9477E0; --violet:#6A4FD0; --violet-deep:#5A40BD;
+  --ink:#1F1B2E; --ink-muted:#5E5872; --line:#E2DDF0;
+  --soap-lilac:#C9B8F5; --soap-blue:#A9D4F2; --soap-pink:#F3C9E4; --soap-aqua:#B8E3EC;
+  --f:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f)}
+#water{position:fixed;inset:0;width:100%;height:100%;z-index:0;background:linear-gradient(180deg,var(--paper),var(--tint))}
+header,main{position:relative;z-index:1}
+
+/* шапка */
+header{display:flex;align-items:center;gap:22px;padding:14px 24px;flex-wrap:wrap}
+header .logo{width:52px;height:52px;color:var(--lilac);flex:none}
+.switch{display:flex;gap:0;box-shadow:inset 0 0 0 1.5px var(--violet)}
+.switch a{font:700 13px/1 var(--f);letter-spacing:.08em;text-transform:uppercase;padding:12px 14px;color:var(--violet);text-decoration:none}
+.switch a[aria-current="page"]{background:var(--violet);color:#fff}
+.switch a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* кнопка (вариант 4) */
+.k{position:relative;overflow:hidden;display:inline-block;border:0;cursor:pointer;text-decoration:none;text-align:center;
+  font:700 14px/1 var(--f);letter-spacing:.08em;text-transform:uppercase;padding:16px 22px;background:var(--violet);color:#fff;transition:background .2s,transform .15s}
+.k:hover{background:var(--violet-deep)} .k:active{transform:scale(.97)}
+.k:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.k i{position:absolute;bottom:-12px;width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(255,255,255,.75);opacity:0;pointer-events:none}
+.k i:nth-child(1){left:18%;width:6px;height:6px}.k i:nth-child(2){left:52%}.k i:nth-child(3){left:80%;width:5px;height:5px}
+.k:hover i,.k:focus-visible i{animation:kb 1.1s ease-out infinite}.k:hover i:nth-child(2){animation-delay:.35s}.k:hover i:nth-child(3){animation-delay:.7s}
+@keyframes kb{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(-58px);opacity:0}}
+.k.s{background:rgba(255,255,255,.7);color:var(--violet);box-shadow:inset 0 0 0 1.5px var(--violet)} .k.s:hover{background:#fff} .k.s i{border-color:var(--lilac)}
+header .k{margin-left:auto}
+
+/* сцена: связка «плашки + пузыри» в координатах макета, масштабируется под экран без прокрутки */
+html,body{height:100%;overflow:hidden}
+body{display:flex;flex-direction:column}
+main{position:relative;flex:1;min-height:0}
+.cluster{position:absolute;left:50%;top:50%;transform-origin:50% 50%}
+.prices{position:absolute;z-index:2;display:flex;flex-direction:column;gap:10px}
+.prices h1{margin:0;text-align:center;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);line-height:1.3}
+.plates{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;min-height:0}
+.plate{background:#fff;box-shadow:inset 0 0 0 1px var(--line),0 10px 30px rgba(60,40,120,.08);padding:22px 22px 20px;display:flex;flex-direction:column;gap:8px}
+.plate h2{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
+.price{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.per{font-size:13px;color:var(--ink-muted);margin-top:-2px}
+.plate ul{margin:2px 0 0;padding:0;list-style:none;display:grid;gap:5px;font-size:14px;color:var(--ink-muted)}
+.plate li{padding-left:16px;position:relative}
+.plate li::before{content:"";position:absolute;left:0;top:.45em;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--lilac)}
+.plate .k{margin-top:auto}
+.short{display:none}
+.cluster.m .plates{grid-template-columns:1fr}
+.cluster.m .plate{padding:14px 16px;gap:4px;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:10px}
+.cluster.m .plate h2{font-size:15px;grid-column:1}
+.cluster.m .price{font-size:28px;grid-column:1}
+.cluster.m .per{grid-column:1;font-size:11.5px}
+.cluster.m .plate ul{display:none}
+.cluster.m .short{display:block;grid-column:1;font-size:11.5px;color:var(--ink-muted);line-height:1.3}
+.cluster.m .plate .k{grid-column:2;grid-row:1 / span 4;align-self:center;padding:14px 14px;font-size:12px}
+.cluster.m .prices h1{font-size:11px}
+
+/* пузыри-пена: неровная форма, обнимают блок цен со всех сторон */
+.bub{position:absolute;z-index:1;display:grid;place-items:center;text-align:center;padding:0;
+  font-size:15.5px;line-height:1.33;color:var(--ink);
+  background:rgba(255,255,255,.62);
+  box-shadow:inset 0 0 0 1.5px rgba(148,119,224,.42),inset 0 0 22px 3px rgba(201,184,245,.40),inset 10px -12px 26px rgba(169,212,242,.34),inset -12px 10px 26px rgba(243,201,228,.34);
+  border-radius:var(--r1);animation:morph var(--d,9s) ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
+.bub::before{content:"";position:absolute;left:16%;top:13%;width:12%;height:8%;border-radius:50%;background:rgba(255,255,255,.95);filter:blur(1.5px);transform:rotate(-28deg)}
+.bub p{margin:0;max-width:76%;position:relative}
+.bub b{display:block;color:var(--violet);font-weight:800;font-size:1.75em;line-height:1;letter-spacing:-.01em;margin-bottom:.22em}
+.cluster.m .bub{font-size:11.5px;line-height:1.28}
+.cluster.m .bub p{max-width:80%}
+.cluster.m .bub b{font-size:1.6em}
+@keyframes morph{from{border-radius:var(--r1)}to{border-radius:var(--r2)}}
+.b5{--r1:58% 42% 47% 53% / 55% 60% 40% 45%;--r2:45% 55% 52% 48% / 62% 48% 52% 38%;--d:8s}
+.b2{--r1:46% 54% 60% 40% / 52% 44% 56% 48%;--r2:55% 45% 48% 52% / 44% 56% 46% 54%;--d:9.5s;--dl:-3s}
+.b1{--r1:62% 38% 44% 56% / 48% 52% 48% 52%;--r2:50% 50% 38% 62% / 56% 44% 56% 44%;--d:10s;--dl:-5s}
+.b4{--r1:40% 60% 56% 44% / 50% 46% 54% 50%;--r2:52% 48% 62% 38% / 44% 54% 46% 56%;--d:9s;--dl:-2s}
+.b3{--r1:52% 48% 42% 58% / 62% 56% 44% 38%;--r2:44% 56% 52% 48% / 54% 62% 38% 46%;--d:8.6s;--dl:-6s}
+.bub.f{z-index:0;background:rgba(255,255,255,.45);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .25s}
+.bub.f:hover{transform:scale(1.08)}
+.bub.f::before{left:22%;top:18%;width:18%;height:12%}
+.f1{--r1:55% 45% 50% 50% / 48% 56% 44% 52%;--r2:46% 54% 44% 56% / 56% 46% 54% 44%;--d:7s}
+.f2,.f5,.f7{--r1:50% 50% 46% 54% / 54% 46% 54% 46%;--r2:56% 44% 52% 48% / 46% 54% 44% 56%;--d:6s;--dl:-2s}
+.f3,.f6{--r1:46% 54% 56% 44% / 50% 52% 48% 50%;--r2:54% 46% 44% 56% / 46% 50% 52% 54%;--d:8s;--dl:-4s}
+.f4,.f8{--r1:58% 42% 50% 50% / 50% 58% 42% 50%;--r2:48% 52% 56% 44% / 56% 46% 54% 44%;--d:7.5s;--dl:-1s}
+/* пузыри с текстом слегка плавают на месте, не отрываясь от плашек */
+.bub:not(.f){animation:morph var(--d,9s) ease-in-out infinite alternate,drift var(--dd,7s) ease-in-out infinite;animation-delay:var(--dl,0s),var(--dl2,0s)}
+@keyframes drift{0%,100%{translate:0 0;rotate:0deg}25%{translate:var(--dx,6px) calc(var(--dy,8px) * -1);rotate:.6deg}50%{translate:calc(var(--dx,6px) * -.5) calc(var(--dy,8px) * -.3);rotate:-.4deg}75%{translate:calc(var(--dx,6px) * -1) calc(var(--dy,8px) * .6);rotate:.3deg}}
+.b5{--dd:7.2s;--dl2:-1s;--dx:7px;--dy:9px}.b2{--dd:6.4s;--dl2:-3s;--dx:-6px;--dy:7px}.b1{--dd:8s;--dl2:-2s;--dx:5px;--dy:10px}
+.b4{--dd:6.8s;--dl2:-4s;--dx:-7px;--dy:8px}.b3{--dd:7.6s;--dl2:-5s;--dx:8px;--dy:6px}
+/* нажатие на край пузыря: прогиб и наклон от точки нажатия, пружинистый возврат */
+.bub:not(.f){cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translate(var(--px,0px),var(--py,0px)) scale(calc(var(--sx,1) * var(--gs,1)),calc(var(--sy,1) * var(--gs,1)));
+  transition:transform .7s cubic-bezier(.3,1.45,.5,1)}
+.bub:not(.f).on{transition:transform .45s ease-out}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* буй на верёвке: открывает видео Анатолия */
+.buoy{position:absolute;z-index:3;width:74px;border:0;padding:0;background:none;cursor:pointer;transform-origin:50% 0;animation:sway 4.2s ease-in-out infinite}
+.buoy .rope{position:absolute;left:50%;bottom:calc(100% - 4px);width:2px;margin-left:-1px;border-radius:1px;background:linear-gradient(90deg,#7d7694,#a9a2bf 55%,#857e9c)}
+.cluster.m .buoy .rope{bottom:calc(100% - 4px)}
+.buoy svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 10px rgba(60,40,120,.22));transform-origin:50% 5%;transition:transform .6s cubic-bezier(.3,1.6,.5,1)}
+.buoy:hover svg,.buoy:focus-visible svg{transform:rotate(-10deg)}
+.buoy:active svg{transform:rotate(6deg) scale(.96)}
+.buoy:focus-visible{outline:3px solid var(--ink);outline-offset:6px}
+.buoy .tag{position:absolute;left:50%;top:100%;margin-top:6px;transform:translateX(-50%);white-space:nowrap;font:700 11px/1 var(--f);letter-spacing:.08em;text-transform:uppercase;color:var(--violet)}
+@keyframes sway{0%,100%{rotate:-2.2deg}50%{rotate:2.2deg}}
+.cluster.m .buoy{width:46px} .cluster.m .buoy .tag{font-size:9px}
+/* окно с видео */
+.vids{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:rgba(31,27,46,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s}
+.vids.open{opacity:1;pointer-events:auto}
+.vids .row{display:flex;gap:14px;max-width:100%;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px;transform:translateY(24px) scale(.97);transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
+.vids.open .row{transform:none}
+.vids figure{margin:0;flex:none;scroll-snap-align:center;display:grid;gap:8px}
+.vids video{display:block;height:min(68svh,600px);aspect-ratio:9/16;object-fit:cover;background:#000;cursor:pointer}
+.vids figcaption{color:#fff;font:700 15px/1.2 var(--f)}
+.vids .vc{position:relative}
+.vids .pl{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:var(--violet);color:#fff;display:grid;place-items:center;box-shadow:0 0 0 8px rgba(255,255,255,.35);pointer-events:none;transition:opacity .25s,transform .2s}
+.vids .pl svg{width:42%;height:42%;margin-left:8%}
+.vids .vc:hover .pl{transform:scale(1.07)}
+.vids .vc.on .pl{opacity:0}
+.vids .x{position:absolute;top:16px;right:16px;width:44px;height:44px;border:0;background:#fff;color:var(--ink);font:400 26px/1 var(--f);cursor:pointer}
+.vids .x:focus-visible{outline:3px solid var(--lilac);outline-offset:3px}
+.vids .hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#fff;font-size:12px;opacity:.7}
+@media (max-width:700px){.vids video{height:62svh}}
+@media (prefers-reduced-motion:reduce){.buoy{animation:none}}
+.cluster{-webkit-user-select:none;user-select:none}
+.plate{-webkit-user-select:text;user-select:text}
+.bub.gone{opacity:0;pointer-events:none;transition:opacity .18s}
+.bub.back{animation:none}
+.pb{position:fixed;left:0;top:0;border-radius:50%;pointer-events:none;z-index:30;border:1.5px solid var(--lilac);background:radial-gradient(circle at 32% 28%,#fff 0 18%,rgba(148,119,224,.08) 20%)}
+/* карта сокровищ: где плаваем */
+.tmap{position:fixed;left:clamp(16px,4vw,90px);top:clamp(96px,15vh,150px);bottom:auto;z-index:5;width:clamp(150px,13vw,200px);border:0;padding:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tmap svg{display:block;width:100%;height:auto;overflow:visible}
+.tmap svg g{transform-box:fill-box;transform-origin:50% 60%;animation:float2 3.6s ease-in-out infinite}
+@keyframes float2{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -5px;rotate:3deg}}
+.tmap:hover svg g,.tmap:focus-visible svg g{animation-duration:1.4s}
+.tmap .tag2{display:inline-block;margin:-4px 0 0 18%;transform:rotate(-3deg);background:#fff;color:var(--violet);font:800 15px/1 var(--f);letter-spacing:.06em;text-transform:uppercase;padding:9px 12px;box-shadow:0 0 0 1.5px var(--violet),0 6px 14px rgba(31,27,46,.18);white-space:nowrap}
+.tmap{text-align:left}
+.tmap:focus-visible{outline:3px solid var(--ink);outline-offset:6px}
+@media (max-width:700px){.tmap{width:132px;left:50%;top:auto;bottom:10px;margin-left:-66px}.tmap .tag2{font-size:12px;padding:7px 9px;margin-left:8%}}
+@media (prefers-reduced-motion:reduce){.tmap svg g{animation:none}}
+.mapbox{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:rgba(31,27,46,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s}
+.mapbox.open{opacity:1;pointer-events:auto}
+.mapcard{position:relative;width:min(94vw,1500px);height:min(90svh,1000px);display:flex;flex-direction:column;overflow:hidden;
+  padding:clamp(22px,3vw,44px) clamp(20px,3.5vw,52px) clamp(20px,3vw,36px);color:var(--ink);background:#fff;
+  box-shadow:inset 0 0 0 1px var(--line),0 24px 60px rgba(31,27,46,.35);
+  transform-origin:0 100%;transform:scale(.1) rotate(-8deg);opacity:.2;transition:transform .6s cubic-bezier(.25,1.25,.4,1),opacity .3s}
+.mapbox.open .mapcard{transform:none;opacity:1}
+.mapcard::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10' viewBox='0 0 40 10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5 V0 H0Z' fill='%239477E0'/%3E%3C/svg%3E") repeat-x 0 0/40px 10px}
+.mapcard .pv{position:relative;flex:1;min-height:0;margin:0 0 18px;background:#0b2a33;cursor:pointer}
+.mapcard .pv video,.mapcard .pv .pst{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.mapcard .pv .pst{object-position:50% 55%;z-index:1;transition:opacity .35s}
+.mapcard .pv.on .pst{opacity:0;pointer-events:none}
+.mapcard .play{z-index:2}
+.mapcard .play{position:absolute;left:50%;top:50%;width:clamp(72px,8vw,104px);aspect-ratio:1;margin:0;transform:translate(-50%,-50%);border:0;border-radius:50%;
+  background:var(--violet);color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 0 0 10px rgba(255,255,255,.35);transition:transform .2s,background .2s,opacity .25s}
+.mapcard .play svg{width:42%;height:42%;margin-left:8%}
+.mapcard .pv:hover .play{transform:translate(-50%,-50%) scale(1.07);background:var(--violet-deep,#5A40BD)}
+.mapcard .play:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.mapcard .pv.on{cursor:default}.mapcard .pv.on .play{opacity:0;pointer-events:none}
+.mapcard .addr{margin:0;font-size:clamp(15px,1.4vw,19px);line-height:1.45;color:var(--ink)}
+.mapcard .foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.mapcard .foot .k{margin-top:0}
+.mapcard h2{margin:6px 0 2px;font:800 clamp(30px,3.6vw,52px)/1.05 var(--f);letter-spacing:-.025em;color:var(--ink)}
+.mapcard .sub{margin:0 0 16px;font:700 16px/1.2 var(--f);color:var(--violet)}
+.mapcard .k{margin-top:16px}
+.mapcard .x{position:absolute;top:14px;right:14px;width:42px;height:42px;border:0;background:#fff;color:var(--ink);font:400 28px/1 var(--f);cursor:pointer}
+.mapcard .x:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
+
+/* стикер: Анатолий выплывает из правого края */
+.swim{position:fixed;z-index:6;right:0;top:66%;width:clamp(230px,30vw,440px);border:0;padding:0;background:none;cursor:pointer;
+  transform:translateX(30%) rotate(-5deg);transition:transform .6s cubic-bezier(.3,1.4,.5,1);animation:bobs 3.8s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
+.swim .st{display:block;position:relative}
+.swim .foam{position:absolute;left:-7%;top:28%;width:22%;height:auto;overflow:visible;filter:drop-shadow(0 6px 8px rgba(31,27,46,.15));animation:foamb 2.8s ease-in-out infinite}
+@keyframes foamb{0%,100%{scale:1}50%{scale:1.06}}
+.swim img{display:block;width:100%;height:auto;
+  filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 16px rgba(31,27,46,.28))}
+.swim .lbl{position:absolute;left:14%;top:66%;transform:rotate(4deg);background:#fff;color:var(--violet);font:800 11px/1 var(--f);letter-spacing:.08em;text-transform:uppercase;padding:7px 9px;box-shadow:0 4px 10px rgba(31,27,46,.15)}
+.swim:hover img,.swim:focus-visible img{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 18px 20px rgba(106,79,208,.35))}
+.swim:focus-visible{outline:3px solid var(--ink);outline-offset:6px}
+@keyframes bobs{0%,100%{translate:0 0}50%{translate:-8px -6px}}
+@media (max-width:700px){.swim{top:auto;bottom:4px;width:190px;transform:translateX(42%) rotate(-6deg)} .swim .lbl{font-size:9px;padding:5px 7px;top:auto;bottom:-4px}}
+@media (prefers-reduced-motion:reduce){.swim{animation:none}}
+.coach{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:rgba(31,27,46,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s}
+.coach.open{opacity:1;pointer-events:auto}
+.ccard{position:relative;width:min(94vw,1100px);max-height:90svh;overflow:auto;background:#fff;display:grid;grid-template-columns:1.05fr 1fr;
+  transform:translateX(40px);transition:transform .5s cubic-bezier(.3,1.3,.5,1)}
+.coach.open .ccard{transform:none}
+.ccard img{display:block;width:100%;height:100%;min-height:320px;object-fit:cover;object-position:28% 50%}
+.ccard .tx{padding:clamp(24px,4vw,52px);display:flex;flex-direction:column;gap:14px}
+.ccard h2{margin:0;font-size:clamp(28px,3.4vw,44px);font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.ccard .ttl{margin:0;color:var(--violet);font-weight:700;font-size:16px}
+.ccard ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:16px;line-height:1.4;color:var(--ink)}
+.ccard li{padding-left:22px;position:relative}
+.ccard li::before{content:"";position:absolute;left:0;top:.35em;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--lilac)}
+.ccard blockquote{margin:4px 0 0;padding:14px 16px;background:var(--tint);font-size:15px;line-height:1.45}
+.ccard blockquote cite{display:block;margin-top:6px;font-style:normal;font-size:12.5px;color:var(--ink-muted)}
+.ccard .k{align-self:flex-start;margin-top:6px}
+.ccard .x{position:absolute;top:10px;right:10px;width:42px;height:42px;border:0;background:#fff;color:var(--ink);font:400 28px/1 var(--f);cursor:pointer;z-index:2}
+.ccard .x:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
+@media (max-width:760px){.ccard{grid-template-columns:1fr}.ccard img{min-height:0;height:34svh}}
+.back{display:inline-flex;align-items:center;gap:6px;font:700 13px/1 var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--violet);text-decoration:none;padding:10px 12px 10px 8px;box-shadow:inset 0 0 0 1.5px transparent;transition:box-shadow .2s,transform .2s}
+.back span{font-size:18px;line-height:1;transition:transform .2s}
+.back:hover{box-shadow:inset 0 0 0 1.5px var(--violet)} .back:hover span{transform:translateX(-3px)}
+.back:focus-visible,.home:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.home{display:block;flex:none;line-height:0}
+@media (max-width:700px){.back{font-size:0;padding:8px 6px;gap:0}.back span{font-size:22px}}
+header{flex:none;z-index:4}
+@media (max-width:700px){header{padding:10px 14px;gap:10px} header .logo{width:40px;height:40px} .switch a{padding:10px 10px;font-size:11px} header .k{padding:12px 12px;font-size:11px}}
+@media (prefers-reduced-motion:reduce){.bub,.k i{animation:none!important}}
+</style>
+
+<canvas id="water" aria-hidden="true"></canvas>
+
+<header>
+  <a class="back" data-fx-back href="./#choose" aria-label="Назад, к выбору раздела"><span aria-hidden="true">←</span> Назад</a>
+  <a class="home" data-fx-back data-home href="./" aria-label="SHABARSHOV swimming club — на главную"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" class="logo" aria-hidden="true" viewBox="200 180 690 700">
+<defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,0,1080)" d="M0 1080H1080V0H0Z"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<path transform="matrix(1,0,0,-1,240.3379,386.32728)" d="M0 0C4.384-7.76 9.741-13.497 16.066-17.205 22.392-20.917 29.35-22.771 36.94-22.771 39.807-22.771 42.464-22.392 44.911-21.633 47.354-20.874 49.422-19.905 51.109-18.723 52.794-17.545 54.146-16.153 55.158-14.548 56.17-12.947 56.676-11.22 56.676-9.361 56.676-7.171 56.127-5.313 55.031-3.795 53.933-2.276 52.331-.885 50.225 .38 48.113 1.646 45.373 2.91 42.001 4.175 38.625 5.44 34.493 6.832 29.603 8.351 22.685 10.88 15.896 13.45 9.234 16.067 2.569 18.681-3.29 21.927-8.351 25.809-13.41 29.687-17.546 34.494-20.748 40.23-23.954 45.963-25.556 53.135-25.556 61.737-25.556 69.494-23.871 76.539-20.495 82.865-17.123 89.19-12.695 94.543-7.212 98.932-1.732 103.316 4.594 106.648 11.765 108.926 18.933 111.203 26.227 112.342 33.651 112.342 41.072 112.342 47.86 111.583 54.02 110.064 60.175 108.547 65.741 106.27 70.719 103.233 75.692 100.197 80.12 96.484 84.003 92.1 87.881 87.712 91.253 82.821 94.123 77.425L64.267 55.412C61.23 61.314 57.056 65.995 51.742 69.455 46.429 72.91 40.143 74.642 32.893 74.642 31.034 74.642 29.054 74.345 26.946 73.756 24.835 73.163 23.024 72.364 21.506 71.353 19.988 70.34 18.723 69.031 17.711 67.431 16.699 65.825 16.192 64.015 16.192 61.99 16.192 59.626 16.865 57.563 18.217 55.792 19.565 54.021 21.293 52.459 23.404 51.11 25.511 49.759 27.958 48.62 30.741 47.695 33.524 46.766 36.435 45.797 39.471 44.785 47.903 42.255 55.704 39.472 62.875 36.436 70.043 33.399 76.242 29.813 81.473 25.682 86.699 21.547 90.834 16.656 93.87 11.007 96.906 5.354 98.425-1.518 98.425-9.614 98.425-18.051 96.566-25.428 92.858-31.754 89.146-38.079 84.339-43.393 78.437-47.694 72.529-51.995 65.994-55.202 58.827-57.309 51.655-59.416 44.361-60.472 36.94-60.472 29.18-60.472 21.926-59.669 15.181-58.068 8.433-56.467 2.189-54.106-3.543-50.983-9.279-47.864-14.423-43.942-18.978-39.218-23.531-34.497-27.497-29.097-30.869-23.024Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,0,1080)" d="M469.825 803.484H512.585V635.731H469.825ZM473.873 702.782H402.774V739.722H473.873ZM363.809 803.484H407.076V635.731H363.809Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,591.5254,380.0011)" d="M0 0H45.29L43.014-3.543 21.254 62.496H24.037L2.53-3.543ZM-2.53 103.485H47.82L108.293-64.268H62.243L50.856-31.375 55.158-34.917H-9.868L-5.061-31.375-16.7-64.268H-62.75Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,284.8691,614.59768)" d="M0 0C2.53 0 4.808 .379 6.832 1.138 8.855 1.897 10.583 2.949 12.019 4.301 13.449 5.649 14.588 7.294 15.435 9.234 16.276 11.172 16.699 13.069 16.699 14.928 16.699 17.288 16.32 19.355 15.561 21.127 14.802 22.898 13.663 24.499 12.145 25.935 10.627 27.365 8.855 28.465 6.832 29.224 4.808 29.982 2.53 30.362 0 30.362H-27.326V64.52H-2.277C.083 64.52 2.233 64.899 4.175 65.658 6.112 66.418 7.757 67.513 9.108 68.948 10.457 70.379 11.469 71.984 12.145 73.755 12.817 75.526 13.157 77.59 13.157 79.954 13.157 81.978 12.817 83.876 12.145 85.647 11.469 87.418 10.413 88.976 8.982 90.328 7.547 91.676 5.859 92.814 3.922 93.744 1.98 94.669-.34 95.136-3.036 95.136H-27.326L-23.025 99.436V-4.555L-27.326 0ZM-66.038 131.064H7.338C14.758 131.064 21.507 130.053 27.579 128.028 33.651 126.004 38.922 122.968 43.394 118.92 47.86 114.871 51.319 110.063 53.767 104.497 56.21 98.931 57.436 92.771 57.436 86.026 57.436 81.473 56.843 77.254 55.665 73.376 54.482 69.493 52.882 65.824 50.857 62.369 48.833 58.91 46.177 55.791 42.887 53.008 39.598 50.225 36.012 47.986 32.134 46.303L31.121 50.351C41.914 46.809 49.758 41.495 54.652 34.41 59.543 27.326 61.99 19.06 61.99 9.614 61.99 3.202 60.852-2.827 58.574-8.477 56.297-14.13 53.048-19.064 48.833-23.278 44.614-27.497 39.428-30.786 33.272-33.146 27.112-35.511 20.071-36.688 12.145-36.688H-66.038Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,414.415,587.01858)" d="M0 0H45.29L43.014-3.543 21.254 62.496H24.037L2.53-3.543ZM-2.53 103.485H47.82L108.293-64.268H62.243L50.856-31.375 55.158-34.917H-9.868L-5.061-31.375-16.7-64.268H-62.75Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,578.1162,520.9806)" d="M0 0 3.542 3.796V-130.306H-39.218V37.447H37.447C45.204 37.447 52.415 36.139 59.08 33.525 65.742 30.908 71.605 27.283 76.665 22.646 81.726 18.004 85.647 12.354 88.431 5.693 91.214-.973 92.605-8.267 92.605-16.193 92.605-27.832 89.696-38.206 83.877-47.314 78.057-56.424 70.253-62.749 60.472-66.291L62.496-61.23 97.16-130.306H51.11L19.988-68.315 25.302-71.604H-.759V-35.676H30.362C35.929-35.676 40.396-33.778 43.772-29.982 47.145-26.187 48.833-21.76 48.833-16.699 48.833-11.809 47.145-7.804 43.772-4.681 40.396-1.562 35.929 0 30.362 0Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,240.3379,800.3624)" d="M0 0C4.384-7.76 9.741-13.497 16.066-17.205 22.392-20.917 29.35-22.771 36.94-22.771 39.807-22.771 42.464-22.392 44.911-21.633 47.354-20.874 49.422-19.905 51.109-18.723 52.794-17.545 54.146-16.153 55.158-14.548 56.17-12.947 56.676-11.22 56.676-9.361 56.676-7.171 56.127-5.313 55.031-3.795 53.933-2.276 52.331-.885 50.225 .38 48.113 1.646 45.373 2.91 42.001 4.175 38.625 5.44 34.493 6.832 29.603 8.351 22.685 10.88 15.896 13.45 9.234 16.067 2.569 18.681-3.29 21.927-8.351 25.809-13.41 29.687-17.546 34.494-20.748 40.23-23.954 45.963-25.556 53.135-25.556 61.737-25.556 69.494-23.871 76.539-20.495 82.865-17.123 89.19-12.695 94.543-7.212 98.932-1.732 103.316 4.594 106.648 11.765 108.926 18.933 111.203 26.227 112.342 33.651 112.342 41.072 112.342 47.86 111.583 54.02 110.064 60.175 108.547 65.741 106.27 70.719 103.233 75.692 100.197 80.12 96.484 84.003 92.1 87.881 87.712 91.253 82.821 94.123 77.425L64.267 55.412C61.23 61.314 57.056 65.995 51.742 69.455 46.429 72.91 40.143 74.642 32.893 74.642 31.034 74.642 29.054 74.345 26.946 73.756 24.835 73.163 23.024 72.364 21.506 71.353 19.988 70.34 18.723 69.031 17.711 67.431 16.699 65.825 16.192 64.015 16.192 61.99 16.192 59.626 16.865 57.563 18.217 55.792 19.565 54.021 21.293 52.459 23.404 51.11 25.511 49.759 27.958 48.62 30.741 47.695 33.524 46.766 36.435 45.797 39.471 44.785 47.903 42.255 55.704 39.472 62.875 36.436 70.043 33.399 76.242 29.813 81.473 25.682 86.699 21.547 90.834 16.656 93.87 11.007 96.906 5.354 98.425-1.518 98.425-9.614 98.425-18.051 96.566-25.428 92.858-31.754 89.146-38.079 84.339-43.393 78.437-47.694 72.529-51.995 65.994-55.202 58.827-57.309 51.655-59.416 44.361-60.472 36.94-60.472 29.18-60.472 21.926-59.669 15.181-58.068 8.433-56.467 2.189-54.106-3.543-50.983-9.279-47.864-14.423-43.942-18.978-39.218-23.531-34.497-27.497-29.097-30.869-23.024Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,0,1080)" d="M469.825 389.449H512.585V221.696H469.825ZM473.873 288.747H402.774V325.687H473.873ZM363.809 389.449H407.076V221.696H363.809Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,605.0615,731.6671)" d="M0 0C-4.808-2.277-8.942-5.4-12.397-9.361-15.857-13.327-18.558-18.134-20.494-23.783-22.436-29.437-23.404-35.719-23.404-42.634-23.404-49.553-22.436-55.834-20.494-61.483-18.558-67.138-15.857-71.984-12.397-76.032-8.942-80.081-4.851-83.243-.126-85.521 4.594-87.798 9.907-88.937 15.814-88.937 21.547-88.937 26.733-87.842 31.375-85.647 36.012-83.457 40.017-80.294 43.394-76.159 46.766-72.027 49.422-67.094 51.363-61.357 53.301-55.625 54.273-49.382 54.273-42.634 54.273-35.889 53.301-29.69 51.363-24.037 49.422-18.387 46.809-13.58 43.52-9.614 40.23-5.653 36.222-2.49 31.501-.126 26.777 2.234 21.547 3.416 15.814 3.416 10.077 3.416 4.808 2.277 0 0M-60.852-7.59C-56.803 2.949-51.11 12.019-43.772 19.609-36.435 27.2-27.793 33.103-17.838 37.321-7.887 41.535 3.163 43.646 15.308 43.646 27.283 43.646 38.333 41.535 48.454 37.321 58.574 33.103 67.304 27.2 74.642 19.609 81.979 12.019 87.672 2.91 91.721-7.717 95.769-18.344 97.793-29.982 97.793-42.634 97.793-55.285 95.769-66.924 91.721-77.551 87.672-88.178 81.979-97.33 74.642-105.003 67.304-112.681 58.574-118.627 48.454-122.842 38.333-127.056 27.283-129.167 15.308-129.167 3.329-129.167-7.634-127.017-17.585-122.715-27.54-118.413-36.182-112.428-43.52-104.75-50.857-97.077-56.594-87.925-60.725-77.298-64.86-66.671-66.924-55.032-66.924-42.381-66.924-29.729-64.899-18.134-60.852-7.59" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,821.0166,690.5509)" d="M0 0H46.05L-11.892-167.753H-58.954L-117.148 0H-71.099L-34.157-120.944H-36.688Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,546.644,228.89472)" d="M0 0C.933-1.68 2.158-2.986 3.675-3.92 5.191-4.854 6.93-5.319 8.89-5.319 10.663-5.319 12.145-4.935 13.335-4.164 14.525-3.395 15.12-2.356 15.12-1.049 15.12 .351 14.571 1.377 13.475 2.031 12.378 2.684 10.663 3.291 8.33 3.851 6.696 4.271 5.191 4.726 3.815 5.215 2.438 5.705 1.26 6.336 .28 7.105-.7 7.875-1.47 8.809-2.03 9.906-2.59 11.002-2.87 12.344-2.87 13.931-2.87 15.424-2.579 16.754-1.995 17.92-1.412 19.086-.607 20.09 .42 20.931 1.446 21.771 2.636 22.412 3.99 22.855 5.343 23.299 6.813 23.521 8.4 23.521 11.153 23.521 13.556 22.926 15.61 21.735 17.663 20.545 19.226 19.11 20.3 17.431L16.45 13.86C15.516 15.166 14.385 16.205 13.055 16.976 11.725 17.746 10.173 18.131 8.4 18.131 6.766 18.131 5.413 17.769 4.34 17.045 3.266 16.321 2.73 15.33 2.73 14.07 2.73 13.324 2.893 12.705 3.22 12.215 3.546 11.726 4.013 11.293 4.62 10.92 5.226 10.547 5.973 10.221 6.86 9.94 7.746 9.66 8.773 9.381 9.94 9.101 11.62 8.681 13.125 8.19 14.455 7.631 15.785 7.07 16.94 6.406 17.92 5.636 18.9 4.865 19.646 3.943 20.16 2.871 20.673 1.797 20.93 .49 20.93-1.049 20.93-2.496 20.603-3.814 19.95-5.004 19.296-6.194 18.433-7.209 17.36-8.049 16.286-8.89 15.015-9.543 13.545-10.01 12.075-10.476 10.523-10.709 8.89-10.709 5.903-10.709 3.266-10.103 .98-8.89-1.307-7.676-3.034-5.926-4.2-3.64Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,574.7842,206.00403)" d="M0 0H6.02L13.44-27.65 12.74-27.51 20.86-.35H26.81L34.86-27.51 34.16-27.65 41.51 0H47.6L38.01-32.83H31.15L23.38-7.21H24.22L16.52-32.83H9.59Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,0,1080)" d="M632.114 873.996H638.064V841.16598H632.114ZM633.584 881.521C633.117 881.73 632.709 881.999 632.359 882.326 632.009 882.652 631.74 883.037 631.554 883.48 631.367 883.924 631.274 884.426 631.274 884.986 631.274 885.546 631.379 886.058 631.589 886.525 631.799 886.992 632.067 887.389 632.394 887.716 632.72 888.042 633.117 888.31 633.584 888.521 634.05 888.73 634.564 888.836 635.124 888.836 635.684 888.836 636.197 888.73 636.664 888.521 637.13 888.31 637.527 888.042 637.854 887.716 638.18 887.389 638.449 886.992 638.659 886.525 638.869 886.058 638.974 885.546 638.974 884.986 638.974 884.426 638.869 883.924 638.659 883.48 638.449 883.037 638.18 882.652 637.854 882.326 637.527 881.999 637.13 881.73 636.664 881.521 636.197 881.31 635.684 881.206 635.124 881.206 634.564 881.206 634.05 881.31 633.584 881.521" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,651.3633,238.8341)" d="M0 0V32.83H5.81V28.35C6.23 29.003 6.743 29.633 7.35 30.24 7.956 30.846 8.668 31.395 9.485 31.885 10.301 32.375 11.2 32.771 12.18 33.075 13.16 33.378 14.233 33.529 15.4 33.529 18.106 33.529 20.405 32.936 22.295 31.745 24.185 30.555 25.573 28.956 26.46 26.95 27.486 28.91 28.98 30.496 30.94 31.71 32.9 32.923 35.14 33.529 37.66 33.529 39.666 33.529 41.451 33.203 43.015 32.55 44.578 31.896 45.896 30.986 46.97 29.82 48.043 28.652 48.86 27.23 49.42 25.55 49.98 23.87 50.26 22.003 50.26 19.95V0H44.52V18.55C44.52 21.63 43.855 23.963 42.525 25.55 41.195 27.136 39.27 27.93 36.75 27.93 35.583 27.93 34.475 27.721 33.425 27.3 32.375 26.88 31.465 26.261 30.695 25.445 29.925 24.628 29.306 23.66 28.84 22.54 28.373 21.42 28.116 20.16 28.07 18.76V0H22.33V18.55C22.33 21.63 21.653 23.963 20.3 25.55 18.946 27.136 17.033 27.93 14.56 27.93 13.393 27.93 12.285 27.721 11.235 27.3 10.185 26.88 9.251 26.25 8.435 25.41 7.618 24.57 6.976 23.566 6.51 22.4 6.043 21.232 5.81 19.926 5.81 18.48V0Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,714.2227,238.8341)" d="M0 0V32.83H5.81V28.35C6.23 29.003 6.743 29.633 7.35 30.24 7.956 30.846 8.668 31.395 9.485 31.885 10.301 32.375 11.2 32.771 12.18 33.075 13.16 33.378 14.233 33.529 15.4 33.529 18.106 33.529 20.405 32.936 22.295 31.745 24.185 30.555 25.573 28.956 26.46 26.95 27.486 28.91 28.98 30.496 30.94 31.71 32.9 32.923 35.14 33.529 37.66 33.529 39.666 33.529 41.451 33.203 43.015 32.55 44.578 31.896 45.896 30.986 46.97 29.82 48.043 28.652 48.86 27.23 49.42 25.55 49.98 23.87 50.26 22.003 50.26 19.95V0H44.52V18.55C44.52 21.63 43.855 23.963 42.525 25.55 41.195 27.136 39.27 27.93 36.75 27.93 35.583 27.93 34.475 27.721 33.425 27.3 32.375 26.88 31.465 26.261 30.695 25.445 29.925 24.628 29.306 23.66 28.84 22.54 28.373 21.42 28.116 20.16 28.07 18.76V0H22.33V18.55C22.33 21.63 21.653 23.963 20.3 25.55 18.946 27.136 17.033 27.93 14.56 27.93 13.393 27.93 12.285 27.721 11.235 27.3 10.185 26.88 9.251 26.25 8.435 25.41 7.618 24.57 6.976 23.566 6.51 22.4 6.043 21.232 5.81 19.926 5.81 18.48V0Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,0,1080)" d="M777.362 873.996H783.312V841.16598H777.362ZM778.832 881.521C778.365 881.73 777.957 881.999 777.607 882.326 777.257 882.652 776.988 883.037 776.802 883.48 776.615 883.924 776.522 884.426 776.522 884.986 776.522 885.546 776.627 886.058 776.837 886.525 777.047 886.992 777.315 887.389 777.642 887.716 777.968 888.042 778.365 888.31 778.832 888.521 779.298 888.73 779.812 888.836 780.372 888.836 780.932 888.836 781.445 888.73 781.912 888.521 782.378 888.31 782.775 888.042 783.102 887.716 783.428 887.389 783.697 886.992 783.907 886.525 784.117 886.058 784.222 885.546 784.222 884.986 784.222 884.426 784.117 883.924 783.907 883.48 783.697 883.037 783.428 882.652 783.102 882.326 782.775 881.999 782.378 881.73 781.912 881.521 781.445 881.31 780.932 881.206 780.372 881.206 779.812 881.206 779.298 881.31 778.832 881.521" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,796.6113,206.00403)" d="M0 0H5.46V-4.48C5.926-3.827 6.486-3.197 7.14-2.59 7.793-1.984 8.54-1.436 9.38-.945 10.22-.455 11.176-.059 12.25 .245 13.323 .548 14.466 .699 15.68 .699 17.733 .699 19.565 .385 21.175-.245 22.785-.875 24.15-1.785 25.27-2.975 26.39-4.165 27.241-5.59 27.825-7.245 28.408-8.902 28.7-10.78 28.7-12.88V-32.83H22.96V-14.28C22.96-11.2 22.236-8.867 20.79-7.28 19.343-5.694 17.336-4.9 14.77-4.9 13.603-4.9 12.471-5.109 11.375-5.53 10.278-5.95 9.321-6.58 8.505-7.42 7.688-8.26 7.035-9.264 6.545-10.43 6.055-11.598 5.81-12.904 5.81-14.35V-32.83H0Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,847.8159,211.49909)" d="M0 0C-1.284-.584-2.38-1.399-3.29-2.45-4.2-3.5-4.9-4.749-5.39-6.194-5.88-7.642-6.125-9.159-6.125-10.745-6.125-12.425-5.88-13.989-5.39-15.435-4.9-16.882-4.2-18.142-3.29-19.215-2.38-20.289-1.284-21.151 0-21.806 1.283-22.459 2.695-22.785 4.235-22.785 5.728-22.785 7.128-22.459 8.435-21.806 9.741-21.151 10.873-20.289 11.83-19.215 12.786-18.142 13.533-16.882 14.07-15.435 14.606-13.989 14.875-12.425 14.875-10.745 14.875-9.159 14.606-7.653 14.07-6.229 13.533-4.808 12.786-3.56 11.83-2.485 10.873-1.412 9.741-.584 8.435 0 7.128 .583 5.728 .875 4.235 .875 2.695 .875 1.283 .583 0 0M-10.745-3.92C-9.952-1.845-8.867-.047-7.49 1.47-6.114 2.985-4.469 4.153-2.555 4.97-.642 5.786 1.388 6.194 3.535 6.194 6.148 6.194 8.388 5.692 10.255 4.69 12.121 3.687 13.661 2.321 14.875 .595V5.495H20.615V-24.815C20.615-27.381 20.218-29.703 19.425-31.78 18.631-33.856 17.511-35.63 16.065-37.101 14.618-38.569 12.845-39.7 10.745-40.495 8.645-41.288 6.311-41.685 3.745-41.685 2.345-41.685 .98-41.545-.35-41.265-1.68-40.985-2.94-40.553-4.13-39.97-5.32-39.386-6.429-38.675-7.455-37.835-8.482-36.995-9.439-36.062-10.325-35.035L-6.615-31.114C-5.075-32.841-3.454-34.147-1.75-35.035-.047-35.921 1.808-36.364 3.815-36.364 5.495-36.364 7.023-36.12 8.4-35.63 9.776-35.14 10.943-34.428 11.9-33.495 12.856-32.562 13.591-31.44 14.105-30.135 14.618-28.828 14.875-27.358 14.875-25.726V-22.295C13.708-24.022 12.18-25.41 10.29-26.46 8.4-27.51 6.148-28.035 3.535-28.035 1.388-28.035-.642-27.603-2.555-26.739-4.469-25.877-6.114-24.687-7.49-23.17-8.867-21.653-9.952-19.834-10.745-17.71-11.539-15.587-11.935-13.265-11.935-10.745-11.935-8.272-11.539-5.997-10.745-3.92" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,738.5835,287.69929)" d="M0 0C.84 2.076 1.995 3.885 3.465 5.426 4.935 6.965 6.685 8.178 8.715 9.065 10.745 9.951 12.926 10.395 15.26 10.395 16.8 10.395 18.258 10.196 19.635 9.801 21.011 9.403 22.283 8.82 23.45 8.051 24.616 7.28 25.666 6.358 26.6 5.285 27.533 4.211 28.326 3.021 28.98 1.715L24.57-1.505C23.543 .455 22.201 2.018 20.545 3.186 18.888 4.352 17.08 4.936 15.12 4.936 13.626 4.936 12.226 4.631 10.92 4.025 9.613 3.418 8.481 2.59 7.525 1.54 6.568 .49 5.833-.734 5.32-2.135 4.806-3.535 4.55-5.052 4.55-6.685 4.55-8.318 4.818-9.847 5.355-11.27 5.891-12.693 6.615-13.93 7.525-14.98 8.435-16.029 9.531-16.859 10.815-17.465 12.098-18.072 13.486-18.375 14.98-18.375 17.033-18.375 18.9-17.814 20.58-16.695 22.26-15.574 23.66-14.035 24.78-12.074L29.05-15.154C27.696-17.77 25.783-19.869 23.31-21.455 20.836-23.042 18.06-23.835 14.98-23.835 12.646-23.835 10.488-23.391 8.505-22.505 6.521-21.619 4.806-20.404 3.36-18.865 1.913-17.324 .781-15.505-.035-13.404-.852-11.305-1.26-9.064-1.26-6.685-1.26-4.305-.84-2.076 0 0" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,0,1080)" d="M777.922 817.326H783.732V769.166H777.922Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,819.1523,310.8341)" d="M0 0V4.55C-.42 3.85-.945 3.186-1.575 2.555-2.205 1.925-2.929 1.376-3.745 .91-4.562 .443-5.484 .059-6.51-.245-7.537-.548-8.657-.7-9.87-.7-11.97-.7-13.814-.373-15.4 .279-16.987 .934-18.34 1.843-19.46 3.01-20.58 4.176-21.42 5.6-21.98 7.279-22.54 8.96-22.82 10.826-22.82 12.88V32.83H-17.01V14.279C-17.01 11.2-16.322 8.865-14.945 7.279-13.569 5.693-11.597 4.9-9.03 4.9-7.77 4.9-6.592 5.121-5.495 5.564-4.399 6.008-3.442 6.639-2.625 7.455-1.809 8.271-1.167 9.264-.7 10.43-.234 11.596 0 12.902 0 14.35V32.83H5.74V0Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,858.666,305.3048)" d="M0 0C1.283 .654 2.38 1.517 3.29 2.591 4.2 3.664 4.9 4.924 5.39 6.371 5.88 7.816 6.125 9.381 6.125 11.061 6.125 12.646 5.88 14.164 5.39 15.611 4.9 17.057 4.2 18.306 3.29 19.355 2.38 20.406 1.283 21.222 0 21.806-1.284 22.389-2.695 22.681-4.235 22.681-5.775 22.681-7.199 22.389-8.505 21.806-9.812 21.222-10.944 20.394-11.9 19.32-12.857 18.246-13.604 16.998-14.14 15.576-14.677 14.152-14.945 12.646-14.945 11.061-14.945 9.381-14.677 7.816-14.14 6.371-13.604 4.924-12.857 3.664-11.9 2.591-10.944 1.517-9.812 .654-8.505 0-7.199-.653-5.775-.979-4.235-.979-2.695-.979-1.284-.653 0 0M-20.685 42.631H-14.875V22.4C-13.709 24.08-12.192 25.434-10.325 26.461-8.459 27.486-6.195 28-3.535 28-1.342 28 .688 27.592 2.555 26.775 4.421 25.959 6.043 24.791 7.42 23.275 8.796 21.759 9.881 19.961 10.675 17.886 11.468 15.809 11.865 13.533 11.865 11.061 11.865 8.541 11.468 6.219 10.675 4.096 9.881 1.972 8.796 .152 7.42-1.364 6.043-2.881 4.421-4.071 2.555-4.934 .688-5.797-1.342-6.229-3.535-6.229-6.195-6.229-8.482-5.715-10.395-4.689-12.309-3.664-13.802-2.286-14.875-.559V-5.529H-20.685Z" fill="currentColor"/>
+</g>
+</g>
+</svg></a>
+
+  <nav class="switch" aria-label="Разделы"><a href="#" aria-current="page">Персональные</a><a href="#" id="grp">Групповые</a></nav>
+  <a class="k s" href="https://t.me/shabarshov"><i></i><i></i><i></i>Написать в Telegram</a>
+</header>
+
+<main>
+<button class="swim" id="swim" type="button" aria-label="Кто тренер: Анатолий Шабаршов" aria-haspopup="dialog"><span class="st"><img src="img/coach-cut.png" alt=""><svg class="foam" viewBox="0 0 120 110" aria-hidden="true">
+  <g fill="rgba(255,255,255,.92)" stroke="#9477E0" stroke-width="2">
+    <circle cx="66" cy="54" r="30"/><circle cx="34" cy="40" r="20"/><circle cx="40" cy="78" r="18"/><circle cx="90" cy="82" r="14"/><circle cx="92" cy="28" r="12"/><circle cx="14" cy="62" r="9"/><circle cx="62" cy="14" r="8"/>
+  </g>
+  <g fill="#fff"><circle cx="56" cy="42" r="6"/><circle cx="28" cy="33" r="4"/><circle cx="35" cy="72" r="3.5"/><circle cx="86" cy="77" r="3"/><circle cx="88" cy="24" r="2.5"/></g>
+</svg></span><span class="lbl">Кто тренер?</span></button>
+<button class="tmap" id="tmap" type="button" aria-label="Где плаваем: «Акватория ЗИЛ»" aria-haspopup="dialog"><svg viewBox="0 0 200 120" aria-hidden="true">
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4DCFA" stop-opacity=".9"/><stop offset=".5" stop-color="#C9B8F5" stop-opacity=".55"/><stop offset="1" stop-color="#A9D4F2" stop-opacity=".75"/></linearGradient>
+    <linearGradient id="cork" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9B98A"/><stop offset="1" stop-color="#A9824F"/></linearGradient>
+  </defs>
+  <g transform="rotate(-14 100 60)">
+    <!-- корпус бутылки -->
+    <path d="M30 40 Q30 26 46 26 L118 26 Q132 26 140 36 L150 44 L170 44 Q176 44 176 50 L176 58 Q176 64 170 64 L150 64 L140 72 Q132 82 118 82 L46 82 Q30 82 30 68 Z" fill="url(#glass)" stroke="#9477E0" stroke-width="2"/>
+    <!-- записка внутри -->
+    <rect x="52" y="40" width="70" height="28" rx="12" fill="#fff" stroke="#C9B8F5" stroke-width="1.5"/>
+    <path d="M62 50h50M62 56h40" stroke="#9477E0" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+    <rect x="84" y="38" width="8" height="32" fill="#6A4FD0"/>
+    <!-- пробка -->
+    <rect x="174" y="45" width="16" height="18" rx="3" fill="url(#cork)" stroke="#8A6534" stroke-width="1"/>
+    <!-- блики стекла -->
+    <path d="M44 33 Q80 29 116 31" stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none" opacity=".85"/>
+    <path d="M150 48 L168 48" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+    <circle cx="40" cy="70" r="3" fill="#fff" opacity=".7"/>
+  </g>
+  <!-- волны -->
+  <path d="M6 100 q12 -8 24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0" fill="none" stroke="#9477E0" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M22 112 q12 -7 24 0 t24 0 t24 0 t24 0 t24 0 t24 0" fill="none" stroke="#A9D4F2" stroke-width="2.4" stroke-linecap="round"/>
+</svg><span class="tag2">Где плаваем</span></button>
+
+
+ <div class="cluster" id="cl">
+
+  <div class="bub b5" data-k="b5"><p><b>СТРАШНО,</b> когда не&nbsp;чувствуешь дна. Научу держаться на&nbsp;воде, и&nbsp;дно станет не&nbsp;нужно.</p></div>
+  <div class="bub b1" data-k="b1"><p>Меньше стресса, <b>ЗДОРОВЬЕ</b> спины и&nbsp;крепкий сон.</p></div>
+  <div class="bub b2" data-k="b2"><p>Не&nbsp;стыдно учиться во&nbsp;взрослом возрасте. <b>СТЫДНО</b> так и&nbsp;не&nbsp;попробовать.</p></div>
+  <section class="prices" id="pr" aria-labelledby="pt">
+    <h1 id="pt" class="sr">Персональные тренировки по&nbsp;плаванию для&nbsp;взрослых</h1>
+    <div class="plates">
+      <article class="plate">
+        <h2>1 тренировка</h2>
+        <div class="price">5&nbsp;000&nbsp;₽</div>
+        <ul><li>60 минут, тренер рядом в&nbsp;воде</li><li>вход в&nbsp;бассейн включён</li><li>видео и&nbsp;разбор в&nbsp;Telegram</li></ul>
+        <div class="short">60&nbsp;мин · вход включён · видео и&nbsp;разбор</div>
+        <a class="k" href="https://t.me/shabarshov"><i></i><i></i><i></i>Купить</a>
+      </article>
+      <article class="plate">
+        <h2>Пакет 8&nbsp;тренировок</h2>
+        <div class="price">32&nbsp;000&nbsp;₽</div>
+        <div class="per">4&nbsp;000&nbsp;₽ за&nbsp;тренировку</div>
+        <ul><li>видео в&nbsp;начале и&nbsp;позже — видно разницу</li><li>первая тренировка засчитывается в&nbsp;пакет</li></ul>
+        <div class="short">видео в&nbsp;начале и&nbsp;позже · первая засчитывается</div>
+        <a class="k" href="https://t.me/shabarshov"><i></i><i></i><i></i>Купить пакет</a>
+      </article>
+    </div>
+  </section>
+  <div class="bub f f1" data-k="f1" aria-hidden="true"></div>
+  <div class="bub f f2" data-k="f2" aria-hidden="true"></div>
+  <div class="bub f f3" data-k="f3" aria-hidden="true"></div>
+  <div class="bub f f4" data-k="f4" aria-hidden="true"></div>
+  <div class="bub f f5" data-k="f5" aria-hidden="true"></div>
+  <div class="bub f f6" data-k="f6" aria-hidden="true"></div>
+  <div class="bub f f7" data-k="f7" aria-hidden="true"></div>
+  <div class="bub f f8" data-k="f8" aria-hidden="true"></div>
+  <button class="buoy" id="buoy" type="button" aria-label="Видео Анатолия из бассейна" aria-haspopup="dialog">
+    <span class="rope" id="rope"></span>
+    <svg viewBox="0 0 80 122" aria-hidden="true">
+      <!-- мультяшный навигационный буй: фонарь, ажурная башенка, палуба, полосатый корпус, противовес с кольцом -->
+      <defs><clipPath id="buoyHull"><path d="M9 58C9 86 23 100 40 100C57 100 71 86 71 58Z"/></clipPath></defs>
+      <g fill="none" stroke="#3D2A8C" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="40" cy="6" r="4.5" stroke-width="2.6"/>
+        <path d="M30 24L25 54M50 24L55 54M28.5 34H51.5M27 44H53M30 24L53 44M50 24L27 44" stroke-width="2.4"/>
+      </g>
+      <path d="M33 14Q40 9 47 14V22H33Z" fill="#E4DCFA" stroke="#3D2A8C" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M37 13.5V20" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+      <rect x="29" y="22" width="22" height="4" rx="1.5" fill="#3D2A8C"/>
+      <g clip-path="url(#buoyHull)">
+        <rect x="0" y="50" width="80" height="60" fill="#6A4FD0"/>
+        <path d="M0 68Q40 77 80 68V80Q40 89 0 80Z" fill="#fff"/>
+        <path d="M54 50C68 66 72 86 58 104H80V50Z" fill="#2A1A6E" opacity=".25"/>
+        <path d="M18 64C18 72 21 80 26 86" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity=".5"/>
+      </g>
+      <path d="M9 58C9 86 23 100 40 100C57 100 71 86 71 58Z" fill="none" stroke="#3D2A8C" stroke-width="2.6" stroke-linejoin="round"/>
+      <ellipse cx="40" cy="57" rx="33" ry="7" fill="#8F78E6" stroke="#3D2A8C" stroke-width="2.6"/>
+      <ellipse cx="40" cy="55.5" rx="24" ry="3.6" fill="#B3A0EE"/>
+      <rect x="37" y="100" width="6" height="9" fill="#3D2A8C"/>
+      <circle cx="40" cy="114" r="4.5" fill="none" stroke="#3D2A8C" stroke-width="2.6"/>
+    </svg>
+    <span class="tag">Видео</span>
+  </button>
+  <div class="bub b3" data-k="b3"><p><b>ЗАДЫХАЮСЬ</b> после 25&nbsp;метров? Дело в&nbsp;дыхании, а&nbsp;не&nbsp;в&nbsp;выносливости.</p></div>
+  <div class="bub b4" data-k="b4"><p>Много плаваете, но&nbsp;<b>БЫСТРЕЕ</b> не&nbsp;становится? Дело не&nbsp;в&nbsp;силе, а&nbsp;в&nbsp;технике.</p></div>
+ </div>
+</main>
+
+<div class="coach" id="coach" role="dialog" aria-modal="true" aria-labelledby="ch">
+  <div class="ccard">
+    <button class="x" id="cx" type="button" aria-label="Закрыть">×</button>
+    <img src="img/coach.jpg" alt="Анатолий Шабаршов плывёт кролем">
+    <div class="tx">
+      <h2 id="ch">Анатолий Шабаршов</h2>
+      <p class="ttl">Мастер спорта по&nbsp;плаванию в&nbsp;категории Masters</p>
+      <ul>
+        <li>10 лет тренирует взрослых</li>
+        <li>На тренировке всё время рядом с&nbsp;тобой в&nbsp;воде</li>
+        <li>Сам плывёт открытую воду и&nbsp;старты, готовил учеников к&nbsp;X‑WATERS, SwimCup, Swimstar — от&nbsp;500&nbsp;м до&nbsp;25&nbsp;км</li>
+      </ul>
+      <blockquote>«Плавает с&nbsp;тобой рядом в&nbsp;воде, а&nbsp;не&nbsp;кричит с&nbsp;бортиков»<cite>Юлия, отзыв на&nbsp;Профи.ру, 2023</cite></blockquote>
+      <a class="k" href="https://t.me/shabarshov"><i></i><i></i><i></i>Написать Анатолию</a>
+    </div>
+  </div>
+</div>
+<div class="mapbox" id="mapbox" role="dialog" aria-modal="true" aria-labelledby="mh">
+  <div class="mapcard">
+    <button class="x" id="mx" type="button" aria-label="Закрыть">×</button>
+    <h2 id="mh">«Акватория ЗИЛ»</h2>
+    <p class="sub">Здесь и плаваем</p>
+    <div class="pv" id="pv">
+      <img class="pst" src="img/zil.jpg?v=2" alt="Открытый бассейн «Акватории ЗИЛ»">
+      <video id="pvv" src="v/pool.mp4?v=2" muted playsinline preload="none" aria-label="Тренировка в открытом бассейне «Акватории ЗИЛ»"></video>
+      <button class="play" id="pvp" type="button" aria-label="Смотреть видео"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+    </div>
+    <div class="foot">
+    <p class="addr">Москва, Автозаводская ул., 23А, к.&nbsp;4 · МЦК&nbsp;ЗИЛ · м.&nbsp;Автозаводская</p>
+    <a class="k" href="https://yandex.ru/maps/org/akvatoriya_zil/220499522989/" target="_blank" rel="noopener"><i></i><i></i><i></i>Маршрут</a>
+    </div>
+  </div>
+</div>
+<div class="vids" id="vids" role="dialog" aria-modal="true" aria-label="Видео Анатолия из бассейна">
+  <button class="x" id="vx" type="button" aria-label="Закрыть">×</button>
+  <div class="row">
+    <figure><div class="vc"><video src="v/slippery.mp4" poster="img/cov-slippery.jpg" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Кто тут самый скользкий?</figcaption></figure>
+    <figure><div class="vc"><video src="v/fixprice.mp4" poster="img/cov-fixprice.jpg" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Очки из Fix Price</figcaption></figure>
+    <figure><div class="vc"><video src="v/100x100.mp4" poster="img/cov-100x100.jpg" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>100 по 100</figcaption></figure>
+  </div>
+  <p class="hint">Нажми на ролик — включится со звуком</p>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('water'),c=cv.getContext('2d'),W,H,B=[],last=performance.now(),rd=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function sz(){var d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;c.setTransform(d,0,0,d,0,0);}sz();addEventListener('resize',sz);
+  function mk(any){var r=Math.random()<.12?8+Math.random()*12:2+Math.random()*6;return{x:Math.random()*W,y:any?Math.random()*H:H+r+Math.random()*40,r:r,v:18+r*3+Math.random()*20,ph:Math.random()*6.28,a:4+Math.random()*10,f:.6+Math.random()*1.2};}
+  var base=Math.round(Math.min(60,Math.max(24,W*H/26000)));for(var i=0;i<base;i++)B.push(mk(true));
+  function fr(t){var dt=Math.min(.05,(t-last)/1000);last=t;c.clearRect(0,0,W,H);
+    for(var i=0;i<B.length;i++){var b=B[i];b.y-=b.v*dt;b.ph+=b.f*dt;var x=b.x+Math.sin(b.ph)*b.a;if(b.y<-b.r-10){B[i]=mk(false);continue;}
+      c.beginPath();c.arc(x,b.y,b.r,0,6.2832);c.fillStyle='rgba(148,119,224,.07)';c.fill();c.lineWidth=b.r>7?1.4:1;c.strokeStyle='rgba(148,119,224,.5)';c.stroke();
+      if(b.r>3){c.beginPath();c.arc(x-b.r*.35,b.y-b.r*.35,b.r*.28,0,6.2832);c.fillStyle='rgba(255,255,255,.9)';c.fill();}}
+    if(!rd)requestAnimationFrame(fr);}
+  requestAnimationFrame(fr);
+  document.getElementById('grp').addEventListener('click',function(e){e.preventDefault();});
+})();
+(function(){
+  /* координаты макета: плашки и центры/радиусы пузырей; пузыри касаются друг друга и заходят под край плашек */
+  var L={
+    d:{w:1100,h:740,ox:0,buoy:[1012,-6],pr:[230,220,640,290],b:{
+      b5:[360,138,330,206],b2:[792,150,268,192],b1:[146,418,240,256],b4:[978,334,246,300],b3:[624,602,384,196],
+      f1:[205,214,92,82],f2:[96,262,62,56],f3:[944,522,112,98],f4:[330,580,124,104],f5:[246,628,58,52],f7:[566,74,56,50],f8:[872,72,40,36]}},
+    m:{w:380,h:800,ox:0,buoy:[340,8],pr:[30,292,320,330],b:{
+      b5:[168,106,252,152],b1:[90,244,166,148],b2:[284,236,178,158],b3:[118,690,204,152],b4:[292,704,158,148],
+      f3:[356,628,40,36],f5:[214,778,46,40]}}
+  };
+  var cl=document.getElementById('cl'),pr=document.getElementById('pr'),main=cl.parentNode;
+  function lay(){
+    var mob=innerWidth<700, c=mob?L.m:L.d;
+    cl.classList.toggle('m',mob);
+    cl.style.width=c.w+'px';cl.style.height=c.h+'px';
+    var o=c.ox;
+    pr.style.left=(c.pr[0]+o)+'px';pr.style.top=c.pr[1]+'px';pr.style.width=c.pr[2]+'px';pr.style.height=c.pr[3]+'px';
+    cl.querySelectorAll('.f').forEach(function(e){e.style.display='none';});
+    for(var k in c.b){var e=cl.querySelector('[data-k="'+k+'"]'),v=c.b[k];e.style.display='';e.style.left=(v[0]+o-v[2]/2)+'px';e.style.top=(v[1]-v[3]/2)+'px';e.style.width=v[2]+'px';e.style.height=v[3]+'px';}
+    var aw=main.clientWidth-16,ah=main.clientHeight-12-(mob?58:0),s=Math.min(aw/c.w,ah/c.h,1.25);
+    cl.style.transform='translate(-50%,calc(-50% - '+(mob?29:0)+'px)) scale('+s+')';
+    var bu=document.getElementById('buoy'),bw=mob?46:74;bu.style.left=(c.buoy[0]+c.ox-bw/2)+'px';bu.style.top=c.buoy[1]+'px';
+    /* верёвка тянется от верха области под шапкой до буя */
+    var clTop=cl.getBoundingClientRect().top,rl=c.buoy[1]+clTop/s+12; document.getElementById('rope').style.height=rl+'px';
+    /* качаемся от верхней точки верёвки — буй не отрывается */
+    bu.style.transformOrigin='50% '+(-(rl-7))+'px';
+  }
+  addEventListener('resize',lay);lay();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(lay);
+})();
+
+
+(function(){
+  /* пузырь поддаётся там, куда давишь: ближе к краю — сильнее */
+  document.querySelectorAll('.bub:not(.f)').forEach(function(b){
+    var down=false;
+    function press(e){
+      var r=b.getBoundingClientRect(),x=(e.clientX-(r.left+r.width/2))/(r.width/2),y=(e.clientY-(r.top+r.height/2))/(r.height/2);
+      var d=Math.min(1,Math.sqrt(x*x+y*y)),e0=Math.max(0,(d-.6)/.4),k=(down?1.5:1)*Math.pow(e0,1.6);
+      b.classList.add('on');
+      b.style.setProperty('--ry',(x*5*k)+'deg');b.style.setProperty('--rx',(-y*5*k)+'deg');
+      b.style.setProperty('--px',(-x*4*k)+'px');b.style.setProperty('--py',(-y*4*k)+'px');
+      b.style.setProperty('--sx',1-Math.abs(x)*.04*k);b.style.setProperty('--sy',1-Math.abs(y)*.04*k);
+    }
+    function release(){down=false;b.classList.remove('on');['--rx','--ry','--px','--py','--sx','--sy'].forEach(function(v){b.style.removeProperty(v);});}
+    b.addEventListener('pointermove',press);
+    b.addEventListener('pointerdown',function(e){down=true;press(e);});
+    b.addEventListener('pointerup',function(e){down=false;press(e);if(e.pointerType!=='mouse')setTimeout(release,120);});
+    b.addEventListener('pointerleave',release);b.addEventListener('pointercancel',release);
+  });
+})();
+
+(function(){
+  var m=document.getElementById('vids'),bu=document.getElementById('buoy'),vs=m.querySelectorAll('video');
+  function open(){m.classList.add('open');vs.forEach(function(v){if(v.preload!=='metadata')v.preload='metadata';});document.getElementById('vx').focus();}
+  function close(kb){m.classList.remove('open');vs.forEach(function(v){v.pause();});if(kb)bu.focus();else document.activeElement&&document.activeElement.blur();}
+  bu.addEventListener('click',open);
+  document.getElementById('vx').addEventListener('click',function(e){close(e.detail===0);});
+  m.addEventListener('click',function(e){if(e.target===m)close(false);});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close(true);});
+  /* обложки со значком ▶: нажал — ролик играет со звуком, остальные на паузе; повторное нажатие — пауза */
+  vs.forEach(function(v){var c=v.parentNode;
+    /* первое нажатие по обложке запускаем сами; дальше пауза/плей — штатными кнопками видео */
+    v.addEventListener('click',function(e){if(v.controls)return;e.preventDefault();v.muted=false;v.controls=true;var p=v.play();if(p&&p.catch)p.catch(function(){});});
+    v.addEventListener('play',function(){c.classList.add('on');vs.forEach(function(o){if(o!==v&&!o.paused)o.pause();});});
+    v.addEventListener('ended',function(){c.classList.remove('on');v.controls=false;});});
+})();
+
+(function(){
+  /* одно нажатие — пузырь чуть раздувается; двойное — лопается и пропадает */
+  var rd=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function burst(b){
+    var r=b.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,R=Math.min(r.width,r.height)/2;
+    b.style.setProperty('--gs',1.12);b.classList.add('gone');
+    if(!rd)for(var i=0;i<26;i++){(function(){
+      var e=document.createElement('div'),sz=5+Math.random()*16,a=Math.random()*6.283,rr=Math.sqrt(Math.random())*R*.9,
+        x=cx+Math.cos(a)*rr*(r.width/r.height>1?r.width/r.height:1)-sz/2,y=cy+Math.sin(a)*rr-sz/2,up=90+Math.random()*150,w=5+Math.random()*10,du=700+Math.random()*500;
+      e.className='pb';e.style.width=e.style.height=sz+'px';document.body.appendChild(e);
+      var T=function(p,q,k){return 'translate('+p+'px,'+q+'px) scale('+k+')';};
+      e.animate([{transform:T(x,y,.5),opacity:0},{transform:T(x+w,y-up*.3,1),opacity:1,offset:.18},{transform:T(x-w,y-up*.7,1),opacity:.8,offset:.6},{transform:T(x+w*.4,y-up,1),opacity:0}],{duration:du,easing:'ease-out',fill:'forwards'});
+      setTimeout(function(){e.remove();},du+60);})();}
+  }
+  document.querySelectorAll('.bub.f').forEach(function(b){b.addEventListener('pointerup',function(){if(!b.classList.contains('gone'))burst(b);});});
+  document.querySelectorAll('.bub:not(.f)').forEach(function(b){
+    var last=0,t=null;
+    b.addEventListener('pointerup',function(){
+      if(b.classList.contains('gone'))return;
+      var now=performance.now();
+      if(now-last<320){clearTimeout(t);last=0;burst(b);return;}
+      last=now;
+      b.style.setProperty('--gs',1.07);
+      clearTimeout(t);t=setTimeout(function(){b.style.removeProperty('--gs');},380);
+    });
+    b.addEventListener('dblclick',function(e){e.preventDefault();});
+  });
+})();
+
+(function(){
+  var t=document.getElementById('tmap'),box=document.getElementById('mapbox');
+  var pv=document.getElementById('pv'),vv=document.getElementById('pvv');
+  /* старое фото — заставка; видео (без звука, 720p, 2 МБ) подгружаем заранее — при наведении на бутылку и открытии окна, чтобы по нажатию оно пошло сразу */
+  function warm(){if(vv.preload!=='auto'){vv.preload='auto';vv.load();}}
+  function open(){warm();box.classList.add('open');document.getElementById('mx').focus();}
+  t.addEventListener('pointerenter',warm);t.addEventListener('touchstart',warm,{passive:true});
+  function play(){warm();pv.classList.add('on');vv.controls=true;var p=vv.play();if(p&&p.catch)p.catch(function(){});}
+  pv.addEventListener('click',function(){if(!pv.classList.contains('on'))play();});
+  vv.addEventListener('ended',function(){pv.classList.remove('on');vv.controls=false;vv.currentTime=0;});
+  function close(kb){vv.pause();box.classList.remove('open');if(kb)t.focus();else document.activeElement&&document.activeElement.blur();}
+  t.addEventListener('click',open);
+  document.getElementById('mx').addEventListener('click',function(e){close(e.detail===0);});
+  box.addEventListener('click',function(e){if(e.target===box)close(false);});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&box.classList.contains('open'))close(true);});
+})();
+
+(function(){
+  var b=document.getElementById('swim'),m=document.getElementById('coach');
+  function open(){m.classList.add('open');document.getElementById('cx').focus();}
+  function close(kb){m.classList.remove('open');if(kb)b.focus();else document.activeElement&&document.activeElement.blur();}
+  b.addEventListener('click',open);
+  document.getElementById('cx').addEventListener('click',function(e){close(e.detail===0);});
+  m.addEventListener('click',function(e){if(e.target===m)close(false);});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close(true);});
+})();
+</script>
+<style>
+/* переходы между разделами: уход под воду и всплытие */
+#fxw{position:fixed;inset:0;z-index:200;pointer-events:none;opacity:0;overflow:hidden;
+  background:linear-gradient(180deg,#F1EDFC 0%,#E4DCFA 55%,#C9B8F5 100%);transition:opacity .45s ease}
+#fxw.on{opacity:1;pointer-events:auto}
+#fxw.arrive{opacity:1;pointer-events:none;transition:none;animation:fxout 1s ease .25s forwards}
+@keyframes fxout{to{opacity:0}}
+#fxw i{position:absolute;bottom:-40px;border-radius:50%;border:1.5px solid rgba(148,119,224,.7);
+  background:radial-gradient(circle at 32% 28%,#fff 0 18%,rgba(148,119,224,.1) 20%);opacity:0}
+#fxw.on i,#fxw.arrive i{animation:fxup var(--d) cubic-bezier(.3,.1,.4,1) var(--dl) forwards}
+@keyframes fxup{0%{transform:translate(0,0) scale(.6);opacity:0}15%{opacity:1}100%{transform:translate(var(--sx),calc(-100vh - 80px)) scale(1);opacity:.2}}
+@media (prefers-reduced-motion:reduce){#fxw i{display:none}}
+</style>
+<div id="fxw" aria-hidden="true"></div>
+<script>
+(function(){
+  var w=document.getElementById('fxw');
+  function fill(n,fast){w.innerHTML='';for(var i=0;i<n;i++){var e=document.createElement('i'),s=6+Math.random()*30;
+    e.style.cssText='width:'+s+'px;height:'+s+'px;left:'+(Math.random()*100)+'%;--d:'+((fast?.7:1.2)+Math.random()*.6)+'s;--dl:'+(Math.random()*(fast?.25:.4))+'s;--sx:'+((Math.random()-.5)*80)+'px';w.appendChild(e);}}
+  /* всплытие при открытии страницы */
+  fill(46,false);w.classList.add('arrive');
+  setTimeout(function(){if(w.classList.contains('arrive')){w.className='';w.innerHTML='';}},1800);
+  window.fxClear=function(){w.className='';w.innerHTML='';};
+  window.fxCover=function(){fill(60,true);w.className='';void w.offsetWidth;w.classList.add('on');};
+  window.fxArrive=function(){fill(46,false);w.className='';void w.offsetWidth;w.className='arrive';setTimeout(function(){if(w.classList.contains('arrive'))fxClear();},1800);};
+  /* уход под воду при переходе между разделами */
+  window.fxGo=function(url,newTab){
+    fill(60,true);w.className='';void w.offsetWidth;w.classList.add('on');
+    setTimeout(function(){
+      if(newTab){window.open(url,'_blank','noopener');setTimeout(function(){w.className='';w.innerHTML='';},500);}
+      else location.href=url;
+    },750);
+  };
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('a[data-fx-back]');
+    if(b){e.preventDefault();
+      if(window.parent!==window&&window.parent.fxSectionBack){fxCover();var home=b.hasAttribute('data-home');setTimeout(function(){window.parent.fxSectionBack(home);},750);return;}
+      try{if(b.hasAttribute('data-home'))sessionStorage.setItem('fxHome','1');}catch(_){}
+      fill(60,true);w.className='';void w.offsetWidth;w.classList.add('on');
+      setTimeout(function(){if(history.length>1)history.back();else window.open(b.href,'_blank','noopener');},750);return;}
+    var a=e.target.closest('a[data-fx]');if(!a)return;
+    e.preventDefault();
+    if(a.hasAttribute('data-choose'))try{history.replaceState(null,'','#choose');}catch(_){}
+    fxGo(a.href,a.target==='_blank');
+  });
+  /* возврат кнопкой «назад» браузера: убрать воду, если страница восстановлена из памяти */
+  addEventListener('pageshow',function(ev){if(ev.persisted){fill(46,false);w.className='arrive';setTimeout(function(){w.className='';w.innerHTML='';},1800);}});
+})();
+</script>
