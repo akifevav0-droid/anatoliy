@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
-<script>(function(){var V="a812efc5";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<script>(function(){var V="26060ca2";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <title>Вход «Бульк»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +198,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     <h1><small>Упс… Кто-то тонет в&nbsp;ежедневной рутине</small> <span>Давай поплаваем!</span></h1>
     <p class="say">Я&nbsp;— <b>Анатолий Шабаршов</b>, твой тренер по&nbsp;плаванию.</p>
     <div class="choice">
-      <a class="btn go" data-fx data-choose href="personal.html?v=a812efc5" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
+      <a class="btn go" data-fx data-choose href="personal.html?v=26060ca2" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
       <button class="btn go" type="button" data-to="Групповые"><i></i><i></i><i></i>Групповые</button>
     </div>
   </div>
@@ -653,7 +653,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
   var toy=document.getElementById('toy'),g=document.getElementById('game'),cv=document.getElementById('gcv'),tank=document.getElementById('tank'),
       ctx=cv.getContext('2d'),win=document.getElementById('gwin'),cnt=document.getElementById('gcount'),N=8;
   var W=360,H=420,R=21,S,rings=[],pegs=[],bubs=[],jets=[{x:.1,p:0,held:false,kick:0},{x:.9,p:0,held:false,kick:0}],raf=0,last=0,won=false,opener=null;
-  var P={off:1.1,fl:900,cw:.2,gw:.7,gd:1,up:350,side:260,ar:260,ax:110,as:0,tol:.5,g:70,vmax:110};/* подобрано прогонами: «умный игрок» собирает 8 колец за 70–150 с (медиана ~100), струя может сбить верхние кольца */
+  var P={off:.5,fl:900,cw:.2,gw:.7,gd:1,up:350,side:260,ar:260,ax:110,as:0,tol:.5,g:70,vmax:110};/* подобрано прогонами: «умный игрок» собирает 8 колец за 70–150 с (медиана ~100), струя может сбить верхние кольца */
   var COL=['#6A4FD0','#9477E0','soap','#6A4FD0','#9477E0','soap','#5A40BD','#B3A0EE'];
   function size(){var b=tank.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=b.width;H=b.height;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);
     R=Math.max(16,Math.min(W,H)*.058);S=Math.min(W,H)/420;
@@ -674,7 +674,8 @@ body.diving .dive{opacity:0;transition:opacity .3s}
         jets.forEach(function(j){var f=j.p*1.25+j.kick*1.6;if(f<=0)return;var dx=r.x-W*j.x,hy=Math.max(0,r.y/H),adx=Math.abs(dx)/W,
           w=Math.exp(-adx*adx/(P.cw*P.cw*(0.5+(1-hy)*1.4)))+P.gw*Math.exp(-adx/P.gd);lift+=f*w*(P.up*S)*(0.35+hy)*P.off;});
         r.vy+=(g0*1.5-lift)*dt;r.vy*=Math.exp(-1.9*dt);r.y+=r.vy*dt;r.x+=(p.x-r.x)*Math.min(1,dt*12);r.ph+=(0-r.ph%Math.PI)*dt*6;
-        if(r.y<p.top-R*.35){r.peg=-1;r.vx=(Math.random()-.5)*90*S;r.vy=Math.min(r.vy,-30*S);}
+        /* надетое кольцо от струи только чуть подпрыгивает на своём месте и не слетает */
+        var ty=floor()-R*.32-r.slot*R*.62;if(r.y<ty-R*.9){r.y=ty-R*.9;if(r.vy<0)r.vy*=.3;}
         return;}
       var ax=0,ay=g0;
       jets.forEach(function(j){var f=j.p*1.25+j.kick*1.6;if(f<=0)return;var dx=r.x-W*j.x,hy=Math.max(0,(r.y)/H);
