@@ -72,17 +72,22 @@
     if (w <= 767 && v.dataset.srcM) s = v.dataset.srcM; else if (w <= 1440 && v.dataset.srcL) s = v.dataset.srcL;
     return s;
   };
+  var onScreen = [];
+  var play = function (v) { if (calm || document.hidden) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); };
   if ('IntersectionObserver' in window) {
     var vio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
-        var v = e.target;
+        var v = e.target, i = onScreen.indexOf(v);
         if (e.isIntersecting) {
           if (!v.getAttribute('src')) { v.src = pick(v); }
-          if (!calm) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-        } else if (!v.paused) v.pause();
+          if (i < 0) onScreen.push(v);
+          play(v);
+        } else { if (i >= 0) onScreen.splice(i, 1); if (!v.paused) v.pause(); }
       });
     }, { rootMargin: '200px 0px', threshold: 0.01 });
     $$('video[data-src]').forEach(function (v) { vio.observe(v); });
+    // открыли во вкладке на фоне — запускаем, когда на неё перешли
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) onScreen.forEach(play); });
   }
 
   // отзывы лентой: стрелки
