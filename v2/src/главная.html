@@ -1,84 +1,95 @@
 <!-- 1. Первый экран -->
-<section class="wrap hero">
-  <div class="wm" aria-label="SHABARSHOV swimming club">%%WORDMARK%%</div>
-  <p class="h-xl" style="margin-top:clamp(32px,5vw,64px)">Плаваете?.. Но не кролем.</p>
-  <div class="hero-foot">
-    <div>
-      <h1 class="lead" style="color:var(--ink);font-weight:500">Персональные тренировки по плаванию в «Акватории ЗИЛ». Тренер — в воде, рядом с вами.</h1>
+<section class="wm-hero">
+  <div class="wrap">
+    <div class="wm" aria-label="SHABARSHOV swimming club">%%WORDMARK%%</div>
+    <p class="h1 say">Плаваете?.. Но не кролем.</p>
+    <div class="hero-foot">
+      <h1 class="lead">Персональные тренировки по плаванию в «Акватории ЗИЛ». Тренер — в воде, рядом с вами.</h1>
+      <button class="btn" type="button" data-contact>Записаться на тренировку %%ARROW%%</button>
     </div>
-    <button class="btn" type="button" data-contact>Записаться на тренировку %%ARROW%%</button>
   </div>
 </section>
 
 <!-- 2. Видео без текста -->
-<video class="vid" id="hv" autoplay muted loop playsinline preload="metadata" poster="assets/hero-pool.jpg" aria-label="Анатолий плывёт в открытом бассейне «Акватории ЗИЛ»">
-  <source src="assets/hero-pool.mp4" type="video/mp4">
-</video>
+<section class="vid" aria-label="Анатолий плывёт в открытом бассейне «Акватории ЗИЛ»">
+  <video muted loop playsinline preload="none" poster="assets/hero-pool.jpg#1600" data-src="assets/hero-pool.mp4" data-src-l="assets/v/hero-1280.mp4" data-src-m="assets/v/hero-m.mp4"></video>
+</section>
 
 <!-- 3. Боль -->
-<section class="wrap sec pain">
-  <h2 class="h-l rv">Через 25 метров — одышка. Ещё через 5 — <span class="u">бортик</span>.</h2>
-  <p class="h-l answer rv">Тренер с бортика этого не видит. Анатолий плывёт рядом — и видит.</p>
+<section class="sec">
+  <div class="wrap statement">
+    <h2 class="h2 rise">Через 25 метров — одышка. Ещё через 5 — <span class="u">бортик</span>.</h2>
+    <p class="h2 answer rise">Тренер с бортика этого не видит. Анатолий плывёт рядом — и видит.</p>
+  </div>
 </section>
 
 <!-- 4. Тарифы -->
-<section class="wrap sec" id="tarify">
-  <div class="head">
-    <div class="proof rv"><span>Мастер спорта по плаванию</span><span>10 лет тренерского стажа</span><span>★ 5,0 на Профи.ру</span></div>
-    <h2 class="h-l rv">Две цены. Выбирать недолго.</h2>
-  </div>
-  <div class="duo tar">
-    <article class="rv">
-      <img class="full" src="assets/w-tariff-pers.jpg" alt="Пловец в очках у бортика" loading="lazy">
-      <div class="row"><h3 class="h-m">Персональная тренировка</h3><span class="price">5 000 ₽</span></div>
-      <p>60 минут, тренер в воде рядом.</p>
-      <button class="btn btn-ghost" type="button" data-contact>Записаться %%ARROW%%</button>
-    </article>
-    <article class="rv">
-      <img class="full" src="assets/w-tariff-pack.jpg" alt="Пловец под водой" loading="lazy">
-      <div class="row"><h3 class="h-m">Пакет из 8 тренировок</h3><span class="price"><s>40 000 ₽</s>32 000 ₽</span></div>
-      <p>8 × 60 минут. Видео в начале и позже — увидите разницу.</p>
-      <button class="btn" type="button" data-contact>Взять пакет %%ARROW%%</button>
-    </article>
+<section class="sec" id="tarify">
+  <div class="wrap">
+    <div class="sec-head">
+      <ul class="ticks rise"><li>Мастер спорта по плаванию</li><li>10 лет тренерского стажа</li><li>★ 5,0 на Профи.ру</li></ul>
+      <h2 class="h2 rise">Две цены. Выбирать недолго.</h2>
+    </div>
+    <div class="tar">
+      <article class="rise">
+        <div class="ph r16x9"><img src="assets/w-tariff-pers.jpg" alt="Пловец в очках у бортика"></div>
+        <div class="body">
+          <div class="head"><h3 class="h3">Персональная тренировка</h3><span class="sum">5 000 ₽</span></div>
+          <p>60 минут, тренер в воде рядом.</p>
+          <button class="btn out" type="button" data-contact>Записаться %%ARROW%%</button>
+        </div>
+      </article>
+      <article class="rise">
+        <div class="ph r16x9"><img src="assets/w-tariff-pack.jpg" alt="Пловец под водой"></div>
+        <div class="body">
+          <div class="head"><h3 class="h3">Пакет из 8 тренировок</h3><span class="sum"><s>40 000 ₽</s>32 000 ₽</span></div>
+          <p>8 × 60 минут. Видео в начале и позже — увидите разницу.</p>
+          <button class="btn" type="button" data-contact>Взять пакет %%ARROW%%</button>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
 <!-- 5. Тренер: ролики вместо регалий -->
-<section class="wrap sec" id="trener">
-  <div class="watch">
-    <div class="head" style="margin:0">
-      <h2 class="h-l rv">Тренер, с которым весело.</h2>
-      <p class="lead rv">Мастер спорта, который не стесняется детских очков.</p>
+<section class="sec" id="trener">
+  <div class="wrap">
+    <div class="head-row">
+      <div><h2 class="h2 rise">Тренер, с которым весело.</h2><p class="lead rise">Мастер спорта, который не стесняется детских очков.</p></div>
+      <a class="lnk rise" href="https://instagram.com/shabarshov_" target="_blank" rel="noopener">Ещё в Instagram</a>
     </div>
-    <a class="more rv" href="https://instagram.com/shabarshov_" target="_blank" rel="noopener">Ещё в Instagram</a>
-  </div>
-  <div class="reels three">
-    <button class="reel rv" type="button" data-video="assets/story-gear.mp4" aria-label="Смотреть ролик «Пришёл в топовой экипировке»"><img src="assets/cover-gear.jpg" alt="" loading="lazy"><span class="play">%%PLAY%%</span></button>
-    <button class="reel rv" type="button" data-video="assets/story-goggles.mp4" aria-label="Смотреть ролик «Новые очки»"><img src="assets/cover-goggles.jpg" alt="" loading="lazy"><span class="play">%%PLAY%%</span></button>
-    <button class="reel rv" type="button" data-video="assets/story-singapore.mp4" aria-label="Смотреть ролик «Сингапур»"><img src="assets/cover-singapore.jpg" alt="" loading="lazy"><span class="play">%%PLAY%%</span></button>
+    <div class="reels">
+      <button class="reel rise" type="button" data-video="assets/story-gear.mp4" aria-label="Смотреть ролик «Пришёл в топовой экипировке»"><span class="ph r9x16"><img src="assets/cover-gear.jpg" alt=""><span class="play">%%PLAY%% Смотреть</span></span></button>
+      <button class="reel rise" type="button" data-video="assets/story-goggles.mp4" aria-label="Смотреть ролик «Новые очки»"><span class="ph r9x16"><img src="assets/cover-goggles.jpg" alt=""><span class="play">%%PLAY%% Смотреть</span></span></button>
+      <button class="reel rise" type="button" data-video="assets/story-singapore.mp4" aria-label="Смотреть ролик «Сингапур»"><span class="ph r9x16"><img src="assets/cover-singapore.jpg" alt=""><span class="play">%%PLAY%% Смотреть</span></span></button>
+    </div>
   </div>
 </section>
 
-<!-- 7. Бассейн -->
+<!-- 6. Бассейн -->
 %%POOL%%
 
-<!-- 8. Отзыв -->
-<section class="wrap sec" id="otzyvy">
-  <div class="head"><h2 class="h-l rv">5,0 на Профи.ру. Не верьте нам — верьте им.</h2></div>
-  <figure class="rv">
-    <blockquote class="big-q">«Большой плюс в том, что тренер плавает с тобой рядом в воде, а не кричит с бортиков на весь бассейн».</blockquote>
-    <figcaption>Юлия, Профи.ру</figcaption>
-  </figure>
-  <p style="margin-top:32px"><a class="more" href="https://profi.ru/profile/ShabarshovAS/" target="_blank" rel="noopener">Все отзывы на Профи.ру</a></p>
+<!-- 7. Отзыв -->
+<section class="sec" id="otzyvy">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2 rise">5,0 на Профи.ру. Не верьте нам — верьте им.</h2></div>
+    <figure class="quote rise">
+      <blockquote>«Большой плюс в том, что тренер плавает с тобой рядом в воде, а не кричит с бортиков на весь бассейн».</blockquote>
+      <figcaption>Юлия, Профи.ру</figcaption>
+    </figure>
+    <p class="note"><a class="lnk" href="https://profi.ru/profile/ShabarshovAS/" target="_blank" rel="noopener">Все отзывы на Профи.ру</a></p>
+  </div>
 </section>
 
-<!-- 9. Вопросы -->
-<section class="wrap sec split" id="voprosy">
-  <h2 class="h-l rv">Частые вопросы</h2>
-  <div class="qa rv">
-    <div><b>Я совсем не умею плавать. Можно?</b><p>Да, для этого и приходят.</p></div>
-    <div><b>Сколько длится тренировка?</b><p>60 минут. Достаточно, чтобы устать, и слишком мало, чтобы разлюбить воду.</p></div>
-    <div><b>Можно перенести?</b><p>Да, предупредите минимум за 8 часов.</p></div>
-    <div><b>Что взять с собой?</b><p>Купальник, шапочку, очки, сланцы, полотенце. Смелость добавим на месте.</p></div>
+<!-- 8. Вопросы -->
+<section class="sec" id="voprosy">
+  <div class="wrap split">
+    <h2 class="h2 rise">Частые вопросы</h2>
+    <div class="faq rise">
+      <details><summary>Я совсем не умею плавать. Можно?</summary><p>Да, для этого и приходят.</p></details>
+      <details><summary>Сколько длится тренировка?</summary><p>60 минут. Достаточно, чтобы устать, и слишком мало, чтобы разлюбить воду.</p></details>
+      <details><summary>Можно перенести?</summary><p>Да, предупредите минимум за 8 часов.</p></details>
+      <details><summary>Что взять с собой?</summary><p>Купальник, шапочку, очки, сланцы, полотенце. Смелость добавим на месте.</p></details>
+    </div>
   </div>
 </section>

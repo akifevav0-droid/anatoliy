@@ -1,0 +1,64 @@
+/* ===== Тема версии 1 «Мягкая» (основной сайт) =====
+   Ориентир — mnuu.ru: пыльный голубой, тёплый белый, Manrope, мягкие формы.
+   Кнопки-пилюли с белым кружком-стрелкой; карточки скруглены; фото и видео — прямые.
+   Лаванда логотипа #9377DF — только крупно (фамилия, логотип). «Пар» за курсором — только на компьютере. */
+:root{
+  --font-display:Manrope,system-ui,sans-serif;--font-text:Manrope,system-ui,sans-serif;
+  --display-weight:600;--display-track:-.02em;--display-lh:1.1;
+
+  --ink:#23253A;--ink-2:#565B73;--mute:#565B73;--line:#D8DEEC;--line-strong:#D8DEEC;
+  --bg:#F6F7FB;--alt:#E8EDF7;--alt-2:#EEEAFB;--card:#FFFFFF;
+  --dark:#23253A;--on-dark:#FFFFFF;--on-dark-2:#E8EDF7;--on-dark-mute:#B9C0D3;
+  --ph:#E8EDF7;--ph-dark:#23253A;--accent:#8FA4D1;--scrim:rgba(35,37,58,.72);--kick:#565B73;
+
+  --btn-bg:#34466F;--btn-fg:#FFFFFF;--btn-bg-h:#3D5283;--btn-fg-h:#FFFFFF;
+  --btn-h:56px;--btn-px:28px;--btn-size:var(--t-body);--btn-weight:600;--btn-track:0;--btn-case:none;
+  --r-btn:28px;--r-card:20px;--r-media:0;--r-dot:50%;
+
+  --t-display:clamp(28px,3.4vw,48px);
+  --t-h2:clamp(26px,2.6vw,38px);
+  --t-h3:clamp(19px,1.6vw,22px);
+  --t-lead:18px;--t-body:16px;--t-small:14px;--t-caps:12px;
+
+  --sec:clamp(var(--sp6),7vw,var(--sp8));--max:1280px;--hdr-h:72px;
+  --logo-w:48px;--logo-c:#9377DF;--wm-c:#9377DF;--wm-h:62svh;--wm-h-m:42svh;
+  --nav-weight:600;--nav-track:0;--nav-case:none;
+  --foot-bg:#F6F7FB;--foot-fg:#23253A;--foot-mute:#565B73;--foot-line:#D8DEEC;
+  --lnk-line:#8FA4D1;--lnk-thick:2px;--step-c:#8FA4D1;--rev-line:#9377DF;
+}
+@media (max-width:600px){:root{--logo-w:44px}}
+.pages a{font-size:var(--t-lead)}
+.hdr{--hdr-bg:#F6F7FB;--hdr-line:transparent}
+.hdr.float{--hdr-bg:transparent}
+.menu-btn{color:var(--ink)}
+.btn{justify-content:space-between;gap:var(--sp3)}
+.btn.out{border-color:var(--btn-bg)}
+.btn .ic{display:flex}
+.btn:hover .ic svg{transform:translateX(3px)}
+.btn:active .ic svg{transform:translateX(3px) scale(.92)}
+.wm-hero{background:#FFFFFF}
+.wm-hero .say{color:var(--ink)}
+.wm-hero h1{margin-top:var(--sp5);font-weight:400;font-size:var(--t-small);color:var(--mute)}
+.top .ph,.tar .ph,.pools article>.ph{border-radius:0}
+.tar{--tar-bg:var(--card);--tar-pad:0 var(--sp4) var(--sp4)}
+.tar .btn{align-self:flex-start}
+.prices-panel{padding:var(--sp5);background:var(--card);border-radius:var(--r-card)}
+.pools article{border:0}
+.rev{padding:var(--sp1) 0 var(--sp1) var(--sp4);border-top:0;border-left:2px solid var(--rev-line)}
+.rev .stars{color:#9377DF;letter-spacing:2px;font-size:var(--t-small)}
+.rev blockquote{margin-top:var(--sp3);font-size:var(--t-body)}
+.rev figcaption{color:var(--ink);font-weight:600}
+.coach .ticks{margin-top:var(--sp4)}
+.final{background:var(--alt)}
+/* сертификат: своя карта (картинка 1200×750) и мини-карта, выглядывающая из-за кнопки */
+.cardx-in{aspect-ratio:1200/750}
+.face.pic{border-radius:3.125%/5%;box-shadow:0 16px 24px rgba(35,37,58,.16)}
+.face.pic .img img{object-fit:contain}
+.face.soft{border-radius:3.125%/5%;background:radial-gradient(90% 110% at 95% 5%,#B4C3E4 0%,#E8EDF7 45%,#F6F7FB 100%);color:var(--ink);box-shadow:0 16px 24px rgba(35,37,58,.16)}
+.face.soft .c{justify-content:flex-start;gap:4cqw}
+.face.soft .c-sub{opacity:1;font-size:4.2cqw}
+.gift{position:relative;display:inline-block;margin-top:var(--sp7)}
+.gift .mini{position:absolute;left:50%;top:0;width:150px;transform:translate(-50%,-62%) rotate(-4deg);transition:transform .6s cubic-bezier(.2,.8,.2,1.15);filter:drop-shadow(0 8px 24px rgba(35,37,58,.12));pointer-events:none}
+.gift:hover .mini{transform:translate(-50%,-92%) rotate(-7deg)}
+.gift .btn{position:relative}
+@media (max-width:600px){.gift{display:block}.gift .btn{width:100%}}

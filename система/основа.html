@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru" class="no-js">
+<head>
+<meta charset="utf-8">
+<base href="%%BASE%%">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>%%TITLE%%</title>
+%%ROBOTS%%<meta name="description" content="%%DESC%%">
+<meta property="og:type" content="website">
+<meta property="og:title" content="%%TITLE%%">
+<meta property="og:description" content="%%DESC%%">
+<meta property="og:image" content="%%OG_IMAGE%%">
+<meta name="theme-color" content="%%THEME_COLOR%%">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="%%FONTS%%">
+<link rel="stylesheet" href="%%DIR%%site.css?v=%%V%%">
+%%PRELOAD%%</head>
+<body class="%%BODY_CLASS%%">
+<a class="skip" href="%%HERE%%#main">К содержанию</a>
+<header class="hdr%%HDR_CLASS%%">
+  <div class="wrap">
+    <div class="hdr-left">
+      <button class="menu-btn" type="button" id="menu" aria-expanded="false" aria-controls="pages" aria-label="Разделы сайта">%%MENU%%</button>
+      %%HDR_LOGO%%
+    </div>
+    <nav class="nav" aria-label="Разделы сайта">%%NAV%%</nav>
+    <div class="hdr-right">%%HDR_BTN%%</div>
+  </div>
+  <nav class="pages" id="pages" aria-label="Разделы сайта">%%NAV%%</nav>
+</header>
+
+<main id="main">
+%%BODY%%
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="%%HOME%%" aria-label="SHABARSHOV swimming club — на главную">%%LOGO%%</a>
+    <nav aria-label="Страницы">%%FOOT_NAV%%</nav>
+    <nav aria-label="Контакты">%%FOOT_CONTACTS%%</nav>
+    <div class="legal">ИП Шабаршов Анатолий Сергеевич · ИНН 711614136307 · ОГРНИП 322710000047663</div>
+  </div>
+</footer>
+%%DOCK%%
+<!-- Запись: позвонить или написать -->
+<div class="modal" id="contact" hidden>
+  <div class="m-box" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <button class="m-close" type="button" data-close aria-label="Закрыть">%%X%%</button>
+    <h2 class="h2" id="m-title">Как удобнее?</h2>
+    <p class="mute">Анатолий ответит сам и предложит время. Можно коротко: «Не умею, боюсь, удобно вечером».</p>
+    <div class="choice">%%CHOICE%%</div>
+    <p class="phone">%%PHONE%%</p>
+  </div>
+</div>
+%%PAY_MODAL%%
+<!-- Ролик на весь экран -->
+<div class="lb" id="lb" hidden>
+  <button class="m-close" type="button" data-close aria-label="Закрыть">%%X%%</button>
+  <video id="lbv" controls playsinline preload="none"></video>
+</div>
+<script src="%%DIR%%site.js?v=%%V%%" defer></script>
+%%EXTRA_JS%%</body>
+</html>

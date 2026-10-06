@@ -1,0 +1,54 @@
+/* ===== Тема версии 2 «Белая строгая» (по образцам bite и ugmonk) =====
+   Белый фон, очень крупные жирные заголовки, мало текста, много воздуха.
+   Кнопки прямоугольные, тёмно-синие, со стрелкой. Шапка прозрачная поверх первого экрана.
+   Лаванда — только мелкие акценты (подчёркивания, маркеры). Подвал светлый. */
+:root{
+  --font-display:Manrope,system-ui,sans-serif;--font-text:Manrope,system-ui,sans-serif;
+  --display-weight:700;--display-track:-.025em;--display-lh:1.04;
+
+  --ink:#23253A;--ink-2:#565B73;--mute:#565B73;--line:#D8DEEC;--line-strong:#D8DEEC;
+  --bg:#FFFFFF;--alt:#E8EDF7;--alt-2:#F6F7FB;--card:#FFFFFF;
+  --dark:#23253A;--on-dark:#FFFFFF;--on-dark-2:#E8EDF7;--on-dark-mute:#B9C0D3;
+  --ph:#E9EBF1;--ph-dark:#CFE3EE;--accent:#7A5FD0;--scrim:rgba(20,24,45,.72);--kick:#7A5FD0;
+
+  --btn-bg:#34466F;--btn-fg:#FFFFFF;--btn-bg-h:#3D5283;--btn-fg-h:#FFFFFF;
+  --btn-h:56px;--btn-px:28px;--btn-size:var(--t-body);--btn-weight:700;--btn-track:0;--btn-case:none;
+  --r-btn:0;--r-card:0;--r-media:0;
+
+  --t-display:clamp(34px,min(6vw,9svh),88px);
+  --t-h2:clamp(28px,min(4.2vw,6.4svh),60px);
+  --t-h3:clamp(20px,2vw,28px);
+  --t-lead:clamp(18px,1.6vw,22px);--t-body:17px;--t-small:14px;--t-caps:13px;
+
+  --sec:clamp(var(--sp7),9vw,var(--sp8));--max:1280px;--hdr-h:76px;
+  --logo-c:#9377DF;--wm-c:#9377DF;--wm-h:88svh;--wm-h-m:78svh;
+  --nav-weight:600;--nav-track:0;--nav-case:none;
+  --foot-bg:#F6F7FB;--foot-fg:#23253A;--foot-mute:#565B73;--foot-line:#D8DEEC;
+  --lnk-line:#9377DF;--lnk-thick:2px;--step-c:#7A5FD0;--rev-line:#D8DEEC;
+}
+@media (max-width:767px){:root{--t-body:16px;--hdr-h:64px}}
+.nav a{font-size:var(--t-small)}
+.nav a,.pages a{font-size:var(--t-small)}
+.pages a{font-size:var(--t-lead)}
+.kick{font-size:var(--t-small);font-weight:700;letter-spacing:.08em}
+.h2{max-width:20ch}
+.lead{color:var(--mute)}
+.btn{justify-content:space-between;gap:var(--sp3)}
+.btn.out{border-color:var(--btn-bg)}
+.lnk{font-weight:700}
+.statement .h2{max-width:24ch}
+.statement .answer{justify-self:end;max-width:24ch;color:var(--btn-bg)}
+.quote blockquote{font-size:var(--t-h3);font-weight:500;max-width:32ch}
+.quote figcaption{font-weight:700;color:var(--ink)}
+.ticks{font-weight:600;color:var(--ink);font-size:var(--t-body)}
+.hdr.float .btn{margin-left:auto}
+.final{background:var(--alt);text-align:left}
+.final .h2,.final .lead{margin-left:0}
+.final .acts{justify-content:flex-start;margin-top:var(--sp5)}
+.final .btn:nth-child(2){background:transparent;color:var(--btn-bg)}
+.final .btn:nth-child(2):hover{background:var(--btn-bg);color:var(--btn-fg)}
+.price2,.pools article{--pool-pad:0;border:0}
+.pools article{background:transparent}
+.pools article>.ph{margin:0 0 var(--sp3)}
+.face.back{background:linear-gradient(135deg,#1C2350 0%,#2B3460 55%,#3F3780 100%)}
+@media (max-width:767px){.statement .answer{justify-self:start}.btn{width:100%}.hdr .btn,.pool-band .btn,.row .btn{width:auto}}

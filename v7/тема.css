@@ -1,0 +1,29 @@
+/* ===== Тема версии 7 «Сначала страхи» =====
+   Чёрно-белая: цвет дают только фото. Заголовки Unbounded, текст Onest.
+   Кнопки прямые, заглавными; один тёмный блок на странице (тренер), подвал тёмный. */
+:root{
+  --font-display:Unbounded,Onest,system-ui,sans-serif;
+  --font-text:Onest,"Golos Text",system-ui,sans-serif;
+  --display-weight:400;--display-track:-.02em;--display-lh:1.08;
+
+  --ink:#141414;--ink-2:#3D3D3D;--mute:#6E6E6E;--line:#E3E3E0;--line-strong:#D6D6D2;
+  --bg:#FFFFFF;--alt:#F4F4F2;--alt-2:#F4F4F2;--card:#FFFFFF;
+  --dark:#141414;--on-dark:#FFFFFF;--on-dark-2:#D8D8D8;--on-dark-mute:#A9A9A9;
+  --ph:#E3ECEF;--ph-dark:#222;--accent:#141414;--scrim:rgba(0,0,0,.72);
+
+  --btn-bg:#141414;--btn-fg:#FFFFFF;--btn-bg-h:#FFFFFF;--btn-fg-h:#141414;
+  --btn-h:48px;--btn-px:26px;--btn-size:var(--t-small);--btn-weight:500;--btn-track:.06em;--btn-case:uppercase;
+  --r-btn:0;--r-card:0;--r-media:0;
+
+  --t-display:clamp(27px,3.15vw,48px);
+  --t-h2:clamp(24px,2.4vw,36px);
+  --t-h3:clamp(18px,1.45vw,21px);
+  --t-lead:18px;--t-body:16px;--t-small:14px;--t-caps:12px;
+}
+.btn:hover{border-color:var(--ink)}
+.btn.out:hover{border-color:var(--ink)}
+.dark .btn.white:hover{background:transparent;color:var(--on-dark);border-color:var(--on-dark)}
+.hdr .btn{font-size:var(--t-caps)}
+.coach>.ph{aspect-ratio:4/5}
+.rev{--rev-line:var(--ink)}
+.offer{border-color:var(--ink)}

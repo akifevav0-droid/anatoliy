@@ -1,54 +1,51 @@
 <!-- 1. Первый экран с картой -->
-<section class="wrap cert-hero">
-  <div>
-    <span class="label">Подарочный сертификат</span>
-    <h1 class="h-xl">Подарок, который не пылится на полке.</h1>
-    <p class="lead" style="margin-top:24px">Персональная тренировка в «Акватории ЗИЛ». Действует 2 месяца.</p>
-    <div class="cert-price">
-      <span class="price">5 000 ₽</span>
-      <button class="btn" type="button" data-contact>Подарить тренировку %%ARROW%%</button>
+<section class="top wide-ph" id="sertifikat">
+  <div class="wrap">
+    <div>
+      <span class="kick">Подарочный сертификат</span>
+      <h1 class="h1">Подарок, который не пылится на полке.</h1>
+      <p class="lead">Персональная тренировка в «Акватории ЗИЛ». Действует 2 месяца.</p>
+      <div class="hero-foot">
+        <span class="sum">5 000 ₽</span>
+        <button class="btn" type="button" data-contact>Подарить тренировку %%ARROW%%</button>
+      </div>
     </div>
-  </div>
-  <div>
-    <div class="card" id="card" role="button" tabindex="0" aria-label="Подарочный сертификат — нажмите, чтобы перевернуть">
-      <div class="tilt">
-        <div class="card-in">
-          <div class="face front">
-            <div class="c-body">
-              <div class="c-top"><div class="c-wm">%%WORDMARK%%</div><span class="holo" aria-hidden="true"></span></div>
-              <b class="c-title">Подарочный сертификат</b>
-              <span class="c-sub">на персональную тренировку</span>
+    <div class="cardbox">
+      <div class="cardx" id="card" role="button" tabindex="0" aria-pressed="false" aria-label="Подарочный сертификат — нажмите, чтобы перевернуть">
+        <div class="tilt"><div class="cardx-in">
+          <div class="face front holo">
+            <div class="c">
+              <div class="c-top"><div class="c-wm">%%WORDMARK%%</div><span class="chip" aria-hidden="true"></span></div>
+              <div><b class="c-title">Подарочный сертификат</b><span class="c-sub">на персональную тренировку</span></div>
             </div>
             <span class="shine" aria-hidden="true"></span>
             <span class="glare" aria-hidden="true"></span>
           </div>
           <div class="face back">
             <div class="stripe" aria-hidden="true"></div>
-            <div class="back-in">
-              <dl>
-                <dt>Тренировка</dt><dd>60 минут, тренер в воде рядом</dd>
-                <dt>Бассейн</dt><dd>ЗИЛ «Акватория»</dd>
-                <dt>Действует</dt><dd>2 месяца</dd>
-                <dt>Запись</dt><dd>t.me/shabarshov</dd>
-              </dl>
-              <div class="c-wm">%%WORDMARK%%</div>
-            </div>
-            <span class="glare" aria-hidden="true"></span>
+            <dl>
+              <dt>Тренировка</dt><dd>60 минут, тренер в воде рядом</dd>
+              <dt>Бассейн</dt><dd>ЗИЛ «Акватория»</dd>
+              <dt>Действует</dt><dd>2 месяца</dd>
+              <dt>Запись</dt><dd>t.me/shabarshov</dd>
+            </dl>
           </div>
-        </div>
+        </div></div>
       </div>
+      <p class="hint">Нажмите на карту — она перевернётся</p>
     </div>
-    <p class="card-hint">Нажмите на карту — она перевернётся</p>
   </div>
 </section>
 
 <!-- 2. Как подарить -->
-<section class="wrap sec">
-  <div class="head"><h2 class="h-l rv">Три шага — и подарок готов.</h2></div>
-  <div class="steps">
-    <div class="rv"><i>01</i><b>Позвоните или напишите</b><span>Анатолию — как удобнее.</span></div>
-    <div class="rv"><i>02</i><b>Имя получателя</b><span>Оно будет на карте.</span></div>
-    <div class="rv"><i>03</i><b>Оплата</b><span>После оплаты придёт именная карта.</span></div>
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2 rise">Три шага — и подарок готов.</h2></div>
+    <ol class="steps cols">
+      <li class="rise"><div><b>Позвоните или напишите</b><span>Анатолию — как удобнее.</span></div></li>
+      <li class="rise"><div><b>Имя получателя</b><span>Оно будет на карте.</span></div></li>
+      <li class="rise"><div><b>Оплата</b><span>После оплаты придёт именная карта.</span></div></li>
+    </ol>
   </div>
 </section>
 
@@ -56,11 +53,13 @@
 %%POOL_LINE%%
 
 <!-- 4. Вопросы -->
-<section class="wrap sec split">
-  <h2 class="h-l rv">Частые вопросы</h2>
-  <div class="qa rv">
-    <div><b>А если получатель не умеет плавать?</b><p>Тем лучше — научим.</p></div>
-    <div><b>Сколько действует сертификат?</b><p>Два месяца.</p></div>
-    <div><b>Что взять на тренировку?</b><p>Купальник, шапочку, очки, сланцы, полотенце.</p></div>
+<section class="sec">
+  <div class="wrap split">
+    <h2 class="h2 rise">Частые вопросы</h2>
+    <div class="faq rise">
+      <details><summary>А если получатель не умеет плавать?</summary><p>Тем лучше — научим.</p></details>
+      <details><summary>Сколько действует сертификат?</summary><p>Два месяца.</p></details>
+      <details><summary>Что взять на тренировку?</summary><p>Купальник, шапочку, очки, сланцы, полотенце.</p></details>
+    </div>
   </div>
 </section>
