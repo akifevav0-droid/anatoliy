@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><script>(function(){var V="9a5d8bc7";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><script>(function(){var V="c4dcedb1";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta charset="utf-8">
 <title>Персональные тренировки</title>
@@ -25,7 +25,13 @@ header{display:flex;align-items:center;gap:22px;padding:14px 24px;flex-wrap:wrap
 header .logo{width:52px;height:52px;color:var(--lilac);flex:none}
 .switch{display:flex;gap:0;box-shadow:inset 0 0 0 1.5px var(--violet)}
 .switch a{font:700 13px/1 var(--f);letter-spacing:.08em;text-transform:uppercase;padding:12px 14px;color:var(--violet);text-decoration:none}
-.switch a[aria-current="page"]{background:var(--violet);color:#fff}
+.switch{position:relative;display:grid;grid-template-columns:1fr 1fr}
+.switch .knob{position:absolute;left:0;top:0;bottom:0;width:50%;background:var(--violet);transition:transform .45s cubic-bezier(.3,1.4,.5,1);z-index:0}
+.switch.alt .knob{transform:translateX(100%)}
+.switch a{position:relative;z-index:1;text-align:center;transition:color .3s}
+.switch a[aria-current="page"]{color:#fff}
+.switch.alt a[aria-current="page"]{color:var(--violet)} .switch.alt #grp{color:#fff}
+.tgk .tg{display:none;width:22px;height:22px}
 .switch a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 
 /* кнопка (вариант 4) */
@@ -57,14 +63,14 @@ main{position:relative;flex:1;min-height:0}
 .plate li::before{content:"";position:absolute;left:0;top:.45em;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--lilac)}
 .plate .k{margin-top:auto}
 .short{display:none}
-.cluster.m .plates{grid-template-columns:1fr}
-.cluster.m .plate{padding:14px 16px;gap:4px;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:10px}
-.cluster.m .plate h2{font-size:15px;grid-column:1}
-.cluster.m .price{font-size:28px;grid-column:1}
-.cluster.m .per{grid-column:1;font-size:11.5px}
+.cluster.m .plates{grid-template-columns:1fr;grid-auto-rows:1fr}
+.cluster.m .plate{padding:14px 16px;gap:3px;display:flex;flex-direction:column}
+.cluster.m .plate h2{font-size:17px}
+.cluster.m .price{font-size:32px}
+.cluster.m .per{font-size:13px}
 .cluster.m .plate ul{display:none}
-.cluster.m .short{display:block;grid-column:1;font-size:11.5px;color:var(--ink-muted);line-height:1.3}
-.cluster.m .plate .k{grid-column:2;grid-row:1 / span 4;align-self:center;padding:14px 14px;font-size:12px}
+.cluster.m .short{display:block;font-size:13px;color:var(--ink-muted);line-height:1.3}
+.cluster.m .plate .k{margin-top:auto;align-self:stretch;padding:14px;font-size:13px}
 .cluster.m .prices h1{font-size:11px}
 
 /* пузыри-пена: неровная форма, обнимают блок цен со всех сторон */
@@ -76,7 +82,7 @@ main{position:relative;flex:1;min-height:0}
 .bub::before{content:"";position:absolute;left:16%;top:13%;width:12%;height:8%;border-radius:50%;background:rgba(255,255,255,.95);filter:blur(1.5px);transform:rotate(-28deg)}
 .bub p{margin:0;max-width:76%;position:relative}
 .bub b{display:block;color:var(--violet);font-weight:800;font-size:1.75em;line-height:1;letter-spacing:-.01em;margin-bottom:.22em}
-.cluster.m .bub{font-size:11.5px;line-height:1.28}
+.cluster.m .bub{font-size:12.5px;line-height:1.28}
 .cluster.m .bub p{max-width:80%}
 .cluster.m .bub b{font-size:1.6em}
 @keyframes morph{from{border-radius:var(--r1)}to{border-radius:var(--r2)}}
@@ -232,7 +238,9 @@ main{position:relative;flex:1;min-height:0}
 .home{display:block;flex:none;line-height:0}
 @media (max-width:700px){.back{font-size:0;padding:8px 6px;gap:0}.back span{font-size:22px}}
 header{flex:none;z-index:4}
-@media (max-width:700px){header{padding:10px 14px;gap:10px} header .logo{width:40px;height:40px} .switch a{padding:10px 10px;font-size:11px} header .k{padding:12px 12px;font-size:11px}}
+@media (max-width:700px){header{padding:10px 12px;gap:6px;flex-wrap:nowrap;min-height:64px} header .logo{width:38px;height:38px}
+  .switch{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)} .switch a{padding:12px 7px;font-size:10px;letter-spacing:0;white-space:nowrap}
+  header .k.tgk{margin-left:auto;width:44px;height:44px;padding:0;display:grid;place-items:center} .tgk .tx{display:none} .tgk .tg{display:block}}
 @media (prefers-reduced-motion:reduce){.bub,.k i{animation:none!important}}
 </style>
 
@@ -274,12 +282,12 @@ header{flex:none;z-index:4}
 </g>
 </svg></a>
 
-  <nav class="switch" aria-label="Разделы"><a href="#" aria-current="page">Персональные</a><a href="#" id="grp">Групповые</a></nav>
-  <a class="k s" href="https://t.me/shabarshov"><i></i><i></i><i></i>Написать в Telegram</a>
+  <nav class="switch" id="sw" aria-label="Разделы"><span class="knob" aria-hidden="true"></span><a href="#" aria-current="page">Персональные</a><a href="#" id="grp">Групповые</a></nav>
+  <a class="k s tgk" href="https://t.me/shabarshov" aria-label="Написать в Telegram"><i></i><i></i><i></i><svg class="tg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.6 2.9 10.8c-1 .4-1 1.8.1 2.1l4.6 1.5 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.7 4.6 3.4c.8.6 1.9.1 2.1-.9L23 4.9c.2-1-.7-1.7-1.5-1.3ZM9.8 14.6l-.6 3.6-1.3-4.2 10.4-6.6-8.5 7.2Z" fill="currentColor"/></svg><span class="tx">Написать в Telegram</span></a>
 </header>
 
 <main>
-<button class="swim" id="swim" type="button" aria-label="Кто тренер: Анатолий Шабаршов" aria-haspopup="dialog"><span class="st"><img src="img/coach-cut.png?v=9a5d8bc7" alt=""><svg class="foam" viewBox="0 0 120 110" aria-hidden="true">
+<button class="swim" id="swim" type="button" aria-label="Кто тренер: Анатолий Шабаршов" aria-haspopup="dialog"><span class="st"><img src="img/coach-cut.png?v=c4dcedb1" alt=""><svg class="foam" viewBox="0 0 120 110" aria-hidden="true">
   <g fill="rgba(255,255,255,.92)" stroke="#9477E0" stroke-width="2">
     <circle cx="66" cy="54" r="30"/><circle cx="34" cy="40" r="20"/><circle cx="40" cy="78" r="18"/><circle cx="90" cy="82" r="14"/><circle cx="92" cy="28" r="12"/><circle cx="14" cy="62" r="9"/><circle cx="62" cy="14" r="8"/>
   </g>
@@ -377,7 +385,7 @@ header{flex:none;z-index:4}
 <div class="coach" id="coach" role="dialog" aria-modal="true" aria-labelledby="ch">
   <div class="ccard">
     <button class="x" id="cx" type="button" aria-label="Закрыть">×</button>
-    <img src="img/coach.jpg?v=9a5d8bc7" alt="Анатолий Шабаршов плывёт кролем">
+    <img src="img/coach.jpg?v=c4dcedb1" alt="Анатолий Шабаршов плывёт кролем">
     <div class="tx">
       <h2 id="ch">Анатолий Шабаршов</h2>
       <p class="ttl">Мастер спорта по&nbsp;плаванию в&nbsp;категории Masters</p>
@@ -397,8 +405,8 @@ header{flex:none;z-index:4}
     <h2 id="mh">«Акватория ЗИЛ»</h2>
     <p class="sub">Здесь и плаваем</p>
     <div class="pv" id="pv">
-      <img class="pst" src="img/zil.jpg?v=9a5d8bc7" alt="Открытый бассейн «Акватории ЗИЛ»">
-      <video id="pvv" src="v/pool.mp4?v=9a5d8bc7" muted playsinline preload="none" aria-label="Тренировка в открытом бассейне «Акватории ЗИЛ»"></video>
+      <img class="pst" src="img/zil.jpg?v=c4dcedb1" alt="Открытый бассейн «Акватории ЗИЛ»">
+      <video id="pvv" src="v/pool.mp4?v=c4dcedb1" muted playsinline preload="none" aria-label="Тренировка в открытом бассейне «Акватории ЗИЛ»"></video>
       <button class="play" id="pvp" type="button" aria-label="Смотреть видео"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
     </div>
     <div class="foot">
@@ -410,9 +418,9 @@ header{flex:none;z-index:4}
 <div class="vids" id="vids" role="dialog" aria-modal="true" aria-label="Видео Анатолия из бассейна">
   <button class="x" id="vx" type="button" aria-label="Закрыть">×</button>
   <div class="row">
-    <figure><div class="vc"><video src="v/slippery.mp4?v=9a5d8bc7" poster="img/cov-slippery.jpg?v=9a5d8bc7" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Кто тут самый скользкий?</figcaption></figure>
-    <figure><div class="vc"><video src="v/fixprice.mp4?v=9a5d8bc7" poster="img/cov-fixprice.jpg?v=9a5d8bc7" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Очки из Fix Price</figcaption></figure>
-    <figure><div class="vc"><video src="v/100x100.mp4?v=9a5d8bc7" poster="img/cov-100x100.jpg?v=9a5d8bc7" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>100 по 100</figcaption></figure>
+    <figure><div class="vc"><video src="v/slippery.mp4?v=c4dcedb1" poster="img/cov-slippery.jpg?v=c4dcedb1" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Кто тут самый скользкий?</figcaption></figure>
+    <figure><div class="vc"><video src="v/fixprice.mp4?v=c4dcedb1" poster="img/cov-fixprice.jpg?v=c4dcedb1" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Очки из Fix Price</figcaption></figure>
+    <figure><div class="vc"><video src="v/100x100.mp4?v=c4dcedb1" poster="img/cov-100x100.jpg?v=c4dcedb1" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>100 по 100</figcaption></figure>
   </div>
   <p class="hint">Нажми на ролик — включится со звуком</p>
 </div>
@@ -428,7 +436,7 @@ header{flex:none;z-index:4}
       if(b.r>3){c.beginPath();c.arc(x-b.r*.35,b.y-b.r*.35,b.r*.28,0,6.2832);c.fillStyle='rgba(255,255,255,.9)';c.fill();}}
     if(!rd)requestAnimationFrame(fr);}
   requestAnimationFrame(fr);
-  document.getElementById('grp').addEventListener('click',function(e){e.preventDefault();});
+  document.getElementById('grp').addEventListener('click',function(e){e.preventDefault();var w=document.getElementById('sw');w.classList.add('alt');setTimeout(function(){w.classList.remove('alt');},900);});
 })();
 (function(){
   /* координаты макета: плашки и центры/радиусы пузырей; пузыри касаются друг друга и заходят под край плашек */
@@ -436,9 +444,9 @@ header{flex:none;z-index:4}
     d:{w:1100,h:740,ox:0,buoy:[1012,-6],pr:[230,220,640,290],b:{
       b5:[360,138,330,206],b2:[792,150,268,192],b1:[146,418,240,256],b4:[978,334,246,300],b3:[624,602,384,196],
       f1:[205,214,92,82],f2:[96,262,62,56],f3:[944,522,112,98],f4:[330,580,124,104],f5:[246,628,58,52],f7:[566,74,56,50],f8:[872,72,40,36]}},
-    m:{w:380,h:800,ox:0,buoy:[340,8],pr:[30,292,320,330],b:{
-      b5:[168,106,252,152],b1:[90,244,166,148],b2:[284,236,178,158],b3:[118,690,204,152],b4:[292,704,158,148],
-      f3:[356,628,40,36],f5:[214,778,46,40]}}
+    m:{w:380,h:760,ox:0,buoy:[344,4],pr:[22,272,336,350],b:{
+      b5:[180,94,262,158],b1:[84,226,172,148],b2:[290,218,180,156],b3:[116,686,214,150],b4:[290,694,176,148],
+      f3:[360,640,36,32],f5:[214,754,40,34]}}
   };
   var cl=document.getElementById('cl'),pr=document.getElementById('pr'),main=cl.parentNode;
   function lay(){
