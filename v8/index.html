@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
-<script>(function(){var V="c4dcedb1";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<script>(function(){var V="2da9ac42";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <title>Вход «Бульк»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,7 +138,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
   .gift .t2{font-size:11px}
   .gift .t3{font-size:10px;padding:6px 8px;margin-top:7px}
   .gift .cap{width:112px;top:-34px;left:-12px}
-  #s2 .inner{padding-bottom:110px;padding-top:150px}/* сверху место под игрушку «Колечки» */
+  #s2 .inner{padding-bottom:110px;padding-top:180px}/* сверху место под игрушку «Колечки» */
   #s2 .choice .btn{min-width:0;flex:1 1 100%}
 }
 @media (prefers-reduced-motion:reduce){
@@ -198,7 +198,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     <h1><small>Упс… Кто-то тонет в&nbsp;ежедневной рутине</small> <span>Давай поплаваем!</span></h1>
     <p class="say">Я&nbsp;— <b>Анатолий Шабаршов</b>, твой тренер по&nbsp;плаванию.</p>
     <div class="choice">
-      <a class="btn go" data-fx data-choose href="personal.html?v=c4dcedb1" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
+      <a class="btn go" data-fx data-choose href="personal.html?v=2da9ac42" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
       <button class="btn go" type="button" data-to="Групповые"><i></i><i></i><i></i>Групповые</button>
     </div>
   </div>
@@ -583,10 +583,10 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 @keyframes tyf{0%,100%{transform:translate(0,0)}50%{transform:translate(3px,9px)}}
 .toy .tbub{animation:tyb 3.2s linear infinite}
 @keyframes tyb{from{transform:translateY(0);opacity:1}to{transform:translateY(-70px);opacity:0}}
-@media (max-width:1100px){.toy{top:calc(14px + env(safe-area-inset-top,0px));bottom:auto;left:auto;right:14px;transform:rotate(4deg);width:96px}.toy:hover{transform:rotate(0) scale(1.04)}.toy .cap2{font-size:11px;padding:7px 8px;margin-top:6px}}
+@media (max-width:1100px){.toy{top:calc(14px + env(safe-area-inset-top,0px));bottom:auto;left:auto;right:12px;transform:rotate(4deg);width:122px}.toy:hover{transform:rotate(0) scale(1.04)}.toy .cap2{font-size:13px;padding:8px 10px;margin-top:6px}}
 @media (prefers-reduced-motion:reduce){.toy *{animation:none!important}}
-@media (max-width:1100px) and (max-height:700px){.toy{width:80px}}
-@media (max-width:600px) and (max-height:700px){#s2 .inner{padding-top:122px}}
+@media (max-width:1100px) and (max-height:700px){.toy{width:94px}}
+@media (max-width:600px) and (max-height:700px){#s2 .inner{padding-top:158px;gap:14px}#s2 .choice{margin-top:4px;gap:10px}}
 
 #game{position:fixed;inset:0;z-index:250;display:grid;place-items:center;padding:12px;background:rgba(31,27,46,.55);
   opacity:0;pointer-events:none;transition:opacity .3s}

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><script>(function(){var V="c4dcedb1";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><script>(function(){var V="2da9ac42";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta charset="utf-8">
 <title>Персональные тренировки</title>
@@ -63,14 +63,15 @@ main{position:relative;flex:1;min-height:0}
 .plate li::before{content:"";position:absolute;left:0;top:.45em;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--lilac)}
 .plate .k{margin-top:auto}
 .short{display:none}
-.cluster.m .plates{grid-template-columns:1fr;grid-auto-rows:1fr}
-.cluster.m .plate{padding:14px 16px;gap:3px;display:flex;flex-direction:column}
-.cluster.m .plate h2{font-size:17px}
-.cluster.m .price{font-size:32px}
-.cluster.m .per{font-size:13px}
-.cluster.m .plate ul{display:none}
-.cluster.m .short{display:block;font-size:13px;color:var(--ink-muted);line-height:1.3}
-.cluster.m .plate .k{margin-top:auto;align-self:stretch;padding:14px;font-size:13px}
+.cluster.m .plates{grid-template-columns:1fr 1fr;gap:10px}
+.cluster.m .plate{padding:14px 12px 12px;gap:4px;display:flex;flex-direction:column}
+.cluster.m .plate h2{font-size:16px;line-height:1.15}
+.cluster.m .price{font-size:30px;margin-top:2px}
+.cluster.m .per{font-size:12.5px}
+.cluster.m .plate ul{display:grid;gap:5px;font-size:12.5px;line-height:1.3;margin-top:4px}
+.cluster.m .plate li{padding-left:13px}.cluster.m .plate li::before{width:6px;height:6px;top:.42em}
+.cluster.m .short{display:none}
+.cluster.m .plate .k{margin-top:auto;align-self:stretch;padding:14px 6px;font-size:12.5px;letter-spacing:.05em}
 .cluster.m .prices h1{font-size:11px}
 
 /* пузыри-пена: неровная форма, обнимают блок цен со всех сторон */
@@ -287,7 +288,7 @@ header{flex:none;z-index:4}
 </header>
 
 <main>
-<button class="swim" id="swim" type="button" aria-label="Кто тренер: Анатолий Шабаршов" aria-haspopup="dialog"><span class="st"><img src="img/coach-cut.png?v=c4dcedb1" alt=""><svg class="foam" viewBox="0 0 120 110" aria-hidden="true">
+<button class="swim" id="swim" type="button" aria-label="Кто тренер: Анатолий Шабаршов" aria-haspopup="dialog"><span class="st"><img src="img/coach-cut.png?v=2da9ac42" alt=""><svg class="foam" viewBox="0 0 120 110" aria-hidden="true">
   <g fill="rgba(255,255,255,.92)" stroke="#9477E0" stroke-width="2">
     <circle cx="66" cy="54" r="30"/><circle cx="34" cy="40" r="20"/><circle cx="40" cy="78" r="18"/><circle cx="90" cy="82" r="14"/><circle cx="92" cy="28" r="12"/><circle cx="14" cy="62" r="9"/><circle cx="62" cy="14" r="8"/>
   </g>
@@ -385,7 +386,7 @@ header{flex:none;z-index:4}
 <div class="coach" id="coach" role="dialog" aria-modal="true" aria-labelledby="ch">
   <div class="ccard">
     <button class="x" id="cx" type="button" aria-label="Закрыть">×</button>
-    <img src="img/coach.jpg?v=c4dcedb1" alt="Анатолий Шабаршов плывёт кролем">
+    <img src="img/coach.jpg?v=2da9ac42" alt="Анатолий Шабаршов плывёт кролем">
     <div class="tx">
       <h2 id="ch">Анатолий Шабаршов</h2>
       <p class="ttl">Мастер спорта по&nbsp;плаванию в&nbsp;категории Masters</p>
@@ -405,8 +406,8 @@ header{flex:none;z-index:4}
     <h2 id="mh">«Акватория ЗИЛ»</h2>
     <p class="sub">Здесь и плаваем</p>
     <div class="pv" id="pv">
-      <img class="pst" src="img/zil.jpg?v=c4dcedb1" alt="Открытый бассейн «Акватории ЗИЛ»">
-      <video id="pvv" src="v/pool.mp4?v=c4dcedb1" muted playsinline preload="none" aria-label="Тренировка в открытом бассейне «Акватории ЗИЛ»"></video>
+      <img class="pst" src="img/zil.jpg?v=2da9ac42" alt="Открытый бассейн «Акватории ЗИЛ»">
+      <video id="pvv" src="v/pool.mp4?v=2da9ac42" muted playsinline preload="none" aria-label="Тренировка в открытом бассейне «Акватории ЗИЛ»"></video>
       <button class="play" id="pvp" type="button" aria-label="Смотреть видео"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
     </div>
     <div class="foot">
@@ -418,9 +419,9 @@ header{flex:none;z-index:4}
 <div class="vids" id="vids" role="dialog" aria-modal="true" aria-label="Видео Анатолия из бассейна">
   <button class="x" id="vx" type="button" aria-label="Закрыть">×</button>
   <div class="row">
-    <figure><div class="vc"><video src="v/slippery.mp4?v=c4dcedb1" poster="img/cov-slippery.jpg?v=c4dcedb1" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Кто тут самый скользкий?</figcaption></figure>
-    <figure><div class="vc"><video src="v/fixprice.mp4?v=c4dcedb1" poster="img/cov-fixprice.jpg?v=c4dcedb1" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Очки из Fix Price</figcaption></figure>
-    <figure><div class="vc"><video src="v/100x100.mp4?v=c4dcedb1" poster="img/cov-100x100.jpg?v=c4dcedb1" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>100 по 100</figcaption></figure>
+    <figure><div class="vc"><video src="v/slippery.mp4?v=2da9ac42" poster="img/cov-slippery.jpg?v=2da9ac42" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Кто тут самый скользкий?</figcaption></figure>
+    <figure><div class="vc"><video src="v/fixprice.mp4?v=2da9ac42" poster="img/cov-fixprice.jpg?v=2da9ac42" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>Очки из Fix Price</figcaption></figure>
+    <figure><div class="vc"><video src="v/100x100.mp4?v=2da9ac42" poster="img/cov-100x100.jpg?v=2da9ac42" playsinline preload="none"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></div><figcaption>100 по 100</figcaption></figure>
   </div>
   <p class="hint">Нажми на ролик — включится со звуком</p>
 </div>
@@ -444,9 +445,9 @@ header{flex:none;z-index:4}
     d:{w:1100,h:740,ox:0,buoy:[1012,-6],pr:[230,220,640,290],b:{
       b5:[360,138,330,206],b2:[792,150,268,192],b1:[146,418,240,256],b4:[978,334,246,300],b3:[624,602,384,196],
       f1:[205,214,92,82],f2:[96,262,62,56],f3:[944,522,112,98],f4:[330,580,124,104],f5:[246,628,58,52],f7:[566,74,56,50],f8:[872,72,40,36]}},
-    m:{w:380,h:760,ox:0,buoy:[344,4],pr:[22,272,336,350],b:{
-      b5:[180,94,262,158],b1:[84,226,172,148],b2:[290,218,180,156],b3:[116,686,214,150],b4:[290,694,176,148],
-      f3:[360,640,36,32],f5:[214,754,40,34]}}
+    m:{w:380,h:690,ox:0,buoy:[346,2],pr:[8,262,364,262],b:{
+      b5:[178,98,256,160],b1:[66,212,156,132],b2:[302,202,176,152],b3:[108,606,206,150],b4:[286,616,180,148],
+      f3:[364,560,34,30],f5:[202,676,38,30]}}
   };
   var cl=document.getElementById('cl'),pr=document.getElementById('pr'),main=cl.parentNode;
   function lay(){
