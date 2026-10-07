@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
-<script>(function(){var V="37e4e86b";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<script>(function(){var V="26060ca2";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <title>Вход «Бульк»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,19 +105,20 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 .gift:focus-visible{outline:none}
 .gift:focus-visible .card{outline:3px solid var(--ink);outline-offset:3px}
 /* пластиковая карта 85,6 × 54 мм: перламутр, глянец, голограмма */
-.gift .card{position:relative;width:100%;aspect-ratio:85.6/54;border-radius:16px;overflow:visible;
-  display:flex;flex-direction:column;justify-content:flex-start;padding:84px 18px 14px;
-  background:none;box-shadow:0 2px 3px rgba(31,27,46,.12),0 20px 44px rgba(60,40,120,.3)}
-.gift .skin{position:absolute;inset:0;width:100%;height:100%;border-radius:16px;overflow:hidden}
-.gift .gloss{position:absolute;inset:0;border-radius:16px;overflow:hidden;pointer-events:none}
+.gift .card{position:relative;width:100%;aspect-ratio:85.6/54;border-radius:14px;overflow:visible;
+  display:flex;flex-direction:column;justify-content:flex-start;padding:60px 18px 16px;
+  background:linear-gradient(135deg,#FFFFFF 0%,#F5F1FE 38%,#EAF3FB 68%,#FAF0F8 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(106,79,208,.14),inset 0 0 0 1px rgba(106,79,208,.10),
+    0 2px 3px rgba(31,27,46,.10),0 20px 44px rgba(60,40,120,.24)}
+.gift .gloss{position:absolute;inset:0;border-radius:14px;overflow:hidden;pointer-events:none}
 .gift .gloss::before{content:"";position:absolute;top:-30%;bottom:-30%;width:45%;left:-55%;transform:skewX(-20deg);
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);transition:left .9s ease}
 .gift:hover .gloss::before,.gift:focus-visible .gloss::before{left:120%}
-.gift .holo{display:none;position:absolute;right:16px;top:16px;width:38px;height:28px;border-radius:5px;
+.gift .holo{position:absolute;right:16px;top:16px;width:38px;height:28px;border-radius:5px;
   background:conic-gradient(from 30deg,#C9B8F5,#A9D4F2,#F3C9E4,#C9B8F5,#B8E3EC,#C9B8F5);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);opacity:.9}
 .gift .t1{position:relative;font-weight:800;font-size:18px;line-height:1.08;white-space:nowrap;color:var(--ink);letter-spacing:-.01em}
-.gift .t2{position:relative;margin-top:3px;font-size:12.5px;color:#4A4558}
+.gift .t2{position:relative;margin-top:4px;font-size:12.5px;color:var(--ink2)}
 .gift .t3{position:relative;margin-top:10px;align-self:flex-start;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);padding:8px 10px;
   background:linear-gradient(110deg,#C9B8F5,#A9D4F2 30%,#F3C9E4 55%,#C9B8F5 80%,#B8E3EC);background-size:220% 100%;box-shadow:inset 0 0 0 1.5px rgba(106,79,208,.35);transition:background-position .8s}
 .gift:hover .t3,.gift:focus-visible .t3{background-position:100% 0}
@@ -130,9 +131,8 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 
 @media (max-width:600px){
   .gift{width:236px;right:-26px;bottom:-18px}
-  .gift .card{padding:66px 13px 10px;border-radius:12px}
-  .gift .gloss{border-radius:12px}
-  .gift .skin{border-radius:12px}
+  .gift .card{padding:44px 13px 12px;border-radius:11px}
+  .gift .gloss{border-radius:11px}
   .gift .holo{width:30px;height:22px;right:12px;top:12px}
   .gift .t1{font-size:14px}
   .gift .t2{font-size:11px}
@@ -198,7 +198,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     <h1><small>Упс… Кто-то тонет в&nbsp;ежедневной рутине</small> <span>Давай поплаваем!</span></h1>
     <p class="say">Я&nbsp;— <b>Анатолий Шабаршов</b>, твой тренер по&nbsp;плаванию.</p>
     <div class="choice">
-      <a class="btn go" data-fx data-choose href="personal.html?v=37e4e86b" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
+      <a class="btn go" data-fx data-choose href="personal.html?v=26060ca2" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
       <button class="btn go" type="button" data-to="Групповые"><i></i><i></i><i></i>Групповые</button>
     </div>
   </div>
@@ -231,39 +231,13 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 
 <button class="gift" id="gift" type="button" aria-hidden="true" tabindex="-1" aria-label="Купить подарочный сертификат">
   <div class="card">
-    <svg class="skin" viewBox="0 0 300 190" preserveAspectRatio="none" aria-hidden="true">
-      <!-- серебряная карта, на неё во всю ширину натянута фиолетовая силиконовая шапочка -->
-      <defs>
-        <linearGradient id="silv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6F7FA"/><stop offset=".3" stop-color="#CDD0DA"/><stop offset=".52" stop-color="#F1F2F6"/><stop offset=".78" stop-color="#B9BDC9"/><stop offset="1" stop-color="#E7E9EF"/></linearGradient>
-        <pattern id="brush" width="300" height="3" patternUnits="userSpaceOnUse"><rect width="300" height="1" fill="#fff" fill-opacity=".35"/></pattern>
-        <radialGradient id="capG" cx="34%" cy="18%" r="95%"><stop offset="0" stop-color="#8A6FEA"/><stop offset=".5" stop-color="#6A4FD0"/><stop offset="1" stop-color="#4B33AD"/></radialGradient>
-        <clipPath id="cardClip"><rect width="300" height="190" rx="16"/></clipPath>
-        <path id="capArc" d="M9 46 Q150 30 291 46"/>
-        <path id="capArc2" d="M75 54 Q150 46 225 54"/>
-        <filter id="capSoft"><feGaussianBlur stdDeviation=".45"/></filter>
-      </defs>
-      <g clip-path="url(#cardClip)">
-        <rect width="300" height="190" fill="url(#silv)"/>
-        <rect width="300" height="190" fill="url(#brush)"/>
-        <path d="M-20 190 L120 0 H170 L30 190Z" fill="#fff" opacity=".35"/>
-      </g>
-      <rect x=".5" y=".5" width="299" height="189" rx="16" fill="none" stroke="#9EA3B2" stroke-opacity=".6"/>
-      <!-- шапочка повторяет форму карты и закрывает верхнюю треть; буквы растянуты, как на натянутом силиконе -->
-      <g clip-path="url(#cardClip)">
-        <path d="M0 0 H300 V60 Q150 52 0 60Z" fill="url(#capG)"/>
-        <path d="M0 60 Q150 52 300 60 V69 Q150 61 0 69Z" fill="#4A32A8"/>
-        <path d="M0 61 Q150 53 300 61" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.8"/>
-      </g>
-      <g filter="url(#capSoft)" fill="#fff">
-        <text font-family="Onest,sans-serif" font-weight="800" font-size="30" fill-opacity=".93" transform="translate(0 4) scale(1 .78)"><textPath href="#capArc" startOffset="50%" text-anchor="middle" textLength="282" lengthAdjust="spacingAndGlyphs">SHABARSHOV</textPath></text>
-        <text font-family="Onest,sans-serif" font-weight="600" font-size="11" fill-opacity=".8"><textPath href="#capArc2" startOffset="50%" text-anchor="middle" textLength="150" lengthAdjust="spacingAndGlyphs">swimming club</textPath></text>
-      </g>
-      <g fill="none" stroke="#fff" stroke-linecap="round">
-        <path d="M30 9 C80 3 140 2 186 5" stroke-width="4" stroke-opacity=".28"/>
-      </g>
-      <g fill="none" stroke="#2E1C7E" stroke-linecap="round" stroke-opacity=".3" stroke-width="1.4">
-        <path d="M2 18 C8 24 11 32 11 40"/><path d="M298 18 C292 24 289 32 289 40"/>
-      </g>
+    <svg class="cap" viewBox="0 0 200 120" aria-hidden="true">
+      <!-- шапочка: купол, натянутый на угол карточки -->
+      <path d="M6 108 C2 40 52 6 104 6 C158 6 198 44 194 108 C150 96 52 96 6 108 Z" fill="#6A4FD0"/>
+      <path d="M6 108 C52 96 150 96 194 108 C192 114 190 117 188 118 C150 107 52 107 12 118 C9 115 7 112 6 108 Z" fill="#5A40BD"/>
+      <path d="M40 40 C58 22 86 14 112 15" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <text x="100" y="66" text-anchor="middle" font-family="Onest,sans-serif" font-weight="800" font-size="21" fill="#fff" letter-spacing="1">SHABARSHOV</text>
+      <text x="100" y="84" text-anchor="middle" font-family="Onest,sans-serif" font-weight="500" font-size="11" fill="#fff" fill-opacity=".85" letter-spacing="1.5">swimming club</text>
     </svg>
     <span class="gloss"></span>
     <span class="holo"></span>
