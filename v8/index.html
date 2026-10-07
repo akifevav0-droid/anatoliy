@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
-<script>(function(){var V="9ae59eb6";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<script>(function(){var V="a8543961";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <title>Вход «Бульк»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,9 +106,9 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 .gift:focus-visible .card{outline:3px solid var(--ink);outline-offset:3px}
 /* пластиковая карта 85,6 × 54 мм: перламутр, глянец, голограмма */
 .gift .card{position:relative;width:100%;aspect-ratio:85.6/54;border-radius:16px;overflow:visible;
-  display:flex;flex-direction:column;justify-content:flex-start;padding:124px 18px 12px;
+  display:flex;flex-direction:column;justify-content:flex-start;padding:128px 18px 12px;
   background:none;box-shadow:0 2px 3px rgba(31,27,46,.12),0 20px 44px rgba(60,40,120,.3)}
-.gift .skin{position:absolute;inset:0;width:100%;height:100%;border-radius:16px}
+.gift .skin{position:absolute;inset:0;width:100%;height:100%;border-radius:16px;overflow:hidden}
 .gift .gloss{position:absolute;inset:0;border-radius:16px;overflow:hidden;pointer-events:none}
 .gift .gloss::before{content:"";position:absolute;top:-30%;bottom:-30%;width:45%;left:-55%;transform:skewX(-20deg);
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);transition:left .9s ease}
@@ -130,8 +130,9 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 
 @media (max-width:600px){
   .gift{width:236px;right:-26px;bottom:-18px}
-  .gift .card{padding:99px 13px 9px;border-radius:12px}
-  .gift .gloss{border-radius:11px}
+  .gift .card{padding:104px 13px 9px;border-radius:12px}
+  .gift .gloss{border-radius:12px}
+  .gift .skin{border-radius:12px}
   .gift .holo{width:30px;height:22px;right:12px;top:12px}
   .gift .t1{font-size:14px}
   .gift .t2{font-size:11px}
@@ -197,7 +198,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     <h1><small>Упс… Кто-то тонет в&nbsp;ежедневной рутине</small> <span>Давай поплаваем!</span></h1>
     <p class="say">Я&nbsp;— <b>Анатолий Шабаршов</b>, твой тренер по&nbsp;плаванию.</p>
     <div class="choice">
-      <a class="btn go" data-fx data-choose href="personal.html?v=9ae59eb6" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
+      <a class="btn go" data-fx data-choose href="personal.html?v=a8543961" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
       <button class="btn go" type="button" data-to="Групповые"><i></i><i></i><i></i>Групповые</button>
     </div>
   </div>
@@ -247,10 +248,12 @@ body.diving .dive{opacity:0;transition:opacity .3s}
         <path d="M-20 190 L120 0 H170 L30 190Z" fill="#fff" opacity=".35"/>
       </g>
       <rect x=".5" y=".5" width="299" height="189" rx="16" fill="none" stroke="#9EA3B2" stroke-opacity=".6"/>
-      <!-- купол шапочки: заходит за края карты, снизу подвёрнутый край -->
-      <path d="M-5 106 C-7 34 30 -5 150 -6 C270 -5 307 34 305 106 Q150 92 -5 106Z" fill="url(#capG)"/>
-      <path d="M-5 106 Q150 92 305 106 L305 116 Q150 102 -5 116Z" fill="#4A32A8"/>
-      <path d="M2 107 Q150 94 298 107" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2" stroke-linecap="round"/>
+      <!-- шапочка повторяет форму карты: те же края и скруглённые углы, снизу подвёрнутый край -->
+      <g clip-path="url(#cardClip)">
+        <path d="M0 0 H300 V106 Q150 94 0 106Z" fill="url(#capG)"/>
+        <path d="M0 106 Q150 94 300 106 V116 Q150 104 0 116Z" fill="#4A32A8"/>
+        <path d="M0 107 Q150 95 300 107" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2"/>
+      </g>
       <text font-family="Onest,sans-serif" font-weight="800" font-size="38" fill="#fff" fill-opacity=".93" filter="url(#capSoft)"><textPath href="#capArc" startOffset="50%" text-anchor="middle" textLength="250" lengthAdjust="spacingAndGlyphs">SHABARSHOV</textPath></text>
       <text font-family="Onest,sans-serif" font-weight="600" font-size="14" fill="#fff" fill-opacity=".78" filter="url(#capSoft)"><textPath href="#capArc2" startOffset="50%" text-anchor="middle" textLength="134" lengthAdjust="spacingAndGlyphs">swimming club</textPath></text>
       <g fill="none" stroke="#fff" stroke-linecap="round">
