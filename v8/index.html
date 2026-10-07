@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
-<script>(function(){var V="45eede3d";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<script>(function(){var V="9ae59eb6";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <title>Вход «Бульк»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,7 +106,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 .gift:focus-visible .card{outline:3px solid var(--ink);outline-offset:3px}
 /* пластиковая карта 85,6 × 54 мм: перламутр, глянец, голограмма */
 .gift .card{position:relative;width:100%;aspect-ratio:85.6/54;border-radius:16px;overflow:visible;
-  display:flex;flex-direction:column;justify-content:flex-start;padding:103px 18px 14px;
+  display:flex;flex-direction:column;justify-content:flex-start;padding:124px 18px 12px;
   background:none;box-shadow:0 2px 3px rgba(31,27,46,.12),0 20px 44px rgba(60,40,120,.3)}
 .gift .skin{position:absolute;inset:0;width:100%;height:100%;border-radius:16px}
 .gift .gloss{position:absolute;inset:0;border-radius:16px;overflow:hidden;pointer-events:none}
@@ -116,9 +116,9 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 .gift .holo{display:none;position:absolute;right:16px;top:16px;width:38px;height:28px;border-radius:5px;
   background:conic-gradient(from 30deg,#C9B8F5,#A9D4F2,#F3C9E4,#C9B8F5,#B8E3EC,#C9B8F5);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);opacity:.9}
-.gift .t1{position:relative;font-weight:800;font-size:17px;line-height:1.08;white-space:nowrap;color:#fff;letter-spacing:-.01em}
-.gift .t2{position:relative;margin-top:3px;font-size:12px;color:rgba(255,255,255,.82)}
-.gift .t3{position:relative;margin-top:8px;align-self:flex-start;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);padding:8px 10px;
+.gift .t1{position:relative;font-weight:800;font-size:16px;line-height:1.08;white-space:nowrap;color:var(--ink);letter-spacing:-.01em}
+.gift .t2{position:relative;margin-top:2px;font-size:11.5px;color:#4A4558}
+.gift .t3{position:relative;margin-top:6px;align-self:flex-start;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);padding:8px 10px;
   background:linear-gradient(110deg,#C9B8F5,#A9D4F2 30%,#F3C9E4 55%,#C9B8F5 80%,#B8E3EC);background-size:220% 100%;box-shadow:inset 0 0 0 1.5px rgba(106,79,208,.35);transition:background-position .8s}
 .gift:hover .t3,.gift:focus-visible .t3{background-position:100% 0}
 .gift .cap{position:absolute;left:-16px;top:-44px;width:150px;height:auto;filter:drop-shadow(0 4px 6px rgba(60,40,120,.18))}
@@ -130,7 +130,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 
 @media (max-width:600px){
   .gift{width:236px;right:-26px;bottom:-18px}
-  .gift .card{padding:82px 13px 10px;border-radius:12px}
+  .gift .card{padding:99px 13px 9px;border-radius:12px}
   .gift .gloss{border-radius:11px}
   .gift .holo{width:30px;height:22px;right:12px;top:12px}
   .gift .t1{font-size:14px}
@@ -197,7 +197,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     <h1><small>Упс… Кто-то тонет в&nbsp;ежедневной рутине</small> <span>Давай поплаваем!</span></h1>
     <p class="say">Я&nbsp;— <b>Анатолий Шабаршов</b>, твой тренер по&nbsp;плаванию.</p>
     <div class="choice">
-      <a class="btn go" data-fx data-choose href="personal.html?v=45eede3d" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
+      <a class="btn go" data-fx data-choose href="personal.html?v=9ae59eb6" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
       <button class="btn go" type="button" data-to="Групповые"><i></i><i></i><i></i>Групповые</button>
     </div>
   </div>
@@ -231,28 +231,36 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 <button class="gift" id="gift" type="button" aria-hidden="true" tabindex="-1" aria-label="Купить подарочный сертификат">
   <div class="card">
     <svg class="skin" viewBox="0 0 300 190" preserveAspectRatio="none" aria-hidden="true">
-      <!-- силиконовая шапочка, натянутая на всю карту: купол, растянутая надпись, складки по углам, подвёрнутый край -->
+      <!-- серебряная карта, на неё во всю ширину натянута фиолетовая силиконовая шапочка -->
       <defs>
-        <radialGradient id="capG" cx="34%" cy="22%" r="95%"><stop offset="0" stop-color="#8A6FEA"/><stop offset=".5" stop-color="#6A4FD0"/><stop offset="1" stop-color="#4B33AD"/></radialGradient>
-        <path id="capArc" d="M14 74 Q150 22 286 74"/>
-        <path id="capArc2" d="M70 96 Q150 70 230 96"/>
+        <linearGradient id="silv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6F7FA"/><stop offset=".3" stop-color="#CDD0DA"/><stop offset=".52" stop-color="#F1F2F6"/><stop offset=".78" stop-color="#B9BDC9"/><stop offset="1" stop-color="#E7E9EF"/></linearGradient>
+        <pattern id="brush" width="300" height="3" patternUnits="userSpaceOnUse"><rect width="300" height="1" fill="#fff" fill-opacity=".35"/></pattern>
+        <radialGradient id="capG" cx="34%" cy="18%" r="95%"><stop offset="0" stop-color="#8A6FEA"/><stop offset=".5" stop-color="#6A4FD0"/><stop offset="1" stop-color="#4B33AD"/></radialGradient>
+        <clipPath id="cardClip"><rect width="300" height="190" rx="16"/></clipPath>
+        <path id="capArc" d="M20 66 Q150 18 280 66"/>
+        <path id="capArc2" d="M80 86 Q150 64 220 86"/>
         <filter id="capSoft"><feGaussianBlur stdDeviation=".45"/></filter>
       </defs>
-      <rect x="0" y="0" width="300" height="190" rx="16" fill="url(#capG)"/>
-      <text font-family="Onest,sans-serif" font-weight="800" font-size="40" fill="#fff" fill-opacity=".93" filter="url(#capSoft)"><textPath href="#capArc" startOffset="50%" text-anchor="middle" textLength="262" lengthAdjust="spacingAndGlyphs">SHABARSHOV</textPath></text>
-      <text font-family="Onest,sans-serif" font-weight="600" font-size="15" fill="#fff" fill-opacity=".78" filter="url(#capSoft)"><textPath href="#capArc2" startOffset="50%" text-anchor="middle" textLength="150" lengthAdjust="spacingAndGlyphs">swimming club</textPath></text>
+      <g clip-path="url(#cardClip)">
+        <rect width="300" height="190" fill="url(#silv)"/>
+        <rect width="300" height="190" fill="url(#brush)"/>
+        <path d="M-20 190 L120 0 H170 L30 190Z" fill="#fff" opacity=".35"/>
+      </g>
+      <rect x=".5" y=".5" width="299" height="189" rx="16" fill="none" stroke="#9EA3B2" stroke-opacity=".6"/>
+      <!-- купол шапочки: заходит за края карты, снизу подвёрнутый край -->
+      <path d="M-5 106 C-7 34 30 -5 150 -6 C270 -5 307 34 305 106 Q150 92 -5 106Z" fill="url(#capG)"/>
+      <path d="M-5 106 Q150 92 305 106 L305 116 Q150 102 -5 116Z" fill="#4A32A8"/>
+      <path d="M2 107 Q150 94 298 107" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2" stroke-linecap="round"/>
+      <text font-family="Onest,sans-serif" font-weight="800" font-size="38" fill="#fff" fill-opacity=".93" filter="url(#capSoft)"><textPath href="#capArc" startOffset="50%" text-anchor="middle" textLength="250" lengthAdjust="spacingAndGlyphs">SHABARSHOV</textPath></text>
+      <text font-family="Onest,sans-serif" font-weight="600" font-size="14" fill="#fff" fill-opacity=".78" filter="url(#capSoft)"><textPath href="#capArc2" startOffset="50%" text-anchor="middle" textLength="134" lengthAdjust="spacingAndGlyphs">swimming club</textPath></text>
       <g fill="none" stroke="#fff" stroke-linecap="round">
-        <path d="M30 26 C70 8 130 4 176 10" stroke-width="7" stroke-opacity=".28"/>
-        <path d="M196 12 C214 14 228 18 238 22" stroke-width="4" stroke-opacity=".22"/>
-        <path d="M8 40 C14 30 20 24 28 20" stroke-width="2" stroke-opacity=".3"/>
-        <path d="M292 44 C286 34 280 28 270 22" stroke-width="2" stroke-opacity=".25"/>
+        <path d="M34 22 C74 6 130 2 176 7" stroke-width="7" stroke-opacity=".28"/>
+        <path d="M196 9 C214 11 228 15 238 19" stroke-width="4" stroke-opacity=".22"/>
       </g>
-      <g fill="none" stroke="#2E1C7E" stroke-linecap="round" stroke-opacity=".28" stroke-width="1.6">
-        <path d="M6 150 C14 146 18 140 20 132"/><path d="M294 150 C286 146 282 140 280 132"/>
-        <path d="M10 22 C18 30 22 38 22 48"/><path d="M290 22 C282 30 278 38 278 48"/>
+      <g fill="none" stroke="#2E1C7E" stroke-linecap="round" stroke-opacity=".3" stroke-width="1.6">
+        <path d="M2 30 C10 38 14 48 14 60"/><path d="M298 30 C290 38 286 48 286 60"/>
+        <path d="M4 92 C10 88 14 82 15 74"/><path d="M296 92 C290 88 286 82 285 74"/>
       </g>
-      <path d="M0 168 Q150 154 300 168 V174 Q300 190 284 190 H16 Q0 190 0 174 Z" fill="#4A32A8"/>
-      <path d="M8 168 Q150 155 292 168" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2" stroke-linecap="round"/>
     </svg>
     <span class="gloss"></span>
     <span class="holo"></span>
