@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
-<script>(function(){var V="7f2d3a95";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<script>(function(){var V="da26d674";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <title>Вход «Бульк»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +198,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     <h1><small>Упс… Кто-то тонет в&nbsp;ежедневной рутине</small> <span>Давай поплаваем!</span></h1>
     <p class="say">Я&nbsp;— <b>Анатолий Шабаршов</b>, твой тренер по&nbsp;плаванию.</p>
     <div class="choice">
-      <a class="btn go" data-fx data-choose href="personal.html?v=7f2d3a95" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
+      <a class="btn go" data-fx data-choose href="personal.html?v=da26d674" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
       <button class="btn go" type="button" data-to="Групповые"><i></i><i></i><i></i>Групповые</button>
     </div>
   </div>
@@ -748,7 +748,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
 })();
 </script>
 <style>
-/* первый экран: всплывают маленькие и средние пузырики, лопаются — из них выскакивает «tap» */
+/* первый экран: всплывают маленькие и средние пузырики, лопаются — из них выскакивает «нажми» */
 #taps{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
 #taps .tb{position:absolute;left:0;top:0;border-radius:50%;pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;
   border:1.5px solid rgba(148,119,224,.7);
@@ -772,7 +772,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     for(var i=0;i<n;i++){var r=document.createElement('span'),a=Math.PI*2*i/n+Math.random()*.5,sz=3+Math.random()*d*.12,dist=d*.55+Math.random()*d*.5;
       r.className='td';r.style.width=r.style.height=sz+'px';box.appendChild(r);
       r.animate([{transform:'translate('+(x-sz/2)+'px,'+(y-sz/2)+'px) scale(1)',opacity:1},{transform:'translate('+(x-sz/2+Math.cos(a)*dist)+'px,'+(y-sz/2+Math.sin(a)*dist-12)+'px) scale(.4)',opacity:0}],{duration:520+Math.random()*260,easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish=function(){this.effect.target.remove();};}
-    var w=document.createElement('span');w.className='tw';w.textContent='tap';w.style.setProperty('--fs',Math.round(13+d*.28)+'px');box.appendChild(w);
+    var w=document.createElement('span');w.className='tw';w.textContent='нажми';w.style.setProperty('--fs',Math.round(13+d*.28)+'px');box.appendChild(w);
     w.animate([{transform:'translate('+x+'px,'+y+'px) translate(-50%,-50%) scale(.3)',opacity:0},{transform:'translate('+x+'px,'+(y-6)+'px) translate(-50%,-50%) scale(1.15)',opacity:1,offset:.25},{transform:'translate('+x+'px,'+(y-34)+'px) translate(-50%,-50%) scale(1)',opacity:0}],{duration:1100,easing:'ease-out'}).onfinish=function(){w.remove();};
   }
   function spawn(){
