@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
-<script>(function(){var V="22119e35";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<script>(function(){var V="7f2d3a95";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <title>Вход «Бульк»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +198,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     <h1><small>Упс… Кто-то тонет в&nbsp;ежедневной рутине</small> <span>Давай поплаваем!</span></h1>
     <p class="say">Я&nbsp;— <b>Анатолий Шабаршов</b>, твой тренер по&nbsp;плаванию.</p>
     <div class="choice">
-      <a class="btn go" data-fx data-choose href="personal.html?v=22119e35" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
+      <a class="btn go" data-fx data-choose href="personal.html?v=7f2d3a95" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
       <button class="btn go" type="button" data-to="Групповые"><i></i><i></i><i></i>Групповые</button>
     </div>
   </div>
@@ -745,5 +745,47 @@ body.diving .dive{opacity:0;transition:opacity .3s}
   g.addEventListener('click',function(e){e.stopPropagation();});/* фон окна не закрывает */
   addEventListener('resize',function(){if(!g.classList.contains('open'))return;var ow=W,oh=H;size();rings.forEach(function(r){r.x*=W/ow;r.y*=H/oh;});});
   window.__rings={P:P,step:step,draw:draw,state:function(){return{W:W,H:H,R:R,pegs:pegs,rings:rings,won:won}},open:open,close:close,reset:reset,press:press};
+})();
+</script>
+<style>
+/* первый экран: всплывают маленькие и средние пузырики, лопаются — из них выскакивает «tap» */
+#taps{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+#taps .tb{position:absolute;left:0;top:0;border-radius:50%;pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  border:1.5px solid rgba(148,119,224,.7);
+  background:radial-gradient(circle at 32% 28%,#fff 0 15%,rgba(255,255,255,0) 22%),radial-gradient(circle,rgba(255,255,255,.18) 55%,rgba(201,184,245,.35) 100%);
+  box-shadow:inset -3px -4px 9px rgba(169,212,242,.4),inset 3px 3px 9px rgba(243,201,228,.35)}
+#taps .td{position:absolute;left:0;top:0;border-radius:50%;border:1.3px solid rgba(148,119,224,.75);background:rgba(255,255,255,.5)}
+#taps .tw{position:absolute;left:0;top:0;font:800 var(--fs,18px)/1 var(--f);letter-spacing:.06em;color:var(--btn);white-space:nowrap;
+  text-shadow:0 0 6px #fff,0 0 2px #fff;transform:translate(-50%,-50%)}
+@media (prefers-reduced-motion:reduce){#taps{display:none}}
+</style>
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var s1=document.getElementById('s1'),bk=document.getElementById('bulk'),box=document.createElement('div');box.id='taps';box.setAttribute('aria-hidden','true');
+  s1.insertBefore(box,s1.firstChild);
+  var live=0;
+  function on(){return s1.getAttribute('aria-hidden')!=='true'&&!bk.classList.contains('popped')&&!document.hidden;}
+  function pop(b,x,y,d){
+    if(b._p)return;b._p=1;if(b._a)b._a.cancel();b.remove();live--;
+    var n=5+Math.round(d/14);
+    for(var i=0;i<n;i++){var r=document.createElement('span'),a=Math.PI*2*i/n+Math.random()*.5,sz=3+Math.random()*d*.12,dist=d*.55+Math.random()*d*.5;
+      r.className='td';r.style.width=r.style.height=sz+'px';box.appendChild(r);
+      r.animate([{transform:'translate('+(x-sz/2)+'px,'+(y-sz/2)+'px) scale(1)',opacity:1},{transform:'translate('+(x-sz/2+Math.cos(a)*dist)+'px,'+(y-sz/2+Math.sin(a)*dist-12)+'px) scale(.4)',opacity:0}],{duration:520+Math.random()*260,easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish=function(){this.effect.target.remove();};}
+    var w=document.createElement('span');w.className='tw';w.textContent='tap';w.style.setProperty('--fs',Math.round(13+d*.28)+'px');box.appendChild(w);
+    w.animate([{transform:'translate('+x+'px,'+y+'px) translate(-50%,-50%) scale(.3)',opacity:0},{transform:'translate('+x+'px,'+(y-6)+'px) translate(-50%,-50%) scale(1.15)',opacity:1,offset:.25},{transform:'translate('+x+'px,'+(y-34)+'px) translate(-50%,-50%) scale(1)',opacity:0}],{duration:1100,easing:'ease-out'}).onfinish=function(){w.remove();};
+  }
+  function spawn(){
+    if(on()&&live<5){
+      var W=s1.clientWidth,H=s1.clientHeight,d=Math.round(16+Math.random()*44),x0=d/2+Math.random()*(W-d),py=H*(.18+Math.random()*.5),dur=(H-py)*(9+Math.random()*7)+600,sway=(Math.random()<.5?-1:1)*(10+Math.random()*24);
+      var b=document.createElement('span');b.className='tb';b.style.width=b.style.height=d+'px';box.appendChild(b);live++;
+      var k=[];for(var i=0;i<=6;i++){var t=i/6;k.push({transform:'translate('+(x0-d/2+Math.sin(t*Math.PI*2)*sway)+'px,'+(H+d-(H+d-py)*t-d/2)+'px)'});}
+      b._a=b.animate(k,{duration:dur,easing:'linear'});
+      b._a.onfinish=function(){pop(b,x0+Math.sin(Math.PI*2)*sway,py,d);};
+      b.addEventListener('pointerdown',function(){var r=b.getBoundingClientRect(),o=box.getBoundingClientRect();pop(b,r.left-o.left+d/2,r.top-o.top+d/2,d);});
+    }
+    setTimeout(spawn,900+Math.random()*1500);
+  }
+  setTimeout(spawn,1200);
 })();
 </script>
