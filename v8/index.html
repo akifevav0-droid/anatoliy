@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
-<script>(function(){var V="da26d674";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
+<script>(function(){var V="7fdd9671";try{fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){t=(t||"").trim();if(t&&t!==V&&!sessionStorage.getItem("v8to"+t)){sessionStorage.setItem("v8to"+t,1);var u=new URL(location.href);u.searchParams.set("v",t);location.replace(u.toString());}}).catch(function(){})}catch(e){}})();</script>
 <title>Вход «Бульк»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +198,7 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     <h1><small>Упс… Кто-то тонет в&nbsp;ежедневной рутине</small> <span>Давай поплаваем!</span></h1>
     <p class="say">Я&nbsp;— <b>Анатолий Шабаршов</b>, твой тренер по&nbsp;плаванию.</p>
     <div class="choice">
-      <a class="btn go" data-fx data-choose href="personal.html?v=da26d674" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
+      <a class="btn go" data-fx data-choose href="personal.html?v=7fdd9671" data-to="Персональные" style="text-decoration:none;display:inline-block;text-align:center"><i></i><i></i><i></i>Персональные</a>
       <button class="btn go" type="button" data-to="Групповые"><i></i><i></i><i></i>Групповые</button>
     </div>
   </div>
@@ -775,17 +775,20 @@ body.diving .dive{opacity:0;transition:opacity .3s}
     var w=document.createElement('span');w.className='tw';w.textContent='нажми';w.style.setProperty('--fs',Math.round(13+d*.28)+'px');box.appendChild(w);
     w.animate([{transform:'translate('+x+'px,'+y+'px) translate(-50%,-50%) scale(.3)',opacity:0},{transform:'translate('+x+'px,'+(y-6)+'px) translate(-50%,-50%) scale(1.15)',opacity:1,offset:.25},{transform:'translate('+x+'px,'+(y-34)+'px) translate(-50%,-50%) scale(1)',opacity:0}],{duration:1100,easing:'ease-out'}).onfinish=function(){w.remove();};
   }
+  var first=true;
   function spawn(){
     if(on()&&live<5){
-      var W=s1.clientWidth,H=s1.clientHeight,d=Math.round(16+Math.random()*44),x0=d/2+Math.random()*(W-d),py=H*(.18+Math.random()*.5),dur=(H-py)*(9+Math.random()*7)+600,sway=(Math.random()<.5?-1:1)*(10+Math.random()*24);
+      var W=s1.clientWidth,H=s1.clientHeight,d=Math.round(16+Math.random()*44),x0=d/2+Math.random()*(W-d),py=H*(.18+Math.random()*.5),dur=(H-py)*(3.6+Math.random()*2.4)+350,sway=(Math.random()<.5?-1:1)*(10+Math.random()*24);
       var b=document.createElement('span');b.className='tb';b.style.width=b.style.height=d+'px';box.appendChild(b);live++;
       var k=[];for(var i=0;i<=6;i++){var t=i/6;k.push({transform:'translate('+(x0-d/2+Math.sin(t*Math.PI*2)*sway)+'px,'+(H+d-(H+d-py)*t-d/2)+'px)'});}
       b._a=b.animate(k,{duration:dur,easing:'linear'});
+      /* первый пузырик стартует с середины пути — «нажми» видно почти сразу */
+      if(first){first=false;b._a.currentTime=dur*.55;}
       b._a.onfinish=function(){pop(b,x0+Math.sin(Math.PI*2)*sway,py,d);};
       b.addEventListener('pointerdown',function(){var r=b.getBoundingClientRect(),o=box.getBoundingClientRect();pop(b,r.left-o.left+d/2,r.top-o.top+d/2,d);});
     }
-    setTimeout(spawn,900+Math.random()*1500);
+    setTimeout(spawn,500+Math.random()*900);
   }
-  setTimeout(spawn,1200);
+  setTimeout(spawn,250);
 })();
 </script>
